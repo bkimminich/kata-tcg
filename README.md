@@ -6,18 +6,27 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_(programming) you will be 
 
 ### Preparation
 
-1. Each player starts the game with 30 life and 0 mana
-2. Each player starts with deck of 15 cards with the following mana costs: 1,1,2,2,3,3,3,4,4,5,5,6,6,7,8
+1. Each player starts the game with 30 _Health_ and 0 _Mana_ slots
+2. Each player starts with a deck of 20 _Damage_ cards with the following Mana costs: 0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8
 3. From the deck each player receives 3 random cards has his initial hand
 
 ### Gameplay
-1. The active player receives 1 mana slot up to a maximum of 10 total slots
-2. The active player's empty mana slots are refilled
+1. The active player receives 1 Mana slot up to a maximum of 10 total slots
+2. The active player's empty Mana slots are refilled
 3. The active player draws a random card from his deck
-4. The active player can play as many cards as he can afford. Any played card empties mana slots and deals immediate damage  to the opponent player equal to its mana cost.
-5. If the opponent player's life drops to or below zero the active player wins the game
-6. If the active player can't (by either having no cards left in his hand or lacking sufficient mana to pay for any hand card) or simply doesn't want to play another card, the opponent player becomes active
+4. The active player can play as many cards as he can afford. Any played card empties Mana slots and deals immediate damage  to the opponent player equal to its Mana cost.
+5. If the opponent player's Health drops to or below zero the active player wins the game
+6. If the active player can't (by either having no cards left in his hand or lacking sufficient Mana to pay for any hand card) or simply doesn't want to play another card, the opponent player becomes active
 
-### Special Situations
-1. Bleeding Out: If a player's card deck is empty before the game is over he receives 1 damage instead of drawing a card when it's his turn
-2. Overload: If a player draws a card that lets his hand size become >5 that card is discarded instead of being put into his hand
+### Special Rules
+1. _Bleeding Out_: If a player's card deck is empty before the game is over he receives 1 damage instead of drawing a card when it's his turn.
+2. _Overload_: If a player draws a card that lets his hand size become >5 that card is discarded instead of being put into his hand.
+3. _Dud Card_: The 0 Mana cards can be played for free but don't do any damage either. They are just annoyingly taking up space in your hand.
+
+## Advanced Variations
+
+When the normal game rules have become too boring you might consider adding some additional rules like those described below:
+
+1. Let Mana cost and damage dealt be different from each other thus making cheap powerful, expensive mediocre or entirely useless cards possible. This can add a whole new layer of play strategy as some cards might not be desired to be ever played, but eventually have to in order to free your hand for better cards.
+2. Introduce a _Healing_ card type that restores a given amount of Health on the active player. Can be done with Mana cost equal to healing amount or independent for each other (see above).
+3. Introduce _Card Drawer_ cards that cost Mana but don't do any damage. Instead they let you draw a given number of cards from your deck. Those cards can be used in the current turn or later on (just as if normally drawn at the beginning of the active player's turn).
