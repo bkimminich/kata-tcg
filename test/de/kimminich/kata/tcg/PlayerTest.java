@@ -28,4 +28,9 @@ public class PlayerTest {
         assertThat(player.getMana(), is(equalTo(0)));
     }
 
+    @Test
+    public void cardDeckShouldInitiallyContainTwoCardsWithZeroManaCost() {
+      assertThat(player.getNumberOfCardsWithManaCost(0), is(equalTo(2)));
+    }
+
 }
