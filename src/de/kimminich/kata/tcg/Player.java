@@ -26,16 +26,8 @@ public class Player {
         return mana;
     }
 
-    public int getNumberOfCardsWithManaCost(int manaCost) {
+    public int getNumberOfDeckCardsWithManaCost(int manaCost) {
         return deck[manaCost];
-    }
-
-    public int getNumberOfHandCards() {
-        int count = 0;
-        for (int numberOfCards : hand) {
-            count += numberOfCards;
-        }
-        return count;
     }
 
     public int getNumberOfDeckCards() {
@@ -46,13 +38,21 @@ public class Player {
         return count;
     }
 
+    public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
+        return hand[manaCost];
+    }
+
+    public int getNumberOfHandCards() {
+        int count = 0;
+        for (int numberOfCards : hand) {
+            count += numberOfCards;
+        }
+        return count;
+    }
+
     public void drawCard() {
         int card = cardPicker.pick(deck);
         deck[card] = deck[card] - 1;
         hand[card] = hand[card] + 1;
-    }
-
-    public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
-        return hand[manaCost];
     }
 }

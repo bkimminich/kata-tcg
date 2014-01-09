@@ -36,15 +36,15 @@ public class PlayerTest {
 
     @Test
     public void cardDeckShouldContainInitialCards() {
-        assertThat(player.getNumberOfCardsWithManaCost(0), is(equalTo(2)));
-        assertThat(player.getNumberOfCardsWithManaCost(1), is(equalTo(2)));
-        assertThat(player.getNumberOfCardsWithManaCost(2), is(equalTo(3)));
-        assertThat(player.getNumberOfCardsWithManaCost(3), is(equalTo(4)));
-        assertThat(player.getNumberOfCardsWithManaCost(4), is(equalTo(3)));
-        assertThat(player.getNumberOfCardsWithManaCost(5), is(equalTo(2)));
-        assertThat(player.getNumberOfCardsWithManaCost(6), is(equalTo(2)));
-        assertThat(player.getNumberOfCardsWithManaCost(7), is(equalTo(1)));
-        assertThat(player.getNumberOfCardsWithManaCost(8), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(0), is(equalTo(2)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(1), is(equalTo(2)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(3)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(3), is(equalTo(4)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(4), is(equalTo(3)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(5), is(equalTo(2)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(6), is(equalTo(2)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(7), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(8), is(equalTo(1)));
     }
 
     @Test
@@ -72,8 +72,8 @@ public class PlayerTest {
         player.drawCard();
         // then
         assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
-        assertThat(player.getNumberOfCardsWithManaCost(1), is(equalTo(1)));
-        assertThat(player.getNumberOfCardsWithManaCost(2), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(1), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(1)));
     }
 
     private int[] anyDeck() {
