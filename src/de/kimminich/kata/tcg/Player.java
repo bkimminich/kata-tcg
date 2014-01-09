@@ -1,7 +1,5 @@
 package de.kimminich.kata.tcg;
 
-import java.util.Arrays;
-
 public class Player {
 
     private int health = 30;
@@ -14,10 +12,10 @@ public class Player {
     protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    protected CardDrawer cardDrawer;
+    protected CardPicker cardPicker;
 
-    public Player(CardDrawer cardDrawer) {
-        this.cardDrawer = cardDrawer;
+    public Player(CardPicker cardPicker) {
+        this.cardPicker = cardPicker;
     }
 
     public int getHealth() {
@@ -49,7 +47,7 @@ public class Player {
     }
 
     public int drawCard() {
-        int card = cardDrawer.draw(deck);
+        int card = cardPicker.draw(deck);
         deck[card] = deck[card] - 1;
         hand[card] = hand[card] + 1;
         return card;
