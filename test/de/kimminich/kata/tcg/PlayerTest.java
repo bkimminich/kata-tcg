@@ -67,13 +67,17 @@ public class PlayerTest {
     public void drawingACardShouldPutThatCardFromDeckIntoHand() {
         // given
         player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
-        given(cardPicker.pick(any(int[].class))).willReturn(1);
+        given(cardPicker.pick(anyDeck())).willReturn(1);
         // when
         player.drawCard();
         // then
         assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfCardsWithManaCost(2), is(equalTo(1)));
+    }
+
+    private int[] anyDeck() {
+        return any(int[].class);
     }
 
     private FakePlayer aPlayer() {
