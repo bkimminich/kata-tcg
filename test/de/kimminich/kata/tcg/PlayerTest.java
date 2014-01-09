@@ -23,4 +23,9 @@ public class PlayerTest {
         assertThat(player.getHealth(), is(equalTo(30)));
     }
 
+    @Test
+    public void playerShouldHaveZeroInitialMana() {
+        assertThat(player.getMana(), is(equalTo(0)));
+    }
+
 }
