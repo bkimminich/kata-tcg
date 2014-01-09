@@ -47,4 +47,11 @@ public class PlayerTest {
         assertThat(player.getNumberOfHandCards(), is(equalTo(0)));
     }
 
+    @Test
+    public void drawingACardShouldPutOneCardFromDeckIntoHand() {
+        // given: A player with one card in deck and no cards in hand
+        // when: The player draws a card
+        // then: The deck has no cards and the hand has the one card from the deck
+    }
+
 }
