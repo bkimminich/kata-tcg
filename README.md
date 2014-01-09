@@ -30,7 +30,7 @@ When the normal game rules have become too boring you might consider adding some
 1. Let Mana cost and damage dealt be different from each other thus making cheap powerful, expensive mediocre or entirely useless cards possible. This can add a whole new layer of play strategy as some cards might not be desired to be ever played, but eventually have to in order to free your hand for better cards.
 2. Introduce a _Healing_ card type that restores a given amount of Health on the active player. Can be done with Mana cost equal to healing amount or independent for each other (see above).
 3. Introduce _Card Drawer_ cards that cost Mana but don't do any damage. Instead they let you draw a given number of cards from your deck. Those cards can be used in the current turn or later on (just as if normally drawn at the beginning of the active player's turn).
-4. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk before starting a game.
+4. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk[1] before starting a game.
 5. Let the game be played via network[1] against other players.
 
 [1] If you want to do this with TDD it might be the point where you should get familiar with a good [Mocking](http://en.wikipedia.org/wiki/Mock_object) framework (e.g. [Mockito](https://code.google.com/p/mockito/))
