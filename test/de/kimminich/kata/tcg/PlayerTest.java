@@ -1,10 +1,7 @@
 package de.kimminich.kata.tcg;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -50,7 +47,7 @@ public class PlayerTest {
     @Test
     public void drawingACardShouldPutOneCardFromDeckIntoHand() {
         // given
-        Player player = new FakePlayer(new int[] {1}, new int[] {0});
+        Player player = new FakePlayer().withCardsInDeck(0).withNoCardsInHand();
         // when
         player.drawCard();
         // then
@@ -60,12 +57,35 @@ public class PlayerTest {
 
     private class FakePlayer extends Player {
 
-        public FakePlayer() {}
-
-        public FakePlayer(int[] deck, int[] hand) {
-            this.deck = deck;
-            this.hand = hand;
+        public FakePlayer() {
+            this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+            this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
+
+        public FakePlayer withCardsInDeck(int... manaCost) {
+            for (int cost : manaCost) {
+                deck[cost] = deck[cost] + 1;
+            }
+            return this;
+        }
+
+        public FakePlayer withNoCardsInDeck() {
+            this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+            return this;
+        }
+
+        public FakePlayer withCardsInHand(int... manaCost) {
+            for (int cost : manaCost) {
+                hand[cost] = hand[cost] + 1;
+            }
+            return this;
+        }
+
+        public FakePlayer withNoCardsInHand() {
+            this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+            return this;
+        }
+
     }
 
 }
