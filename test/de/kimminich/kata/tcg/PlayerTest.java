@@ -13,7 +13,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        player = new Player();
+        player = new Player(null);
     }
 
     @Test
@@ -74,6 +74,7 @@ public class PlayerTest {
     private class FakePlayer extends Player {
 
         public FakePlayer() {
+            super(null);
             this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
             this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
