@@ -1,7 +1,10 @@
 package de.kimminich.kata.tcg;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -37,6 +40,11 @@ public class PlayerTest {
         assertThat(player.getNumberOfCardsWithManaCost(6), is(equalTo(2)));
         assertThat(player.getNumberOfCardsWithManaCost(7), is(equalTo(1)));
         assertThat(player.getNumberOfCardsWithManaCost(8), is(equalTo(1)));
+    }
+
+    @Test
+    public void playerStartsWithEmptyHand() {
+        assertThat(player.getNumberOfHandCards(), is(equalTo(0)));
     }
 
 }
