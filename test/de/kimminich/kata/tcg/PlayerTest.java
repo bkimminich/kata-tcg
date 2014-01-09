@@ -72,7 +72,7 @@ public class PlayerTest {
         player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
         given(cardPicker.draw(any(int[].class))).willReturn(1);
         // when
-        int card = player.drawCard();
+        player.drawCard();
         // then
         assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfCardsWithManaCost(1), is(equalTo(1)));
