@@ -3,12 +3,16 @@ package de.kimminich.kata.tcg;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
@@ -66,6 +70,7 @@ public class PlayerTest {
     public void drawingACardShouldPutThatCardFromDeckIntoHand() {
         // given
         player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
+        given(cardPicker.draw(any(int[].class))).willReturn(1);
         // when
         int card = player.drawCard();
         // then
