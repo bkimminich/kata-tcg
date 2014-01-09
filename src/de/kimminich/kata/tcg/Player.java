@@ -49,9 +49,10 @@ public class Player {
     }
 
     public int drawCard() {
-        deck[0] = deck[0] - 1;
-        hand[0] = hand[0] + 1;
-        return 1;
+        int card = cardDrawer.draw(deck);
+        deck[card] = deck[card] - 1;
+        hand[card] = hand[card] + 1;
+        return card;
     }
 
     public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
