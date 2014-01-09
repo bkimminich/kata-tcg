@@ -49,9 +49,23 @@ public class PlayerTest {
 
     @Test
     public void drawingACardShouldPutOneCardFromDeckIntoHand() {
-        // given: A player with one card in deck and no cards in hand
-        // when: The player draws a card
-        // then: The deck has no cards and the hand has the one card from the deck
+        // given
+        Player player = new FakePlayer(new int[] {1}, new int[] {0});
+        // when
+        player.drawCard();
+        // then
+        assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
+        assertThat(player.getNumberOfCardsWithManaCost(0), is(equalTo(0)));
+    }
+
+    private class FakePlayer extends Player {
+
+        public FakePlayer() {}
+
+        public FakePlayer(int[] deck, int[] hand) {
+            this.deck = deck;
+            this.hand = hand;
+        }
     }
 
 }
