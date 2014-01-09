@@ -19,5 +19,5 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_(programming) you will be 
 6. If the active player can't (by either having no cards left in his hand or lacking sufficient mana to pay for any hand card) or simply doesn't want to play another card, the opponent player becomes active
 
 ### Special Situations
-1. If a player's card deck is empty before the game is over he receives 1 damage instead of drawing a card when it's his turn
-2. If a player draws a card that lets his hand size become >5 that card is discarded instead of being put into his hand
+1. Bleeding Out: If a player's card deck is empty before the game is over he receives 1 damage instead of drawing a card when it's his turn
+2. Overload: If a player draws a card that lets his hand size become >5 that card is discarded instead of being put into his hand
