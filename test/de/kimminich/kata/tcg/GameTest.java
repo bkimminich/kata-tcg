@@ -23,4 +23,12 @@ public class GameTest {
         assertThat(game.getPlayer2(), is(notNullValue()));
     }
 
+    @Test
+    public void eachPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
+        assertThat(game.getPlayer1().getNumberOfHandCards(), is(equalTo(3)));
+        assertThat(game.getPlayer1().getNumberOfDeckCards(), is(equalTo(17)));
+        assertThat(game.getPlayer2().getNumberOfHandCards(), is(equalTo(3)));
+        assertThat(game.getPlayer2().getNumberOfDeckCards(), is(equalTo(17)));
+    }
+
 }
