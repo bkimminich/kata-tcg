@@ -12,6 +12,11 @@ public class GameTest {
 
     private Game game;
 
+    @Before
+    public void setUp() {
+        game = new Game();
+    }
+
     @Test
     public void gameShouldHaveTwoPlayers() {
         assertThat(game.getPlayer1(), is(notNullValue()));
