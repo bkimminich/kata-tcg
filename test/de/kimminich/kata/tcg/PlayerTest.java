@@ -2,18 +2,25 @@ package de.kimminich.kata.tcg;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
 
     Player player;
 
+    @Mock
+    CardPicker cardPicker;
+
     @Before
     public void setUp() {
-        player = new Player(null);
+        player = new Player(cardPicker);
     }
 
     @Test
@@ -74,7 +81,7 @@ public class PlayerTest {
     private class FakePlayer extends Player {
 
         public FakePlayer() {
-            super(null);
+            super(PlayerTest.this.cardPicker);
             this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
             this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
