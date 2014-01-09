@@ -14,10 +14,10 @@ import static org.mockito.BDDMockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
 
-    Player player;
+    private Player player;
 
     @Mock
-    CardPicker cardPicker;
+    private CardPicker cardPicker;
 
     @Before
     public void setUp() {
