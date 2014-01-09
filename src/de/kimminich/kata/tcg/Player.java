@@ -47,7 +47,7 @@ public class Player {
     }
 
     public void drawCard() {
-        int card = cardPicker.draw(deck);
+        int card = cardPicker.pick(deck);
         deck[card] = deck[card] - 1;
         hand[card] = hand[card] + 1;
     }
