@@ -14,6 +14,8 @@ public class Player {
     protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+    protected CardDrawer cardDrawer = null;
+
     public int getHealth() {
         return health;
     }
