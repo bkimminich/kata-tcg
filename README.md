@@ -7,9 +7,8 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_(programming)) you will be
 ### Preparation
 
 1. Each player starts the game with 30 life and 0 mana
-2. Each player starts with deck of 15 cards
-3. From the deck each player receives 3 random cards has his initial hand cards
-4. Each card deals damage to the opponent equal to its mana cost: 1,1,2,2,3,3,3,4,4,5,5,6,6,7,8
+2. Each player starts with deck of 15 cards with the following mana costs: 1,1,2,2,3,3,3,4,4,5,5,6,6,7,8
+3. From the deck each player receives 3 random cards has his initial hand
 
 ### Gameplay
 1. The active player receives 1 mana slot up to a maximum of 10 total slots
