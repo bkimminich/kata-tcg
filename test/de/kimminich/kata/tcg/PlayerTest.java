@@ -60,10 +60,11 @@ public class PlayerTest {
         // given
         player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
         // when
-        player.drawCard();
+        int card = player.drawCard();
         // then
-        assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
-        assertThat(player.getNumberOfDeckCards(), is(equalTo(2)));
+        assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
+        assertThat(player.getNumberOfCardsWithManaCost(1), is(equalTo(1)));
+        assertThat(player.getNumberOfCardsWithManaCost(2), is(equalTo(1)));
     }
 
     private FakePlayer aPlayer() {

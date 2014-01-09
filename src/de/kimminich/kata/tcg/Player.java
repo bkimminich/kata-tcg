@@ -42,8 +42,13 @@ public class Player {
         return count;
     }
 
-    public void drawCard() {
+    public int drawCard() {
         deck[0] = deck[0] - 1;
         hand[0] = hand[0] + 1;
+        return 1;
+    }
+
+    public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
+        return hand[manaCost];
     }
 }
