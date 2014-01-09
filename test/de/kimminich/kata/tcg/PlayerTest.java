@@ -76,6 +76,17 @@ public class PlayerTest {
         assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(1)));
     }
 
+    @Test
+    public void playerShouldTakeOneDamageWhenDrawingFromEmptyDeck() {
+        // given
+        player = aPlayer().withNoCardsInDeck();
+        int preDrawHealth = player.getHealth();
+        // when
+        player.drawCard();
+        // then
+        assertThat(player.getHealth(), is(equalTo(preDrawHealth-1)));
+    }
+
     private int[] anyDeck() {
         return any(int[].class);
     }
