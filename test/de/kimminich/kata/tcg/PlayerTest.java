@@ -47,12 +47,16 @@ public class PlayerTest {
     @Test
     public void drawingACardShouldPutOneCardFromDeckIntoHand() {
         // given
-        Player player = new FakePlayer().withCardsInDeck(0).withNoCardsInHand();
+        player = aPlayer().withCardsInDeck(0).withNoCardsInHand();
         // when
         player.drawCard();
         // then
         assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
         assertThat(player.getNumberOfCardsWithManaCost(0), is(equalTo(0)));
+    }
+
+    private FakePlayer aPlayer() {
+        return new FakePlayer();
     }
 
     private class FakePlayer extends Player {
