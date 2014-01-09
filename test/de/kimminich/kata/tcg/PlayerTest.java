@@ -52,7 +52,7 @@ public class PlayerTest {
         player.drawCard();
         // then
         assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
-        assertThat(player.getNumberOfCardsWithManaCost(0), is(equalTo(0)));
+        assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
     }
 
     private FakePlayer aPlayer() {

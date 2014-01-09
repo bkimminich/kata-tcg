@@ -34,6 +34,14 @@ public class Player {
         return count;
     }
 
+    public int getNumberOfDeckCards() {
+        int count = 0;
+        for (int numberOfCards : deck) {
+            count += numberOfCards;
+        }
+        return count;
+    }
+
     public void drawCard() {
         deck[0] = deck[0] - 1;
         hand[0] = hand[0] + 1;
