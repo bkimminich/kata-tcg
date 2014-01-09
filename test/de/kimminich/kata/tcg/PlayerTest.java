@@ -55,6 +55,17 @@ public class PlayerTest {
         assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
     }
 
+    @Test
+    public void drawingACardShouldPutThatCardFromDeckIntoHand() {
+        // given
+        player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
+        // when
+        player.drawCard();
+        // then
+        assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCards(), is(equalTo(2)));
+    }
+
     private FakePlayer aPlayer() {
         return new FakePlayer();
     }
