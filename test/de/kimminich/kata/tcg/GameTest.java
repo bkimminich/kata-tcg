@@ -16,6 +16,10 @@ public class GameTest {
 
     private Game game;
 
+    private Player player1;
+
+    private Player player2;
+
     @Mock
     private CardPicker player1CardPicker;
 
@@ -24,7 +28,9 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(new Player(player1CardPicker), new Player(player2CardPicker));
+        player1 = new Player(player1CardPicker);
+        player2 = new Player(player2CardPicker);
+        game = new Game(player1, player2);
     }
 
     @Test
