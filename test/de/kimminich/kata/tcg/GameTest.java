@@ -1,7 +1,5 @@
 package de.kimminich.kata.tcg;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -71,6 +69,20 @@ public class GameTest {
         game.setActivePlayer(player1);
         game.beginTurn();
         assertThat(player1.getMana(), is(equalTo(player1.getManaSlots())));
+    }
+
+    @Test
+    public void startingPlayerShouldBeRandomlyChosen() {
+        double player1Started = 0;
+        double player2Started = 0;
+        for (int i = 0; i < 1000000; i++) {
+            if (new Game(player1, player2).getActivePlayer() == player1) {
+                player1Started++;
+            } else {
+                player2Started++;
+            }
+        }
+        assertThat(player1Started / player2Started, is(closeTo(1.0, 0.05)));
     }
 
     private FakePlayer aPlayer() {
