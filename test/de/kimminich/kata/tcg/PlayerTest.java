@@ -10,7 +10,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
@@ -65,7 +66,7 @@ public class PlayerTest {
 
     @Test
     public void drawingACardShouldPutThatCardFromDeckIntoHand() {
-        player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
+        player = aPlayer().withCardsInDeck(1, 1, 2).withNoCardsInHand();
         given(cardPicker.pick(anyDeck())).willReturn(1);
 
         player.drawCard();
@@ -82,7 +83,7 @@ public class PlayerTest {
 
         player.drawCard();
 
-        assertThat(player.getHealth(), is(equalTo(preDrawHealth-1)));
+        assertThat(player.getHealth(), is(equalTo(preDrawHealth - 1)));
     }
 
     @Test
@@ -107,13 +108,19 @@ public class PlayerTest {
 
     @Test
     public void playingCardsRemovesThemFromHand() {
-        player = aPlayer().withMana(5).withCardsInHand(0,2,2,3);
+        player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3);
 
         player.playCard(3);
         player.playCard(2);
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
+    }
+
+    @Test(expected = IllegalMoveException.class)
+    public void playingCardWithInsufficientManaShouldFail() {
+        player = aPlayer().withMana(3).withCardsInHand(4,4,4);
+        player.playCard(4);
     }
 
     private int[] anyDeck() {

@@ -84,6 +84,9 @@ public class Player {
     }
 
     public void playCard(int card) {
+        if (mana<card) {
+            throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
+        }
         mana-=card;
         hand[card]--;
     }
