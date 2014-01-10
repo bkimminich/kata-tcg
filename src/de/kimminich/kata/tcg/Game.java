@@ -29,8 +29,11 @@ public class Game {
         return activePlayer;
     }
 
-    public void endTurn() {
-        switchPlayer();
+    public void beginTurn() {
+        if (activePlayer.getManaSlots() < 10) {
+            activePlayer.giveManaSlot();
+        }
+        activePlayer.refillMana();
     }
 
     private void switchPlayer() {
@@ -41,10 +44,7 @@ public class Game {
         }
     }
 
-    public void beginTurn() {
-        if (activePlayer.getManaSlots() < 10) {
-            activePlayer.giveManaSlot();
-        }
-        activePlayer.refillMana();
+    public void endTurn() {
+        switchPlayer();
     }
 }
