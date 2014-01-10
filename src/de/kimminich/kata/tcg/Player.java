@@ -58,9 +58,9 @@ public class Player {
             health--;
         } else {
             int card = cardPicker.pick(deck);
-            deck[card] = deck[card] - 1;
+            deck[card]--;
             if (getNumberOfHandCards() < 5) {
-                hand[card] = hand[card] + 1;
+                hand[card]++;
             }
         }
     }
