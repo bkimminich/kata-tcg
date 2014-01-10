@@ -70,7 +70,7 @@ public class GameTest {
         player1 = aPlayer().withManaSlots(3).withMana(0);
         game.setActivePlayer(player1);
         game.beginTurn();
-        assertThat(player1.getMana(), is(equalTo(4)));
+        assertThat(player1.getMana(), is(equalTo(player1.getManaSlots())));
     }
 
     private FakePlayer aPlayer() {
