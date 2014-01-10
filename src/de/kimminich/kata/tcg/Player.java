@@ -85,5 +85,6 @@ public class Player {
 
     public void playCard(int card) {
         mana-=card;
+        hand[card]--;
     }
 }

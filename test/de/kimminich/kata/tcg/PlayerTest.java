@@ -105,6 +105,17 @@ public class PlayerTest {
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(2)));
     }
 
+    @Test
+    public void playingCardsRemovesThemFromHand() {
+        player = aPlayer().withMana(5).withCardsInHand(0,2,2,3);
+
+        player.playCard(3);
+        player.playCard(2);
+
+        assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
+        assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
+    }
+
     private int[] anyDeck() {
         return any(int[].class);
     }
