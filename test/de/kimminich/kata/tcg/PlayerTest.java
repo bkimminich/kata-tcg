@@ -54,23 +54,21 @@ public class PlayerTest {
 
     @Test
     public void drawingACardShouldPutOneCardFromDeckIntoHand() {
-        // given
         player = aPlayer().withCardsInDeck(1).withNoCardsInHand();
-        // when
+
         player.drawCard();
-        // then
+
         assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
         assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
     }
 
     @Test
     public void drawingACardShouldPutThatCardFromDeckIntoHand() {
-        // given
         player = aPlayer().withCardsInDeck(1,1,2).withNoCardsInHand();
         given(cardPicker.pick(anyDeck())).willReturn(1);
-        // when
+
         player.drawCard();
-        // then
+
         assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfDeckCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(1)));
@@ -78,23 +76,21 @@ public class PlayerTest {
 
     @Test
     public void playerShouldTakeOneDamageWhenDrawingFromEmptyDeck() {
-        // given
         player = aPlayer().withNoCardsInDeck();
         int preDrawHealth = player.getHealth();
-        // when
+
         player.drawCard();
-        // then
+
         assertThat(player.getHealth(), is(equalTo(preDrawHealth-1)));
     }
 
     @Test
     public void shouldDiscardDrawnCardWhenHandSizeIsFive() {
-        // given
         player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5);
         given(cardPicker.pick(anyDeck())).willReturn(1);
-        // when
+
         player.drawCard();
-        // then
+
         assertThat(player.getNumberOfHandCards(), is(equalTo(5)));
         assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
     }
