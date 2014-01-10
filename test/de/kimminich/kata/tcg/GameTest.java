@@ -82,6 +82,18 @@ public class GameTest {
         assertThat(winner(), is(player2()));
     }
 
+    @Test
+    public void opponentLoosesWhenHealthIsZero() {
+        game = new Game(aPlayer().withMana(10).withCardsInHand(4,6), aPlayer().withHealth(10));
+        game.setActivePlayer(player1());
+
+        player1().playCard(6, player2());
+        player1().playCard(4, player2());
+
+        assertThat(winner(), is(player1()));
+    }
+
+
     private FakePlayer aPlayer() {
         return new FakePlayer(mock(CardPicker.class));
     }
