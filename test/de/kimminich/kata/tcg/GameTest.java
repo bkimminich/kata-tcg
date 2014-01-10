@@ -33,8 +33,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldSwitchOnEndOfTurn() {
-        game = new Game(aPlayer(), aPlayer());
-        game.setActivePlayer(player1());
+        Player player1 = aPlayer();
+        game = new FakeGame(player1, aPlayer()).withActivePlayer(player1);
 
         game.endTurn();
         assertThat(activePlayer(), is(player2()));
@@ -44,8 +44,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldReceiveOneManaSlotOnBeginningOfTurn() {
-        game = new Game(aPlayer().withManaSlots(0), aPlayer());
-        game.setActivePlayer(player1());
+        Player player1 = aPlayer().withManaSlots(0);
+        game = new FakeGame(player1, aPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -54,8 +54,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldRefillManaOnBeginningOfTurn() {
-        game = new Game(aPlayer().withManaSlots(3).withMana(0), aPlayer());
-        game.setActivePlayer(player1());
+        Player player1 = aPlayer().withManaSlots(3).withMana(0);
+        game = new FakeGame(player1, aPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -64,8 +64,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldDrawCardOnBeginningOfTurn() {
-        game = new Game(spy(aPlayer()), aPlayer());
-        game.setActivePlayer(player1());
+        Player player1 = spy(aPlayer());
+        game = new FakeGame(player1, aPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -74,8 +74,8 @@ public class GameTest {
 
     @Test
     public void playerWithOneHealthAndEmptyDeckShouldDieFromBleedingOutOnBeginningOfTurn() {
-        game = new Game(aPlayer().withHealth(1).withNoCardsInDeck(), aPlayer());
-        game.setActivePlayer(player1());
+        Player player1 = aPlayer().withHealth(1).withNoCardsInDeck();
+        game = new FakeGame(player1, aPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -84,8 +84,8 @@ public class GameTest {
 
     @Test
     public void opponentLoosesWhenHealthIsZero() {
-        game = new Game(aPlayer().withMana(10).withCardsInHand(4,6), aPlayer().withHealth(10));
-        game.setActivePlayer(player1());
+        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6);
+        game = new FakeGame(player1, aPlayer().withHealth(10)).withActivePlayer(player1);
 
         player1().playCard(6, player2());
         player1().playCard(4, player2());
@@ -112,5 +112,18 @@ public class GameTest {
 
     private Player winner() {
         return game.getWinner();
+    }
+
+    private class FakeGame extends Game {
+
+        public FakeGame(Player player1, Player player2) {
+            super(player1,player2);
+        }
+
+        public FakeGame withActivePlayer(Player activePlayer) {
+            this.activePlayer = activePlayer;
+            return this;
+        }
+
     }
 }

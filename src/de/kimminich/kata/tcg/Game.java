@@ -6,7 +6,7 @@ public class Game {
 
     private Player player1;
     private Player player2;
-    private Player activePlayer;
+    protected Player activePlayer;
 
     private Random random = new Random();
 
@@ -26,10 +26,6 @@ public class Game {
 
     public Player getPlayer2() {
         return player2;
-    }
-
-    public void setActivePlayer(Player activePlayer) {
-        this.activePlayer = activePlayer;
     }
 
     public Player getActivePlayer() {
