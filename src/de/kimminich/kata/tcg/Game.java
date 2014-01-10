@@ -43,5 +43,6 @@ public class Game {
         if (activePlayer.getManaSlots() < 10) {
             activePlayer.giveManaSlot();
         }
+        activePlayer.refillMana();
     }
 }

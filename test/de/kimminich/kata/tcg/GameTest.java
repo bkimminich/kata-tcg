@@ -65,6 +65,14 @@ public class GameTest {
         assertThat(player1.getManaSlots(), is(equalTo(1)));
     }
 
+    @Test
+    public void activePlayerShouldRefillManaOnBeginningOfTurn() {
+        player1 = aPlayer().withManaSlots(3).withMana(0);
+        game.setActivePlayer(player1);
+        game.beginTurn();
+        assertThat(player1.getMana(), is(equalTo(4)));
+    }
+
     private FakePlayer aPlayer() {
         return new FakePlayer(Mockito.mock(CardPicker.class));
     }

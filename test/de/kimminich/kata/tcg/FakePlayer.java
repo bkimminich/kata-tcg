@@ -37,4 +37,9 @@ class FakePlayer extends Player {
         return this;
     }
 
+    public FakePlayer withMana(int mana) {
+        this.mana = mana;
+        return this;
+    }
+
 }

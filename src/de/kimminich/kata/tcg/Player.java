@@ -7,7 +7,7 @@ public class Player {
     private int health = 30;
 
     protected int manaSlots = 0;
-    private int mana = 0;
+    protected int mana = 0;
     /*
      * The array indexes 0-8 represent the mana cost while the value at that
      * index represents the number of available cards with that cost.
@@ -74,5 +74,9 @@ public class Player {
 
     public void giveManaSlot() {
         manaSlots++;
+    }
+
+    public void refillMana() {
+        mana = manaSlots;
     }
 }
