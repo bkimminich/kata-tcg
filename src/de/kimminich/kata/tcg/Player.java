@@ -19,9 +19,6 @@ public class Player {
 
     public Player(CardPicker cardPicker) {
         this.cardPicker = cardPicker;
-        for (int i=0; i<STARTING_HAND_SIZE; i++) {
-            drawCard();
-        }
     }
 
     public int getHealth() {
@@ -78,5 +75,11 @@ public class Player {
 
     public void refillMana() {
         mana = manaSlots;
+    }
+
+    public void drawStartingHand() {
+        for (int i=0; i<STARTING_HAND_SIZE; i++) {
+            drawCard();
+        }
     }
 }
