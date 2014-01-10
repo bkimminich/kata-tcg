@@ -41,6 +41,7 @@ public class Game {
             activePlayer.giveManaSlot();
         }
         activePlayer.refillMana();
+        activePlayer.drawCard();
     }
 
     private void switchPlayer() {

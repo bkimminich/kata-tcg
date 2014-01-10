@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -71,8 +72,16 @@ public class GameTest {
         assertThat(player1.getMana(), is(equalTo(player1.getManaSlots())));
     }
 
+    @Test
+    public void activePlayerShouldDrawCardOnBeginningOfTurn() {
+        player1 = spy(player1);
+        game.setActivePlayer(player1);
+        game.beginTurn();
+        verify(player1).drawCard();
+    }
+
     private FakePlayer aPlayer() {
-        return new FakePlayer(Mockito.mock(CardPicker.class));
+        return new FakePlayer(mock(CardPicker.class));
     }
 
 }
