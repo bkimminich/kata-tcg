@@ -17,8 +17,8 @@ public class GameTest {
     public void gameShouldHaveTwoPlayers() {
         game = new Game(aPlayer(), aPlayer());
 
-        assertThat(game.getPlayer1(), is(notNullValue()));
-        assertThat(game.getPlayer2(), is(notNullValue()));
+        assertThat(player1(), is(notNullValue()));
+        assertThat(player2(), is(notNullValue()));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class GameTest {
         game.setActivePlayer(player1());
 
         game.endTurn();
-        assertThat(game.getActivePlayer(), is(player2()));
+        assertThat(activePlayer(), is(player2()));
         game.endTurn();
-        assertThat(game.getActivePlayer(), is(player1()));
+        assertThat(activePlayer(), is(player1()));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class GameTest {
 
         game.beginTurn();
 
-        assertThat(game.getWinner(), is(player2()));
+        assertThat(winner(), is(player2()));
     }
 
     private FakePlayer aPlayer() {
@@ -92,5 +92,13 @@ public class GameTest {
 
     private Player player2() {
         return game.getPlayer2();
+    }
+
+    private Player activePlayer() {
+        return game.getActivePlayer();
+    }
+
+    private Player winner() {
+        return game.getWinner();
     }
 }
