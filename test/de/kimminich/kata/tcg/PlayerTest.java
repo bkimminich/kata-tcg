@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -93,6 +94,15 @@ public class PlayerTest {
 
         assertThat(player.getNumberOfHandCards(), is(equalTo(5)));
         assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
+    }
+
+    @Test
+    public void playingACardReducesPlayersMana() {
+        player = aPlayer().withMana(10).withCardsInHand(8);
+
+        player.playCard(8);
+
+        assertThat(player.getMana(), Matchers.is(Matchers.equalTo(2)));
     }
 
     private int[] anyDeck() {

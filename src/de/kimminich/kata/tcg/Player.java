@@ -82,4 +82,8 @@ public class Player {
             drawCard();
         }
     }
+
+    public void playCard(int card) {
+        mana-=card;
+    }
 }
