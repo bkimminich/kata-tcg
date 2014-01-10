@@ -1,5 +1,7 @@
 package de.kimminich.kata.tcg;
 
+import static java.util.Arrays.stream;
+
 public class Player {
 
     private static final int STARTING_HAND_SIZE = 3;
@@ -34,11 +36,7 @@ public class Player {
     }
 
     public int getNumberOfDeckCards() {
-        int count = 0;
-        for (int numberOfCards : deck) {
-            count += numberOfCards;
-        }
-        return count;
+        return stream(deck).sum();
     }
 
     public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
@@ -46,11 +44,7 @@ public class Player {
     }
 
     public int getNumberOfHandCards() {
-        int count = 0;
-        for (int numberOfCards : hand) {
-            count += numberOfCards;
-        }
-        return count;
+        return stream(hand).sum();
     }
 
     public void drawCard() {
@@ -78,21 +72,21 @@ public class Player {
     }
 
     public void drawStartingHand() {
-        for (int i=0; i<STARTING_HAND_SIZE; i++) {
+        for (int i = 0; i < STARTING_HAND_SIZE; i++) {
             drawCard();
         }
     }
 
     public void playCard(int card, Player opponent) {
-        if (mana<card) {
+        if (mana < card) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
         }
-        mana-=card;
+        mana -= card;
         hand[card]--;
         opponent.receiveDamage(card);
     }
 
     private void receiveDamage(int damage) {
-        health-=damage;
+        health -= damage;
     }
 }
