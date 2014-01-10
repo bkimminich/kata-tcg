@@ -83,11 +83,16 @@ public class Player {
         }
     }
 
-    public void playCard(int card) {
+    public void playCard(int card, Player opponent) {
         if (mana<card) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
         }
         mana-=card;
         hand[card]--;
+        opponent.receiveDamage(card);
+    }
+
+    private void receiveDamage(int damage) {
+        health-=damage;
     }
 }

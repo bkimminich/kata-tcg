@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
 
@@ -98,20 +98,21 @@ public class PlayerTest {
     }
 
     @Test
-    public void playingACardReducesPlayersMana() {
-        player = aPlayer().withMana(10).withCardsInHand(8);
+    public void playingCardsReducesPlayersMana() {
+        player = aPlayer().withMana(10).withCardsInHand(8, 1);
 
-        player.playCard(8);
+        player.playCard(8, aPlayer());
+        player.playCard(1, aPlayer());
 
-        assertThat(player.getMana(), Matchers.is(Matchers.equalTo(2)));
+        assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
 
     @Test
     public void playingCardsRemovesThemFromHand() {
         player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3);
 
-        player.playCard(3);
-        player.playCard(2);
+        player.playCard(3, aPlayer());
+        player.playCard(2, aPlayer());
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -119,8 +120,19 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardWithInsufficientManaShouldFail() {
-        player = aPlayer().withMana(3).withCardsInHand(4,4,4);
-        player.playCard(4);
+        player = aPlayer().withMana(3).withCardsInHand(4, 4, 4);
+        player.playCard(4, aPlayer());
+    }
+
+    @Test
+    public void playingCardCausesDamageToOpponent() {
+        player = aPlayer().withMana(10).withCardsInHand(3, 2);
+        Player opponent = aPlayer().withHealth(30);
+
+        player.playCard(3, opponent);
+        player.playCard(2, opponent);
+
+        assertThat(opponent.getHealth(), is(equalTo(25)));
     }
 
     private int[] anyDeck() {
