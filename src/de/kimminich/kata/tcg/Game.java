@@ -4,6 +4,7 @@ public class Game {
 
     private Player player1;
     private Player player2;
+    private Player activePlayer;
 
     public Game(Player player1, Player player2) {
        this.player1 = player1;
@@ -18,4 +19,23 @@ public class Game {
         return player2;
     }
 
+    public void setActivePlayer(Player activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void endTurn() {
+        switchPlayer();
+    }
+
+    private void switchPlayer() {
+        if (activePlayer == player1) {
+            activePlayer = player2;
+        } else {
+            activePlayer = player1;
+        }
+    }
 }

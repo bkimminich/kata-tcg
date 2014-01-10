@@ -47,4 +47,13 @@ public class GameTest {
         assertThat(game.getPlayer2().getNumberOfDeckCards(), is(equalTo(17)));
     }
 
+    @Test
+    public void activePlayerShouldSwitchOnEndOfTurn() {
+        game.setActivePlayer(player1);
+        game.endTurn();
+        assertThat(game.getActivePlayer(), is(player2));
+        game.endTurn();
+        assertThat(game.getActivePlayer(), is(player1));
+    }
+
 }
