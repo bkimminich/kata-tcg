@@ -93,6 +93,16 @@ public class GameTest {
         assertThat(winner(), is(player1()));
     }
 
+    @Test
+    public void ongoingGameHasNoWinner() {
+        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6);
+        game = aGameWithPlayers(player1, aPlayer().withHealth(30)).withActivePlayer(player1);
+
+        player1().playCard(4, player2());
+
+        assertThat(winner(), is(nullValue()));
+    }
+
 
     private FakePlayer aPlayer() {
         return new FakePlayer(mock(CardPicker.class));
