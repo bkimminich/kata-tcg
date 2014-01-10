@@ -90,7 +90,7 @@ public class PlayerTest {
     @Test
     public void shouldDiscardDrawnCardWhenHandSizeIsFive() {
         // given
-        player = aPlayer().withCardsInDeck(1).withCardsInHand(1,2,3,4,5);
+        player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5);
         given(cardPicker.pick(anyDeck())).willReturn(1);
         // when
         player.drawCard();
@@ -104,41 +104,7 @@ public class PlayerTest {
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer();
-    }
-
-    private class FakePlayer extends Player {
-
-        public FakePlayer() {
-            super(PlayerTest.this.cardPicker);
-            this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-            this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-        }
-
-        public FakePlayer withCardsInDeck(int... manaCost) {
-            for (int cost : manaCost) {
-                deck[cost] = deck[cost] + 1;
-            }
-            return this;
-        }
-
-        public FakePlayer withNoCardsInDeck() {
-            this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-            return this;
-        }
-
-        public FakePlayer withCardsInHand(int... manaCost) {
-            for (int cost : manaCost) {
-                hand[cost] = hand[cost] + 1;
-            }
-            return this;
-        }
-
-        public FakePlayer withNoCardsInHand() {
-            this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-            return this;
-        }
-
+        return new FakePlayer(cardPicker);
     }
 
 }

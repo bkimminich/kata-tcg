@@ -38,4 +38,10 @@ public class Game {
             activePlayer = player1;
         }
     }
+
+    public void beginTurn() {
+        if (activePlayer.getManaSlots() < 10) {
+            activePlayer.giveManaSlot();
+        }
+    }
 }

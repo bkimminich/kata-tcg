@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -54,6 +55,18 @@ public class GameTest {
         assertThat(game.getActivePlayer(), is(player2));
         game.endTurn();
         assertThat(game.getActivePlayer(), is(player1));
+    }
+
+    @Test
+    public void activePlayerShouldReceiveOneManaSlotOnBeginningOfTurn() {
+        player1 = aPlayer().withManaSlots(0);
+        game.setActivePlayer(player1);
+        game.beginTurn();
+        assertThat(player1.getManaSlots(), is(equalTo(1)));
+    }
+
+    private FakePlayer aPlayer() {
+        return new FakePlayer(Mockito.mock(CardPicker.class));
     }
 
 }
