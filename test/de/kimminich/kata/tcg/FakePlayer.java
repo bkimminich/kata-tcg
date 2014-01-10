@@ -42,4 +42,8 @@ class FakePlayer extends Player {
         return this;
     }
 
+    public FakePlayer withHealth(int health) {
+        this.health = health;
+        return this;
+    }
 }

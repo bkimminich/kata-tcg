@@ -4,7 +4,7 @@ public class Player {
 
     private static final int STARTING_HAND_SIZE = 3;
 
-    private int health = 30;
+    protected int health = 30;
 
     protected int manaSlots = 0;
     protected int mana = 0;

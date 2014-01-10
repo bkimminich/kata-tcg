@@ -55,4 +55,14 @@ public class Game {
     public void endTurn() {
         switchPlayer();
     }
+
+    public Player getWinner() {
+        if (player1.getHealth() < 1) {
+            return player2;
+        } else if (player2.getHealth() < 1) {
+            return player1;
+        } else {
+            return null;
+        }
+    }
 }

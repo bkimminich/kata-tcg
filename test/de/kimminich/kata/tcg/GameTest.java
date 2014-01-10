@@ -58,6 +58,7 @@ public class GameTest {
     @Test
     public void activePlayerShouldReceiveOneManaSlotOnBeginningOfTurn() {
         player1 = aPlayer().withManaSlots(0);
+        game = new Game(player1, aPlayer());
         game.setActivePlayer(player1);
         game.beginTurn();
         assertThat(player1.getManaSlots(), is(equalTo(1)));
@@ -66,6 +67,7 @@ public class GameTest {
     @Test
     public void activePlayerShouldRefillManaOnBeginningOfTurn() {
         player1 = aPlayer().withManaSlots(3).withMana(0);
+        game = new Game(player1, aPlayer());
         game.setActivePlayer(player1);
         game.beginTurn();
         assertThat(player1.getMana(), is(equalTo(player1.getManaSlots())));
@@ -74,9 +76,20 @@ public class GameTest {
     @Test
     public void activePlayerShouldDrawCardOnBeginningOfTurn() {
         player1 = spy(player1);
+        game = new Game(player1, aPlayer());
         game.setActivePlayer(player1);
         game.beginTurn();
-        verify(player1).drawCard();
+        verify(player1, times(3+1)).drawCard();
+    }
+
+    @Test
+    public void playerWithOneHealthAndEmptyDeckShouldDieFromBleedingOutOnBeginningOfTurn() {
+        player1 = aPlayer().withHealth(1).withNoCardsInDeck();
+        player2 = aPlayer();
+        game = new Game(player1, player2);
+        game.setActivePlayer(player1);
+        game.beginTurn();
+        assertThat(game.getWinner(), is(player2));
     }
 
     private FakePlayer aPlayer() {
