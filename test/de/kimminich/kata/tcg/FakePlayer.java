@@ -4,11 +4,12 @@ class FakePlayer extends Player {
 
     public FakePlayer(CardPicker cardPicker) {
         super(cardPicker);
-        this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
         this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
     }
 
     public FakePlayer withCardsInDeck(int... manaCost) {
+        this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         for (int cost : manaCost) {
             deck[cost] = deck[cost] + 1;
         }
