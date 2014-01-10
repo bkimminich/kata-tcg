@@ -33,4 +33,4 @@ When the normal game rules have become too boring you might consider adding some
 4. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk[1] before starting a game.
 5. Let the game be played via network[1] against other players.
 
-[1] If you want to do this with TDD it might be the point where you should get familiar with a good [Mocking](http://en.wikipedia.org/wiki/Mock_object) framework (e.g. [Mockito](https://code.google.com/p/mockito/))
+[1] If you want to do these variations with TDD, this might be the (latest) point where you should get familiar with a good [Mocking](http://en.wikipedia.org/wiki/Mock_object) framework (like [Mockito](https://code.google.com/p/mockito/))
