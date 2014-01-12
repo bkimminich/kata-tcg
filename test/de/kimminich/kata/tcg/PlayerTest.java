@@ -135,6 +135,27 @@ public class PlayerTest {
         assertThat(opponent.getHealth(), is(equalTo(25)));
     }
 
+    @Test
+    public void playerWithSufficientManaCanPlayCards() {
+        player = aPlayer().withMana(2).withCardsInHand(3, 2);
+
+        assertThat(player.canPlayCards(), is(true));
+    }
+
+    @Test
+    public void playerWithInsufficientManaCannotPlayCards() {
+        player = aPlayer().withMana(1).withCardsInHand(3, 2);
+
+        assertThat(player.canPlayCards(), is(false));
+    }
+
+    @Test
+    public void playerWithEmptyHandCannotPlayCards() {
+        player = aPlayer().withNoCardsInHand();
+
+        assertThat(player.canPlayCards(), is(false));
+    }
+
     private int[] anyDeck() {
         return any(int[].class);
     }

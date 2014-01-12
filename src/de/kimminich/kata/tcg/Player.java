@@ -89,4 +89,13 @@ public class Player {
     private void receiveDamage(int damage) {
         health -= damage;
     }
+
+    public boolean canPlayCards() {
+        if (getNumberOfHandCards() > 0) {
+            for (int i = 1; i < hand.length; i++) {
+                if (hand[i] > 0 && mana >= i) return true;
+            }
+        }
+        return false;
+    }
 }
