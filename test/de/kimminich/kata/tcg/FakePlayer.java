@@ -50,4 +50,8 @@ class FakePlayer extends Player {
         return this;
     }
 
+    public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
 }

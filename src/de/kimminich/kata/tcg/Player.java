@@ -137,8 +137,8 @@ public class Player {
         return "Player{" +
                 "health=" + health +
                 ", mana=" + mana + "/" + manaSlots +
-                ", hand=" + Arrays.toString(hand) +
-                ", deck=" + Arrays.toString(deck) +
+                ", hand=" + Arrays.toString(flatten(hand)) +
+                ", deck=" + Arrays.toString(flatten(deck)) +
                 '}';
     }
 }
