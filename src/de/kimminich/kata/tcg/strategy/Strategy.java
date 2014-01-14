@@ -1,9 +1,7 @@
 package de.kimminich.kata.tcg.strategy;
 
-public class Strategy {
+public interface Strategy {
 
-    public int nextCard(int... availableCards) {
-        return -1;
-    }
+    public abstract int nextCard(int... availableCards);
 
 }
