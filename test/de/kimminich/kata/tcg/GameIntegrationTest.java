@@ -20,8 +20,8 @@ public class GameIntegrationTest {
 
     @Test
     public void gameWillHaveWinnerWhenOver() {
-        Player player1 = new Player(new RandomCardPicker(), new StupidStrategy());
-        Player player2 = new Player(new RandomCardPicker(), new MediumStrategy());
+        Player player1 = new Player("1", new RandomCardPicker(), new StupidStrategy());
+        Player player2 = new Player("2", new RandomCardPicker(), new MediumStrategy());
         game = new Game(player1, player2);
 
         game.run();

@@ -19,11 +19,11 @@ public class StrategyIntegrationTest {
         int mediumWins = 0;
 
         for (int i = 0; i < 1000; i++) {
-            Player player1 = new Player(new RandomCardPicker(), new MediumStrategy());
-            Player player2 = new Player(new RandomCardPicker(), new StupidStrategy());
-            game = new Game(player1, player2);
+            Player mediumPlayer = new Player("Medium", new RandomCardPicker(), new MediumStrategy());
+            Player stupidPlayer = new Player("Stupid", new RandomCardPicker(), new StupidStrategy());
+            game = new Game(mediumPlayer, stupidPlayer);
             game.run();
-            if (game.getWinner() == player1) {
+            if (game.getWinner() == mediumPlayer) {
                 mediumWins++;
             }
         }
@@ -36,11 +36,11 @@ public class StrategyIntegrationTest {
         int smartWins = 0;
 
         for (int i = 0; i < 1000; i++) {
-            Player player1 = new Player(new RandomCardPicker(), new SmartStrategy());
-            Player player2 = new Player(new RandomCardPicker(), new StupidStrategy());
-            game = new Game(player1, player2);
+            Player smartPlayer = new Player("Smart", new RandomCardPicker(), new SmartStrategy());
+            Player stupidPlayer = new Player("Stupid",new RandomCardPicker(), new StupidStrategy());
+            game = new Game(smartPlayer, stupidPlayer);
             game.run();
-            if (game.getWinner() == player1) {
+            if (game.getWinner() == smartPlayer) {
                 smartWins++;
             }
         }
@@ -53,11 +53,11 @@ public class StrategyIntegrationTest {
         int smartWins = 0;
 
         for (int i = 0; i < 1000; i++) {
-            Player player1 = new Player(new RandomCardPicker(), new SmartStrategy());
-            Player player2 = new Player(new RandomCardPicker(), new MediumStrategy());
-            game = new Game(player1, player2);
+            Player smartPlayer = new Player("Smart", new RandomCardPicker(), new SmartStrategy());
+            Player mediumPlayer = new Player("Medium",new RandomCardPicker(), new MediumStrategy());
+            game = new Game(smartPlayer, mediumPlayer);
             game.run();
-            if (game.getWinner() == player1) {
+            if (game.getWinner() == smartPlayer) {
                 smartWins++;
             }
         }

@@ -25,7 +25,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        player = new Player(cardPicker, mock(Strategy.class));
+        player = new Player("Player", cardPicker, mock(Strategy.class));
     }
 
     @Test

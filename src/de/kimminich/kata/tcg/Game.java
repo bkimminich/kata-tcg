@@ -35,7 +35,7 @@ public class Game {
         }
         activePlayer.refillMana();
         activePlayer.drawCard();
-        System.out.println("Begin turn of " + activePlayer);
+        System.out.println(activePlayer + " plays turn...");
     }
 
     private void switchPlayer() {
@@ -45,7 +45,7 @@ public class Game {
     }
 
     public void endTurn() {
-        System.out.println("End turn of " + activePlayer);
+        System.out.println(activePlayer + " ends turn.");
         switchPlayer();
     }
 
@@ -67,6 +67,6 @@ public class Game {
             }
             endTurn();
         }
-        System.out.println("Winner: " + getWinner());
+        System.out.println(getWinner() + " wins the game!");
     }
 }

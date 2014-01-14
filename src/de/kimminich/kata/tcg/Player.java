@@ -23,10 +23,12 @@ public class Player {
     protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    protected CardPicker cardPicker;
-    private Strategy strategy;
+    protected final CardPicker cardPicker;
+    private final Strategy strategy;
+    private final String name;
 
-    public Player(CardPicker cardPicker, Strategy strategy) {
+    public Player(String name, CardPicker cardPicker, Strategy strategy) {
+        this.name = name;
         this.cardPicker = cardPicker;
         this.strategy = strategy;
     }
@@ -89,6 +91,7 @@ public class Player {
         if (mana < card) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
         }
+        System.out.println(this + " plays card: " + card);
         mana -= card;
         hand[card]--;
         opponent.receiveDamage(card);
@@ -111,7 +114,6 @@ public class Player {
         OptionalInt card = strategy.nextCard(mana, denormalizeArray(hand));
         if (card.isPresent()) {
             playCard(card.getAsInt(), opponent);
-            System.out.println("Played card: " + card.getAsInt());
         } else {
             throw new IllegalMoveException("No card can be played from hand " + Arrays.toString(hand) + " with (" + mana + ") mana.");
         }
@@ -119,7 +121,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "Player:"+name+"{" +
                 "health=" + health +
                 ", mana=" + mana + "/" + manaSlots +
                 ", hand=" + Arrays.toString(denormalizeArray(hand)) +

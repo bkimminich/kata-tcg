@@ -4,8 +4,10 @@ import de.kimminich.kata.tcg.strategy.Strategy;
 
 class FakePlayer extends Player {
 
+    private static int playerNo = 0;
+
     public FakePlayer(CardPicker cardPicker, Strategy strategy) {
-        super(cardPicker, strategy);
+        super(""+playerNo++, cardPicker, strategy);
         this.deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
         this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
     }
