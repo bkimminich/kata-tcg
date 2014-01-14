@@ -25,6 +25,6 @@ public class StupidStrategyTest {
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         strategy = new StupidStrategy();
 
-        assertThat(strategy.nextCard(1, new int[]{2, 3, 4}), is(OptionalInt.empty()));
+        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(OptionalInt.empty()));
     }
 }
