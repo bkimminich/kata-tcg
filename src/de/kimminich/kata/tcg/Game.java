@@ -4,32 +4,28 @@ import java.util.Random;
 
 public class Game {
 
-    private Player player1;
-    private Player player2;
     protected Player activePlayer;
+    protected Player opponentPlayer;
 
     private Random random = new Random();
 
     public Game(Player player1, Player player2) {
-        this.player1 = player1;
-        player1.drawStartingHand();
-
-        this.player2 = player2;
-        player2.drawStartingHand();
-
         activePlayer = random.nextBoolean() ? player1 : player2;
-    }
+        if (activePlayer == player1) {
+            opponentPlayer = player2;
+        } else {
+            opponentPlayer = player1;
+        }
+        activePlayer.drawStartingHand();
+        opponentPlayer.drawStartingHand();
 
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
     }
 
     public Player getActivePlayer() {
         return activePlayer;
+    }
+    public Player getOpponentPlayer() {
+        return opponentPlayer;
     }
 
     public void beginTurn() {
@@ -41,11 +37,9 @@ public class Game {
     }
 
     private void switchPlayer() {
-        if (activePlayer == player1) {
-            activePlayer = player2;
-        } else {
-            activePlayer = player1;
-        }
+        Player previouslyActivePlayer = activePlayer;
+        activePlayer = opponentPlayer;
+        opponentPlayer = previouslyActivePlayer;
     }
 
     public void endTurn() {
@@ -53,10 +47,10 @@ public class Game {
     }
 
     public Player getWinner() {
-        if (player1.getHealth() < 1) {
-            return player2;
-        } else if (player2.getHealth() < 1) {
-            return player1;
+        if (activePlayer.getHealth() < 1) {
+            return opponentPlayer;
+        } else if (opponentPlayer.getHealth() < 1) {
+            return activePlayer;
         } else {
             return null;
         }
