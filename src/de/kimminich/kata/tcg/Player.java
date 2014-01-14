@@ -4,10 +4,13 @@ import de.kimminich.kata.tcg.strategy.Strategy;
 
 import java.util.Arrays;
 import java.util.OptionalInt;
+import java.util.logging.Logger;
 
 import static java.util.Arrays.stream;
 
 public class Player {
+
+    private static final Logger logger = Logger.getLogger(Game.class.getName());
 
     private static final int STARTING_HAND_SIZE = 3;
 
@@ -59,16 +62,16 @@ public class Player {
 
     public void drawCard() {
         if (getNumberOfDeckCards() == 0) {
-            System.out.println(this + " bleeds out!");
+            logger.info(this + " bleeds out!");
             health--;
         } else {
             int card = cardPicker.pick(deck);
             deck[card]--;
-            System.out.println(this + " draws card: " + card);
+            logger.info(this + " draws card: " + card);
             if (getNumberOfHandCards() < 5) {
                 hand[card]++;
             } else {
-                System.out.println(this + " drops card " + card + " from overload!");
+                logger.info(this + " drops card " + card + " from overload!");
             }
         }
     }
@@ -95,7 +98,7 @@ public class Player {
         if (mana < card) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
         }
-        System.out.println(this + " plays card: " + card);
+        logger.info(this + " plays card: " + card);
         mana -= card;
         hand[card]--;
         opponent.receiveDamage(card);

@@ -1,8 +1,11 @@
 package de.kimminich.kata.tcg;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class Game {
+
+    private static final Logger logger = Logger.getLogger(Game.class.getName());
 
     protected Player activePlayer;
     protected Player opponentPlayer;
@@ -35,7 +38,7 @@ public class Game {
         }
         activePlayer.refillMana();
         activePlayer.drawCard();
-        System.out.println(activePlayer + " plays turn...");
+        logger.info(activePlayer + " plays turn...");
     }
 
     private void switchPlayer() {
@@ -45,7 +48,7 @@ public class Game {
     }
 
     public void endTurn() {
-        System.out.println(activePlayer + " ends turn.");
+        logger.info(activePlayer + " ends turn.");
         switchPlayer();
     }
 
@@ -67,6 +70,6 @@ public class Game {
             }
             endTurn();
         }
-        System.out.println(getWinner() + " wins the game!");
+        logger.info(getWinner() + " wins the game!");
     }
 }
