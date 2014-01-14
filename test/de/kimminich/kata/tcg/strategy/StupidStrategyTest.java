@@ -12,7 +12,7 @@ public class StupidStrategyTest {
     Strategy strategy;
 
     @Test
-        public void stupidStrategyShouldPlayCardsFromLowToHigh() {
+    public void stupidStrategyShouldPlayCardsFromLowToHigh() {
         strategy = new StupidStrategy();
 
         assertThat(strategy.nextCard(10, new int[]{0, 1, 2, 3, 8}), is(OptionalInt.of(0)));
@@ -24,6 +24,7 @@ public class StupidStrategyTest {
     @Test
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         strategy = new StupidStrategy();
-        assertThat(strategy.nextCard(1, new int[]{2,3,4}), is(OptionalInt.empty()));
+
+        assertThat(strategy.nextCard(1, new int[]{2, 3, 4}), is(OptionalInt.empty()));
     }
 }
