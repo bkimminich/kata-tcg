@@ -136,10 +136,9 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "health=" + health +
-                ", manaSlots=" + manaSlots +
-                ", mana=" + mana +
-                ", deck=" + Arrays.toString(deck) +
+                ", mana=" + mana + "/" + manaSlots +
                 ", hand=" + Arrays.toString(hand) +
+                ", deck=" + Arrays.toString(deck) +
                 '}';
     }
 }
