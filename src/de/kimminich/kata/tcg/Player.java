@@ -2,6 +2,9 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
 
+import java.util.Arrays;
+import java.util.OptionalInt;
+
 import static java.util.Arrays.stream;
 
 public class Player {
@@ -102,5 +105,26 @@ public class Player {
             }
         }
         return false;
+    }
+
+    public void playCard(Player opponent) {
+        OptionalInt card = strategy.nextCard(mana, hand);
+        if (card.isPresent()) {
+            playCard(card.getAsInt(), opponent);
+            System.out.println("Played card: " + card.getAsInt());
+        } else {
+            throw new IllegalMoveException("No card can be played from hand " + Arrays.toString(hand) + " with (" + mana + ") mana.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "health=" + health +
+                ", manaSlots=" + manaSlots +
+                ", mana=" + mana +
+                ", deck=" + Arrays.toString(deck) +
+                ", hand=" + Arrays.toString(hand) +
+                '}';
     }
 }

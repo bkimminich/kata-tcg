@@ -35,6 +35,7 @@ public class Game {
         }
         activePlayer.refillMana();
         activePlayer.drawCard();
+        System.out.println("Begin turn of " + activePlayer);
     }
 
     private void switchPlayer() {
@@ -44,6 +45,7 @@ public class Game {
     }
 
     public void endTurn() {
+        System.out.println("End turn of " + activePlayer);
         switchPlayer();
     }
 
@@ -57,4 +59,13 @@ public class Game {
         }
     }
 
+    public void run() {
+        while (getWinner() == null) {
+            beginTurn();
+            while (activePlayer.canPlayCards()) {
+                activePlayer.playCard(opponentPlayer);
+            }
+            endTurn();
+        }
+    }
 }
