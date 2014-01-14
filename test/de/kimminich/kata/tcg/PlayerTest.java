@@ -72,7 +72,6 @@ public class PlayerTest {
         player.drawCard();
 
         assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
-        assertThat(player.getNumberOfDeckCardsWithManaCost(1), is(equalTo(1)));
         assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(1)));
     }
 
