@@ -2,11 +2,8 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.OptionalInt;
-import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
 
@@ -111,7 +108,7 @@ public class Player {
     }
 
     public void playCard(Player opponent) {
-        OptionalInt card = strategy.nextCard(mana, flatten(hand));
+        OptionalInt card = strategy.nextCard(mana, denormalizeArray(hand));
         if (card.isPresent()) {
             playCard(card.getAsInt(), opponent);
             System.out.println("Played card: " + card.getAsInt());
@@ -120,25 +117,26 @@ public class Player {
         }
     }
 
-    private int[] flatten(int[] cards) {
+    @Override
+    public String toString() {
+        return "Player{" +
+                "health=" + health +
+                ", mana=" + mana + "/" + manaSlots +
+                ", hand=" + Arrays.toString(denormalizeArray(hand)) +
+                ", deck=" + Arrays.toString(denormalizeArray(deck)) +
+                '}';
+    }
+
+    private int[] denormalizeArray(int[] cards) {
         int[] result = new int[stream(cards).sum()];
         int pos = 0;
-        for (int i=0; i<cards.length; i++) {
-            for (int j=0; j<cards[i]; j++) {
-                result[pos] = i;
+        for (int manaCost=0; manaCost<cards.length; manaCost++) {
+            for (int count=0; count<cards[manaCost]; count++) {
+                result[pos] = manaCost;
                 pos++ ;
             }
         }
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "health=" + health +
-                ", mana=" + mana + "/" + manaSlots +
-                ", hand=" + Arrays.toString(flatten(hand)) +
-                ", deck=" + Arrays.toString(flatten(deck)) +
-                '}';
-    }
 }
