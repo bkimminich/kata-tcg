@@ -1,5 +1,7 @@
 package de.kimminich.kata.tcg;
 
+import de.kimminich.kata.tcg.strategy.Strategy;
+
 import static java.util.Arrays.stream;
 
 public class Player {
@@ -19,9 +21,11 @@ public class Player {
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     protected CardPicker cardPicker;
+    private Strategy strategy;
 
-    public Player(CardPicker cardPicker) {
+    public Player(CardPicker cardPicker, Strategy strategy) {
         this.cardPicker = cardPicker;
+        this.strategy = strategy;
     }
 
     public int getHealth() {

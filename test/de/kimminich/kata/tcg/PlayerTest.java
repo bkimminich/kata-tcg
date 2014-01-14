@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg;
 
+import de.kimminich.kata.tcg.strategy.Strategy;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
@@ -23,7 +25,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-        player = new Player(cardPicker);
+        player = new Player(cardPicker, mock(Strategy.class));
     }
 
     @Test
@@ -160,7 +162,7 @@ public class PlayerTest {
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(cardPicker);
+        return new FakePlayer(cardPicker, mock(Strategy.class));
     }
 
 }
