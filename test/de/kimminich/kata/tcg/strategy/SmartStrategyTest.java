@@ -15,14 +15,22 @@ public class SmartStrategyTest {
     public void smartStrategyShouldPlayCardsToMaximizeCombinedDamage() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(OptionalInt.of(8)));
-        assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 8}), is(OptionalInt.of(2)));
+        assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(card(8)));
+        assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 8}), is(card(2)));
     }
 
     @Test
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(OptionalInt.empty()));
+        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(noCard()));
+    }
+
+    private OptionalInt card(int card) {
+        return OptionalInt.of(card);
+    }
+
+    private OptionalInt noCard() {
+        return OptionalInt.empty();
     }
 }

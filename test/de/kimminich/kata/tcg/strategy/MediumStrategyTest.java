@@ -15,14 +15,22 @@ public class MediumStrategyTest {
     public void mediumStrategyShouldPlayCardsFromHighToLow() {
         strategy = new MediumStrategy();
 
-        assertThat(strategy.nextCard(10, new int[]{0, 2, 3, 8, 9}), is(OptionalInt.of(9)));
-        assertThat(strategy.nextCard(1, new int[]{0, 2, 3, 8}), is(OptionalInt.of(0)));
+        assertThat(strategy.nextCard(10, new int[]{0, 2, 3, 8, 9}), is(card(9)));
+        assertThat(strategy.nextCard(1, new int[]{0, 2, 3, 8}), is(card(0)));
     }
 
     @Test
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         strategy = new MediumStrategy();
 
-        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(OptionalInt.empty()));
+        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(noCard()));
+    }
+
+    private OptionalInt card(int card) {
+        return OptionalInt.of(card);
+    }
+
+    private OptionalInt noCard() {
+        return OptionalInt.empty();
     }
 }
