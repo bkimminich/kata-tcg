@@ -24,6 +24,7 @@ public class Game {
     public Player getActivePlayer() {
         return activePlayer;
     }
+
     public Player getOpponentPlayer() {
         return opponentPlayer;
     }
