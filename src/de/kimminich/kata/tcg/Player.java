@@ -124,7 +124,7 @@ public class Player {
         int[] result = new int[stream(cards).sum()];
         int pos = 0;
         for (int i=0; i<cards.length; i++) {
-            for (int j=0; j<i; j++) {
+            for (int j=0; j<cards[i]; j++) {
                 result[pos] = i;
                 pos++ ;
             }

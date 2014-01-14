@@ -49,4 +49,5 @@ class FakePlayer extends Player {
         this.health = health;
         return this;
     }
+
 }

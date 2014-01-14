@@ -67,5 +67,6 @@ public class Game {
             }
             endTurn();
         }
+        System.out.println("Winner: " + getWinner());
     }
 }
