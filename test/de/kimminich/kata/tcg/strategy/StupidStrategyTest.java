@@ -1,7 +1,5 @@
 package de.kimminich.kata.tcg.strategy;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
