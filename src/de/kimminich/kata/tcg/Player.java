@@ -121,7 +121,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player:"+name+"{" +
+        return "Player:" + name + "{" +
                 "health=" + health +
                 ", mana=" + mana + "/" + manaSlots +
                 ", hand=" + Arrays.toString(denormalizeArray(hand)) +
@@ -132,10 +132,10 @@ public class Player {
     private int[] denormalizeArray(int[] cards) {
         int[] result = new int[stream(cards).sum()];
         int pos = 0;
-        for (int manaCost=0; manaCost<cards.length; manaCost++) {
-            for (int count=0; count<cards[manaCost]; count++) {
+        for (int manaCost = 0; manaCost < cards.length; manaCost++) {
+            for (int count = 0; count < cards[manaCost]; count++) {
                 result[pos] = manaCost;
-                pos++ ;
+                pos++;
             }
         }
         return result;

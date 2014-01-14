@@ -7,7 +7,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 
 @Ignore
 public class StrategyIntegrationTest {
@@ -37,7 +38,7 @@ public class StrategyIntegrationTest {
 
         for (int i = 0; i < 1000; i++) {
             Player smartPlayer = new Player("Smart", new RandomCardPicker(), new SmartStrategy());
-            Player stupidPlayer = new Player("Stupid",new RandomCardPicker(), new StupidStrategy());
+            Player stupidPlayer = new Player("Stupid", new RandomCardPicker(), new StupidStrategy());
             game = new Game(smartPlayer, stupidPlayer);
             game.run();
             if (game.getWinner() == smartPlayer) {
@@ -54,7 +55,7 @@ public class StrategyIntegrationTest {
 
         for (int i = 0; i < 1000; i++) {
             Player smartPlayer = new Player("Smart", new RandomCardPicker(), new SmartStrategy());
-            Player mediumPlayer = new Player("Medium",new RandomCardPicker(), new MediumStrategy());
+            Player mediumPlayer = new Player("Medium", new RandomCardPicker(), new MediumStrategy());
             game = new Game(smartPlayer, mediumPlayer);
             game.run();
             if (game.getWinner() == smartPlayer) {
