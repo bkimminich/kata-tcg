@@ -59,12 +59,16 @@ public class Player {
 
     public void drawCard() {
         if (getNumberOfDeckCards() == 0) {
+            System.out.println(this + " bleeds out!");
             health--;
         } else {
             int card = cardPicker.pick(deck);
             deck[card]--;
+            System.out.println(this + " draws card: " + card);
             if (getNumberOfHandCards() < 5) {
                 hand[card]++;
+            } else {
+                System.out.println(this + " drops card " + card + " from overload!");
             }
         }
     }
