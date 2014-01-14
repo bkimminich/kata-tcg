@@ -11,13 +11,13 @@ public class Game {
     private Random random = new Random();
 
     public Game(Player player1, Player player2) {
-       this.player1 = player1;
-       player1.drawStartingHand();
+        this.player1 = player1;
+        player1.drawStartingHand();
 
-       this.player2 = player2;
-       player2.drawStartingHand();
+        this.player2 = player2;
+        player2.drawStartingHand();
 
-       activePlayer = random.nextBoolean() ? player1 : player2;
+        activePlayer = random.nextBoolean() ? player1 : player2;
     }
 
     public Player getPlayer1() {

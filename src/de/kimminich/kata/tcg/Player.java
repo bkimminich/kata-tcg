@@ -10,13 +10,14 @@ public class Player {
 
     protected int manaSlots = 0;
     protected int mana = 0;
+
     /*
      * The array indexes 0-8 represent the mana cost while the value at that
      * index represents the number of available cards with that cost.
      */
     protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
-
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+
     protected CardPicker cardPicker;
 
     public Player(CardPicker cardPicker) {

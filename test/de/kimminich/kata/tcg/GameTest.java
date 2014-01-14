@@ -125,13 +125,13 @@ public class GameTest {
     }
 
     private FakeGame aGameWithPlayers(Player player1, Player player2) {
-        return new FakeGame(player1,player2);
+        return new FakeGame(player1, player2);
     }
 
     private class FakeGame extends Game {
 
         public FakeGame(Player player1, Player player2) {
-            super(player1,player2);
+            super(player1, player2);
         }
 
         public FakeGame withActivePlayer(Player activePlayer) {
