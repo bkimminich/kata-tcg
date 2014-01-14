@@ -16,7 +16,14 @@ public class SmartStrategyTest {
         strategy = new SmartStrategy();
 
         assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(card(8)));
-        assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 8}), is(card(2)));
+        assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 9}), is(card(2)));
+
+        assertThat(strategy.nextCard(10, new int[]{1, 2, 2, 3, 8, 9}), is(card(9)));
+        assertThat(strategy.nextCard(1, new int[]{1, 2, 2, 3, 8}), is(card(1)));
+
+        assertThat(strategy.nextCard(10, new int[]{2, 3, 4, 5}), is(card(5)));
+        assertThat(strategy.nextCard(5, new int[]{2, 3, 4}), is(card(3)));
+        assertThat(strategy.nextCard(2, new int[]{2, 4}), is(card(2)));
     }
 
     @Test
