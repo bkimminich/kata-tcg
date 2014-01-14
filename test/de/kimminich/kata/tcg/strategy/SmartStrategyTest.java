@@ -12,7 +12,7 @@ public class SmartStrategyTest {
     Strategy strategy;
 
     @Test
-    public void mediumStrategyShouldPlayCardsToMaximizeCombinedDamage() {
+    public void smartStrategyShouldPlayCardsToMaximizeCombinedDamage() {
         strategy = new SmartStrategy();
 
         assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(OptionalInt.of(8)));
