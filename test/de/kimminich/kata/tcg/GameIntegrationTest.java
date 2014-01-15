@@ -1,7 +1,7 @@
 package de.kimminich.kata.tcg;
 
-import de.kimminich.kata.tcg.strategy.MediumStrategy;
-import de.kimminich.kata.tcg.strategy.StupidStrategy;
+import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
+import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,8 +14,8 @@ public class GameIntegrationTest {
 
     @Test
     public void gameWillHaveWinnerWhenOver() {
-        Player player1 = new Player("1", new RandomCardPicker(), new StupidStrategy());
-        Player player2 = new Player("2", new RandomCardPicker(), new MediumStrategy());
+        Player player1 = new Player("1", new RandomCardPicker(), new LowestCardFirstStrategy());
+        Player player2 = new Player("2", new RandomCardPicker(), new HighestCardFirstStrategy());
         game = new Game(player1, player2);
 
         game.run();

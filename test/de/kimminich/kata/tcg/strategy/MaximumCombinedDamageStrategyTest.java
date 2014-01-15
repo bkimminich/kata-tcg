@@ -9,13 +9,13 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SmartStrategyTest {
+public class MaximumCombinedDamageStrategyTest {
 
     Strategy strategy;
 
     @Test
     public void smartStrategyShouldMaximizeCombinedDamageOutput() {
-        strategy = new SmartStrategy();
+        strategy = new MaximumCombinedDamageStrategy();
 
         assertThat(strategy.nextCard(10, Card.list(2, 3, 4, 5)), is(card(5)));
         assertThat(strategy.nextCard(5, Card.list(2, 3, 4)), is(card(3)));
@@ -24,7 +24,7 @@ public class SmartStrategyTest {
 
     @Test
     public void smartStrategyShouldFavorCombinedDamageOutputOverHighestCard() {
-        strategy = new SmartStrategy();
+        strategy = new MaximumCombinedDamageStrategy();
 
         assertThat(strategy.nextCard(10, Card.list(2, 2, 3, 8, 9)), is(card(8)));
         assertThat(strategy.nextCard(2, Card.list(2, 2, 3, 9)), is(card(2)));
@@ -34,7 +34,7 @@ public class SmartStrategyTest {
     @Test
     @Ignore
     public void smartStrategyShouldPlayFavorLowerCardsToAvoidOverload() {
-        strategy = new SmartStrategy();
+        strategy = new MaximumCombinedDamageStrategy();
 
         assertThat(strategy.nextCard(4, Card.list(1, 1, 1, 1, 4)), is(card(1)));
         assertThat(strategy.nextCard(3, Card.list(1, 1, 1, 4)), is(card(1)));
@@ -45,7 +45,7 @@ public class SmartStrategyTest {
 
     @Test
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
-        strategy = new SmartStrategy();
+        strategy = new MaximumCombinedDamageStrategy();
 
         assertThat(strategy.nextCard(1, Card.list(2, 3, 8)), is(noCard()));
     }

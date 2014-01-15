@@ -8,21 +8,23 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MediumStrategyTest {
+public class LowestCardFirstStrategyTest {
 
     Strategy strategy;
 
     @Test
-    public void mediumStrategyShouldPlayCardsFromHighToLow() {
-        strategy = new MediumStrategy();
+    public void stupidStrategyShouldPlayCardsFromLowToHigh() {
+        strategy = new LowestCardFirstStrategy();
 
-        assertThat(strategy.nextCard(10, Card.list(0, 2, 3, 8, 9)), is(card(9)));
-        assertThat(strategy.nextCard(1, Card.list(0, 2, 3, 8)), is(card(0)));
+        assertThat(strategy.nextCard(10, Card.list(0, 1, 2, 3, 8)), is(card(0)));
+        assertThat(strategy.nextCard(10, Card.list(1, 2, 3, 8)), is(card(1)));
+        assertThat(strategy.nextCard(9, Card.list(2, 3, 8)), is(card(2)));
+        assertThat(strategy.nextCard(7, Card.list(3, 8)), is(card(3)));
     }
 
     @Test
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
-        strategy = new MediumStrategy();
+        strategy = new LowestCardFirstStrategy();
 
         assertThat(strategy.nextCard(1, Card.list(2, 3, 8)), is(noCard()));
     }

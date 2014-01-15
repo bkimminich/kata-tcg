@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class MediumStrategy implements Strategy {
+public class HighestCardFirstStrategy implements Strategy {
 
     @Override
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
