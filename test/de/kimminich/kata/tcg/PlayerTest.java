@@ -164,7 +164,7 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
-        given(strategy.nextCard(anyInt(), any(int[].class))).willReturn(OptionalInt.empty());
+        given(strategy.nextCard(anyInt(), any(int[].class))).willReturn(noCard());
         player.playCard(aPlayer());
     }
 
@@ -174,6 +174,10 @@ public class PlayerTest {
 
     private FakePlayer aPlayer() {
         return new FakePlayer(cardPicker, strategy);
+    }
+
+    private OptionalInt noCard() {
+        return OptionalInt.empty();
     }
 
 }
