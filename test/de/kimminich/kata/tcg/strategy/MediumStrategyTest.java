@@ -4,7 +4,6 @@ import de.kimminich.kata.tcg.Card;
 import org.junit.Test;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

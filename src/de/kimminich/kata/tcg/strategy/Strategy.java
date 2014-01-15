@@ -4,7 +4,6 @@ import de.kimminich.kata.tcg.Card;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 public interface Strategy {
 

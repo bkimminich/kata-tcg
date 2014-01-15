@@ -2,10 +2,10 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
-
-import static java.util.Arrays.stream;
 
 public class Player {
 
@@ -40,7 +40,7 @@ public class Player {
     }
 
     public int getNumberOfDeckCardsWithManaCost(int manaCost) {
-        return (int)deck.stream().filter(card -> card.getManaCost() == manaCost).count();
+        return (int) deck.stream().filter(card -> card.getManaCost() == manaCost).count();
     }
 
     public int getNumberOfDeckCards() {
@@ -48,7 +48,7 @@ public class Player {
     }
 
     public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
-        return (int)hand.stream().filter(card -> card.getManaCost() == manaCost).count();
+        return (int) hand.stream().filter(card -> card.getManaCost() == manaCost).count();
     }
 
     public int getNumberOfHandCards() {

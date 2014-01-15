@@ -5,7 +5,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,8 +36,8 @@ public class SmartStrategyTest {
     public void smartStrategyShouldPlayFavorLowerCardsToAvoidOverload() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(4, Card.list(1,1,1,1,4)), is(card(1)));
-        assertThat(strategy.nextCard(3, Card.list(1,1,1,4)), is(card(1)));
+        assertThat(strategy.nextCard(4, Card.list(1, 1, 1, 1, 4)), is(card(1)));
+        assertThat(strategy.nextCard(3, Card.list(1, 1, 1, 4)), is(card(1)));
         assertThat(strategy.nextCard(2, Card.list(1, 1, 4)), is(card(1)));
         assertThat(strategy.nextCard(1, Card.list(1, 4)), is(card(1)));
 

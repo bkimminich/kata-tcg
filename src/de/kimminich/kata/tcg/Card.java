@@ -1,19 +1,17 @@
 package de.kimminich.kata.tcg;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.Arrays.*;
-import static java.util.stream.Collectors.*;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toCollection;
 
 public class Card implements Comparable<Card> {
 
     private final int manaCost;
 
     public static List<Card> list(Integer... manaCosts) {
-        return stream(manaCosts).map(manaCost -> new Card(manaCost)).collect(toCollection(ArrayList::new));
+        return stream(manaCosts).map(Card::new).collect(toCollection(ArrayList::new));
     }
 
     public Card(int manaCost) {
@@ -30,7 +28,7 @@ public class Card implements Comparable<Card> {
 
     @Override
     public String toString() {
-        return ""+manaCost;
+        return "" + manaCost;
     }
 
     @Override
