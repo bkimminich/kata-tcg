@@ -21,7 +21,7 @@ public class PlayerTest {
     private Player player;
 
     @Mock
-    private CardPicker cardPicker;
+    private RandomCardPicker cardPicker;
 
     @Before
     public void setUp() {

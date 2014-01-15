@@ -26,11 +26,11 @@ public class Player {
     protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
     protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    protected final CardPicker cardPicker;
+    protected final RandomCardPicker cardPicker;
     private final Strategy strategy;
     private final String name;
 
-    public Player(String name, CardPicker cardPicker, Strategy strategy) {
+    public Player(String name, RandomCardPicker cardPicker, Strategy strategy) {
         this.name = name;
         this.cardPicker = cardPicker;
         this.strategy = strategy;

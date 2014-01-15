@@ -109,7 +109,7 @@ public class GameTest {
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(mock(CardPicker.class), mock(Strategy.class));
+        return new FakePlayer(mock(RandomCardPicker.class), mock(Strategy.class));
     }
 
     private Player activePlayer() {
