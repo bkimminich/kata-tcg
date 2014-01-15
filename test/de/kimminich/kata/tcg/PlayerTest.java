@@ -8,12 +8,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.OptionalInt;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Matchers.anyInt;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
@@ -23,9 +25,12 @@ public class PlayerTest {
     @Mock
     private RandomCardPicker cardPicker;
 
+    @Mock
+    private Strategy strategy;
+
     @Before
     public void setUp() {
-        player = new Player("Player", cardPicker, mock(Strategy.class));
+        player = new Player("Player", cardPicker, strategy);
     }
 
     @Test
@@ -157,12 +162,18 @@ public class PlayerTest {
         assertThat(player.canPlayCards(), is(false));
     }
 
+    @Test(expected = IllegalMoveException.class)
+    public void playingCardShouldFailWhenStrategyCannotChooseCard() {
+        given(strategy.nextCard(anyInt(), any(int[].class))).willReturn(OptionalInt.empty());
+        player.playCard(aPlayer());
+    }
+
     private int[] anyDeck() {
         return any(int[].class);
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(cardPicker, mock(Strategy.class));
+        return new FakePlayer(cardPicker, strategy);
     }
 
 }
