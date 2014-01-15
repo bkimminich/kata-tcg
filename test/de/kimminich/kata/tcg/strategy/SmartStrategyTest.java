@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.OptionalInt;
@@ -26,6 +27,18 @@ public class SmartStrategyTest {
 
         assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(card(8)));
         assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 9}), is(card(2)));
+
+    }
+
+    @Test
+    @Ignore
+    public void smartStrategyShouldPlayFavorLowerCardsToAvoidOverload() {
+        strategy = new SmartStrategy();
+
+        assertThat(strategy.nextCard(4, new int[]{1,1,1,1,4}), is(card(1)));
+        assertThat(strategy.nextCard(3, new int[]{1,1,1,4}), is(card(1)));
+        assertThat(strategy.nextCard(2, new int[]{1,1,4}), is(card(1)));
+        assertThat(strategy.nextCard(1, new int[]{1,4}), is(card(1)));
 
     }
 
