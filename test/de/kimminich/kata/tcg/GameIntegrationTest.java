@@ -2,6 +2,7 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
 import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
+import de.kimminich.kata.tcg.utils.RandomCardPicker;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

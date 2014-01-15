@@ -1,4 +1,6 @@
-package de.kimminich.kata.tcg;
+package de.kimminich.kata.tcg.utils;
+
+import de.kimminich.kata.tcg.Card;
 
 import java.util.List;
 import java.util.Random;
