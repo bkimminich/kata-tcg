@@ -1,8 +1,10 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Card;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Optional;
 import java.util.OptionalInt;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -16,17 +18,17 @@ public class SmartStrategyTest {
     public void smartStrategyShouldMaximizeCombinedDamageOutput() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(10, new int[]{2, 3, 4, 5}), is(card(5)));
-        assertThat(strategy.nextCard(5, new int[]{2, 3, 4}), is(card(3)));
-        assertThat(strategy.nextCard(2, new int[]{2, 4}), is(card(2)));
+        assertThat(strategy.nextCard(10, Card.list(2, 3, 4, 5)), is(card(5)));
+        assertThat(strategy.nextCard(5, Card.list(2, 3, 4)), is(card(3)));
+        assertThat(strategy.nextCard(2, Card.list(2, 4)), is(card(2)));
     }
 
     @Test
     public void smartStrategyShouldFavorCombinedDamageOutputOverHighestCard() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(10, new int[]{2, 2, 3, 8, 9}), is(card(8)));
-        assertThat(strategy.nextCard(2, new int[]{2, 2, 3, 9}), is(card(2)));
+        assertThat(strategy.nextCard(10, Card.list(2, 2, 3, 8, 9)), is(card(8)));
+        assertThat(strategy.nextCard(2, Card.list(2, 2, 3, 9)), is(card(2)));
 
     }
 
@@ -35,10 +37,10 @@ public class SmartStrategyTest {
     public void smartStrategyShouldPlayFavorLowerCardsToAvoidOverload() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(4, new int[]{1,1,1,1,4}), is(card(1)));
-        assertThat(strategy.nextCard(3, new int[]{1,1,1,4}), is(card(1)));
-        assertThat(strategy.nextCard(2, new int[]{1,1,4}), is(card(1)));
-        assertThat(strategy.nextCard(1, new int[]{1,4}), is(card(1)));
+        assertThat(strategy.nextCard(4, Card.list(1,1,1,1,4)), is(card(1)));
+        assertThat(strategy.nextCard(3, Card.list(1,1,1,4)), is(card(1)));
+        assertThat(strategy.nextCard(2, Card.list(1, 1, 4)), is(card(1)));
+        assertThat(strategy.nextCard(1, Card.list(1, 4)), is(card(1)));
 
     }
 
@@ -46,14 +48,14 @@ public class SmartStrategyTest {
     public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         strategy = new SmartStrategy();
 
-        assertThat(strategy.nextCard(1, new int[]{2, 3, 8}), is(noCard()));
+        assertThat(strategy.nextCard(1, Card.list(2, 3, 8)), is(noCard()));
     }
 
-    private OptionalInt card(int card) {
-        return OptionalInt.of(card);
+    private Optional<Card> card(int card) {
+        return Optional.of(new Card(card));
     }
 
-    private OptionalInt noCard() {
-        return OptionalInt.empty();
+    private Optional<Card> noCard() {
+        return Optional.empty();
     }
 }

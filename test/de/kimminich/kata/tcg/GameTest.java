@@ -91,8 +91,8 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(10);
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
-        player1.playCard(6, player2);
-        player1.playCard(4, player2);
+        player1.playCard(new Card(6), player2);
+        player1.playCard(new Card(4), player2);
 
         assertThat(winner(), is(player1));
     }
@@ -103,13 +103,13 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(30);
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
-        player1.playCard(4, player2);
+        player1.playCard(new Card(4), player2);
 
         assertThat(winner(), is(nullValue()));
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(mock(RandomCardPicker.class), mock(Strategy.class));
+        return new FakePlayer(new RandomCardPicker(), mock(Strategy.class));
     }
 
     private Player activePlayer() {

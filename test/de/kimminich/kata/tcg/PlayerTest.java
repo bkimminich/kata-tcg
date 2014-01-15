@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,6 +18,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyListOf;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
@@ -31,6 +34,7 @@ public class PlayerTest {
     @Before
     public void setUp() {
         player = new Player("Player", cardPicker, strategy);
+        given(cardPicker.pick(anyDeck())).willReturn(new Card(0));
     }
 
     @Test
@@ -62,19 +66,9 @@ public class PlayerTest {
     }
 
     @Test
-    public void drawingACardShouldPutOneCardFromDeckIntoHand() {
-        player = aPlayer().withCardsInDeck(1).withNoCardsInHand();
-
-        player.drawCard();
-
-        assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
-        assertThat(player.getNumberOfDeckCards(), is(equalTo(0)));
-    }
-
-    @Test
     public void drawingACardShouldPutThatCardFromDeckIntoHand() {
         player = aPlayer().withCardsInDeck(1, 1, 2).withNoCardsInHand();
-        given(cardPicker.pick(anyDeck())).willReturn(1);
+        given(cardPicker.pick(anyDeck())).willReturn(new Card(1));
 
         player.drawCard();
 
@@ -95,7 +89,7 @@ public class PlayerTest {
     @Test
     public void shouldDiscardDrawnCardWhenHandSizeIsFive() {
         player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5);
-        given(cardPicker.pick(anyDeck())).willReturn(1);
+        given(cardPicker.pick(anyDeck())).willReturn(new Card(1));
 
         player.drawCard();
 
@@ -107,8 +101,8 @@ public class PlayerTest {
     public void playingCardsReducesPlayersMana() {
         player = aPlayer().withMana(10).withCardsInHand(8, 1);
 
-        player.playCard(8, aPlayer());
-        player.playCard(1, aPlayer());
+        player.playCard(new Card(8), aPlayer());
+        player.playCard(new Card(1), aPlayer());
 
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
@@ -117,8 +111,8 @@ public class PlayerTest {
     public void playingCardsRemovesThemFromHand() {
         player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3);
 
-        player.playCard(3, aPlayer());
-        player.playCard(2, aPlayer());
+        player.playCard(new Card(3), aPlayer());
+        player.playCard(new Card(2), aPlayer());
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -127,7 +121,7 @@ public class PlayerTest {
     @Test(expected = IllegalMoveException.class)
     public void playingCardWithInsufficientManaShouldFail() {
         player = aPlayer().withMana(3).withCardsInHand(4, 4, 4);
-        player.playCard(4, aPlayer());
+        player.playCard(new Card(4), aPlayer());
     }
 
     @Test
@@ -135,8 +129,8 @@ public class PlayerTest {
         player = aPlayer().withMana(10).withCardsInHand(3, 2);
         Player opponent = aPlayer().withHealth(30);
 
-        player.playCard(3, opponent);
-        player.playCard(2, opponent);
+        player.playCard(new Card(3), opponent);
+        player.playCard(new Card(2), opponent);
 
         assertThat(opponent.getHealth(), is(equalTo(25)));
     }
@@ -164,20 +158,20 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
-        given(strategy.nextCard(anyInt(), any(int[].class))).willReturn(noCard());
+        given(strategy.nextCard(anyInt(), anyListOf(Card.class))).willReturn(noCard());
         player.playCard(aPlayer());
     }
 
-    private int[] anyDeck() {
-        return any(int[].class);
+    private List<Card> anyDeck() {
+        return anyListOf(Card.class);
     }
 
     private FakePlayer aPlayer() {
         return new FakePlayer(cardPicker, strategy);
     }
 
-    private OptionalInt noCard() {
-        return OptionalInt.empty();
+    private Optional<Card> noCard() {
+        return Optional.empty();
     }
 
 }

@@ -2,8 +2,7 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
 
-import java.util.Arrays;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static java.util.Arrays.stream;
@@ -19,12 +18,8 @@ public class Player {
     protected int manaSlots = 0;
     protected int mana = 0;
 
-    /*
-     * The array indexes 0-8 represent the mana cost while the value at that
-     * index represents the number of available cards with that cost.
-     */
-    protected int[] deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
-    protected int[] hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+    protected List<Card> deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
+    protected List<Card> hand = new ArrayList<>();
 
     protected final RandomCardPicker cardPicker;
     private final Strategy strategy;
@@ -45,19 +40,19 @@ public class Player {
     }
 
     public int getNumberOfDeckCardsWithManaCost(int manaCost) {
-        return deck[manaCost];
+        return (int)deck.stream().filter(card -> card.getManaCost() == manaCost).count();
     }
 
     public int getNumberOfDeckCards() {
-        return stream(deck).sum();
+        return deck.size();
     }
 
     public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
-        return hand[manaCost];
+        return (int)hand.stream().filter(card -> card.getManaCost() == manaCost).count();
     }
 
     public int getNumberOfHandCards() {
-        return stream(hand).sum();
+        return hand.size();
     }
 
     public void drawCard() {
@@ -65,11 +60,11 @@ public class Player {
             logger.info(this + " bleeds out!");
             health--;
         } else {
-            int card = cardPicker.pick(deck);
-            deck[card]--;
+            Card card = cardPicker.pick(deck);
+            deck.remove(card);
             logger.info(this + " draws card: " + card);
             if (getNumberOfHandCards() < 5) {
-                hand[card]++;
+                hand.add(card);
             } else {
                 logger.info(this + " drops card " + card + " from overload!");
             }
@@ -94,14 +89,14 @@ public class Player {
         }
     }
 
-    public void playCard(int card, Player opponent) {
-        if (mana < card) {
-            throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card (" + card + ").");
+    public void playCard(Card card, Player opponent) {
+        if (mana < card.getManaCost()) {
+            throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card " + card + ".");
         }
         logger.info(this + " plays card: " + card);
-        mana -= card;
-        hand[card]--;
-        opponent.receiveDamage(card);
+        mana -= card.getManaCost();
+        hand.remove(card);
+        opponent.receiveDamage(card.getDamage());
     }
 
     private void receiveDamage(int damage) {
@@ -109,20 +104,15 @@ public class Player {
     }
 
     public boolean canPlayCards() {
-        if (getNumberOfHandCards() > 0) {
-            for (int i = 1; i < hand.length; i++) {
-                if (hand[i] > 0 && mana >= i) return true;
-            }
-        }
-        return false;
+        return hand.stream().filter(card -> card.getManaCost() <= mana).count() > 0;
     }
 
     public void playCard(Player opponent) {
-        OptionalInt card = strategy.nextCard(mana, denormalizeArray(hand));
+        Optional<Card> card = strategy.nextCard(mana, hand);
         if (card.isPresent()) {
-            playCard(card.getAsInt(), opponent);
+            playCard(card.get(), opponent);
         } else {
-            throw new IllegalMoveException("No card can be played from hand " + Arrays.toString(hand) + " with (" + mana + ") mana.");
+            throw new IllegalMoveException("No card can be played from hand " + hand + " with (" + mana + ") mana.");
         }
     }
 
@@ -131,21 +121,9 @@ public class Player {
         return "Player:" + name + "{" +
                 "health=" + health +
                 ", mana=" + mana + "/" + manaSlots +
-                ", hand=" + Arrays.toString(denormalizeArray(hand)) +
-                ", deck=" + Arrays.toString(denormalizeArray(deck)) +
+                ", hand=" + hand +
+                ", deck=" + deck +
                 '}';
-    }
-
-    private int[] denormalizeArray(int[] cards) {
-        int[] result = new int[stream(cards).sum()];
-        int pos = 0;
-        for (int manaCost = 0; manaCost < cards.length; manaCost++) {
-            for (int count = 0; count < cards[manaCost]; count++) {
-                result[pos] = manaCost;
-                pos++;
-            }
-        }
-        return result;
     }
 
 }

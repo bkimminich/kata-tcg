@@ -2,38 +2,40 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
 
+import java.util.ArrayList;
+
 class FakePlayer extends Player {
 
     private static int playerNo = 0;
 
     public FakePlayer(RandomCardPicker cardPicker, Strategy strategy) {
         super("" + playerNo++, cardPicker, strategy);
-        this.deck = new int[]{2, 2, 3, 4, 3, 2, 2, 1, 1};
-        this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
+        this.hand = new ArrayList<>();
     }
 
     public FakePlayer withCardsInDeck(int... manaCost) {
-        this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.deck = new ArrayList<>();
         for (int cost : manaCost) {
-            deck[cost] = deck[cost] + 1;
+            deck.add(new Card(cost));
         }
         return this;
     }
 
     public FakePlayer withNoCardsInDeck() {
-        this.deck = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.deck = new ArrayList<>();
         return this;
     }
 
     public FakePlayer withCardsInHand(int... manaCost) {
         for (int cost : manaCost) {
-            hand[cost] = hand[cost] + 1;
+            hand.add(new Card(cost));
         }
         return this;
     }
 
     public FakePlayer withNoCardsInHand() {
-        this.hand = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.hand = new ArrayList<>();
         return this;
     }
 

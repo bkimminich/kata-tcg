@@ -1,13 +1,19 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Card;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
 
 public class SmartStrategy implements Strategy {
 
-    public OptionalInt nextCard(int mana, int[] availableCards) {
-        int[] affordableCards = stream(availableCards).filter(cost -> cost <= mana).sorted().toArray();
+    public Optional<Card> nextCard(int mana, List<Card> availableCards) {
+        int[] affordableCards = availableCards.stream().filter(card -> card.getManaCost() <= mana).mapToInt(Card::getManaCost).toArray();
         int maxDamage = 0;
         for (int i = affordableCards.length - 1; i >= 0; i--) {
             int card = affordableCards[i];
@@ -15,11 +21,12 @@ public class SmartStrategy implements Strategy {
                 if (card + comboCard > maxDamage && card + comboCard <= mana) {
                     maxDamage = card + comboCard;
                     if (maxDamage == mana) {
-                        return OptionalInt.of(card);
+                        return Optional.of(new Card(card));
                     }
                 }
             }
         }
-        return stream(affordableCards).max();
+        return availableCards.stream().filter(card -> card.getManaCost() <= mana).max(Comparator.<Card>naturalOrder());
     }
+
 }

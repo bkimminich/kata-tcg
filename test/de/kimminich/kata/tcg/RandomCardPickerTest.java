@@ -2,6 +2,8 @@ package de.kimminich.kata.tcg;
 
 import org.junit.Test;
 
+import java.util.Collections;
+
 public class RandomCardPickerTest {
 
     private RandomCardPicker cardPicker;
@@ -9,7 +11,7 @@ public class RandomCardPickerTest {
     @Test(expected = IllegalArgumentException.class)
     public void pickingCardFromNoCardsShouldFail() {
         cardPicker = new RandomCardPicker();
-        cardPicker.pick(new int[] {0,0,0,0,0,0,0,0});
+        cardPicker.pick(Collections.<Card>emptyList());
     }
 
 }

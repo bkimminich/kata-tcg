@@ -1,12 +1,18 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Card;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 import static java.util.Arrays.stream;
 
 public class StupidStrategy implements Strategy {
 
-    public OptionalInt nextCard(int mana, int[] availableCards) {
-        return stream(availableCards).filter(cost -> cost <= mana).min();
+    @Override
+    public Optional<Card> nextCard(int mana, List<Card> availableCards) {
+        return availableCards.stream().filter(card -> card.getManaCost() <= mana).min(Comparator.<Card>naturalOrder());
     }
 }
