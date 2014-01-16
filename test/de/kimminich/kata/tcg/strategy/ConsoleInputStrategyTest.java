@@ -26,6 +26,14 @@ public class ConsoleInputStrategyTest {
         assertThat(strategy.nextCard(3, Card.list(0, 2, 3)), is(card(2)));
     }
 
+    @Test
+    public void willRejectTooExpensiveCardsUntilAffordableCardIsChosen() {
+        strategy = new ConsoleInputStrategy();
+        consoleInput.provideText("8\n7\n6\n");
+
+        assertThat(strategy.nextCard(6, Card.list(6, 7, 8)), is(card(6)));
+    }
+
     private Optional<Card> card(int card) {
         return Optional.of(new Card(card));
     }

@@ -17,11 +17,16 @@ public class ConsoleInputStrategy implements Strategy {
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            return Optional.of(new Card(Integer.decode(br.readLine())));
+            Integer card = null;
+            while (card == null || card > mana) {
+                card = Integer.decode(br.readLine());
+            }
+            return Optional.of(new Card(card));
         } catch (IOException e) {
             logger.severe("Could not read console input!");
             e.printStackTrace();
         }
         return Optional.empty();
     }
+
 }
