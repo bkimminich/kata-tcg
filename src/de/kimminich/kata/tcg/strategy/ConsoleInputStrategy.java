@@ -17,8 +17,8 @@ public class ConsoleInputStrategy implements Strategy {
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            Integer card = null;
-            while (card == null || card > mana) {
+            Integer card = -1;
+            while (card < 0 || card > 8 || card > mana) {
                 card = Integer.decode(br.readLine());
             }
             return Optional.of(new Card(card));
