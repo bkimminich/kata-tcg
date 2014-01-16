@@ -1,5 +1,8 @@
 package de.kimminich.kata.tcg;
 
+import de.kimminich.kata.tcg.strategy.ConsoleInputStrategy;
+import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
+
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -71,5 +74,9 @@ public class Game {
             endTurn();
         }
         logger.info(getWinner() + " wins the game!");
+    }
+
+    public static void main(String... args) {
+        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new HighestCardFirstStrategy())).run();
     }
 }

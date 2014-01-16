@@ -1,7 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
 import de.kimminich.kata.tcg.Card;
-import de.kimminich.kata.tcg.Game;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,10 +15,12 @@ public class ConsoleInputStrategy implements Strategy {
 
     @Override
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            return Optional.of(new Card(Integer.parseInt(br.readLine())));
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            return Optional.of(new Card(Integer.decode(br.readLine())));
         } catch (IOException e) {
             logger.severe("Could not read console input!");
+            e.printStackTrace();
         }
         return Optional.empty();
     }
