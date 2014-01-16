@@ -3,10 +3,8 @@ package de.kimminich.kata.tcg;
 import de.kimminich.kata.tcg.strategy.Strategy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
-import static java.util.Arrays.*;
+import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toCollection;
 
 class FakePlayer extends Player {
