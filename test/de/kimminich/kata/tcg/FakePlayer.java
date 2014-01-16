@@ -3,6 +3,11 @@ package de.kimminich.kata.tcg;
 import de.kimminich.kata.tcg.strategy.Strategy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.*;
+import static java.util.stream.Collectors.toCollection;
 
 class FakePlayer extends Player {
 
@@ -14,11 +19,8 @@ class FakePlayer extends Player {
         this.hand = new ArrayList<>();
     }
 
-    public FakePlayer withCardsInDeck(int... manaCost) {
-        this.deck = new ArrayList<>();
-        for (int cost : manaCost) {
-            deck.add(new Card(cost));
-        }
+    public FakePlayer withCardsInDeck(Integer... manaCost) {
+        this.deck = stream(manaCost).map(Card::new).collect(toCollection(ArrayList::new));
         return this;
     }
 
@@ -27,10 +29,8 @@ class FakePlayer extends Player {
         return this;
     }
 
-    public FakePlayer withCardsInHand(int... manaCost) {
-        for (int cost : manaCost) {
-            hand.add(new Card(cost));
-        }
+    public FakePlayer withCardsInHand(Integer... manaCost) {
+        this.hand = stream(manaCost).map(Card::new).collect(toCollection(ArrayList::new));
         return this;
     }
 
