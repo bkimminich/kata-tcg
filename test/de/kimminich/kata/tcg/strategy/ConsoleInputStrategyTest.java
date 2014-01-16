@@ -35,6 +35,14 @@ public class ConsoleInputStrategyTest {
     }
 
     @Test
+    public void willRejectCardsNotPresentInHandUntilHandCardIsChosen() {
+        strategy = new ConsoleInputStrategy();
+        consoleInput.provideText("1\n2\n3\n");
+
+        assertThat(strategy.nextCard(5, Card.list(3, 4, 5)), is(card(3)));
+    }
+
+    @Test
     public void willRejectInvalidInputUntilValidCardIsChosen() {
         strategy = new ConsoleInputStrategy();
         consoleInput.provideText("-1\n9\n666\nabc\n5\n");
@@ -44,10 +52,6 @@ public class ConsoleInputStrategyTest {
 
     private Optional<Card> card(int card) {
         return Optional.of(new Card(card));
-    }
-
-    private Optional<Card> noCard() {
-        return Optional.empty();
     }
 
 }

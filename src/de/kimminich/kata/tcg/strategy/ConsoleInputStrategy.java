@@ -18,15 +18,16 @@ public class ConsoleInputStrategy implements Strategy {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;
-            while (card < 0 || card > 8 || card > mana) {
+            while (card < 0 || card > 8 || card > mana || !availableCards.contains(new Card(card))) {
                 try {
                     card = Integer.decode(br.readLine());
                 } catch (NumberFormatException e) {
+                    logger.warning("Invalid input: " + e.getMessage());
                 }
             }
             return Optional.of(new Card(card));
         } catch (IOException e) {
-            logger.severe("Could not read console input!");
+            logger.severe("Could not read console input: " + e.getMessage());
             e.printStackTrace();
         }
         return Optional.empty();
