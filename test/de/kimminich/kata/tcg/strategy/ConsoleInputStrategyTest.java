@@ -23,7 +23,7 @@ public class ConsoleInputStrategyTest {
         strategy = new ConsoleInputStrategy();
         consoleInput.provideText("2\n");
 
-        assertThat(strategy.nextCard(3, Card.list(0, 2, 3)), is(card(2)));
+        assertThat(strategy.nextCard(10, Card.list(0, 2, 3)), is(card(2)));
     }
 
     @Test
@@ -32,6 +32,14 @@ public class ConsoleInputStrategyTest {
         consoleInput.provideText("8\n7\n6\n");
 
         assertThat(strategy.nextCard(6, Card.list(6, 7, 8)), is(card(6)));
+    }
+
+    @Test
+    public void willRejectInvalidInputUntilValidCardIsChosen() {
+        strategy = new ConsoleInputStrategy();
+        consoleInput.provideText("-1\n9\n5\n");
+
+        assertThat(strategy.nextCard(10, Card.list(5)), is(card(5)));
     }
 
     private Optional<Card> card(int card) {
