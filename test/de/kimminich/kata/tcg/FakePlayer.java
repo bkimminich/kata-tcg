@@ -1,7 +1,6 @@
 package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
-import de.kimminich.kata.tcg.utils.RandomCardPicker;
 
 import java.util.ArrayList;
 
@@ -9,8 +8,8 @@ class FakePlayer extends Player {
 
     private static int playerNo = 0;
 
-    public FakePlayer(RandomCardPicker cardPicker, Strategy strategy) {
-        super("" + playerNo++, cardPicker, strategy);
+    public FakePlayer(Strategy strategy) {
+        super("" + playerNo++, strategy);
         this.deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
         this.hand = new ArrayList<>();
     }

@@ -2,16 +2,18 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.exceptions.IllegalMoveException;
 import de.kimminich.kata.tcg.strategy.Strategy;
-import de.kimminich.kata.tcg.utils.RandomCardPicker;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class Player {
 
     private static final Logger logger = Logger.getLogger(Game.class.getName());
+
+    Random random = new Random();
 
     private static final int STARTING_HAND_SIZE = 3;
 
@@ -23,13 +25,11 @@ public class Player {
     protected List<Card> deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
     protected List<Card> hand = new ArrayList<>();
 
-    protected final RandomCardPicker cardPicker;
     private final Strategy strategy;
     private final String name;
 
-    public Player(String name, RandomCardPicker cardPicker, Strategy strategy) {
+    public Player(String name, Strategy strategy) {
         this.name = name;
-        this.cardPicker = cardPicker;
         this.strategy = strategy;
     }
 
@@ -62,7 +62,7 @@ public class Player {
             logger.info(this + " bleeds out!");
             health--;
         } else {
-            Card card = cardPicker.pick(deck);
+            Card card = deck.get(random.nextInt(deck.size()));
             deck.remove(card);
             logger.info(this + " draws card: " + card);
             if (getNumberOfHandCards() < 5) {

@@ -2,7 +2,6 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.exceptions.IllegalMoveException;
 import de.kimminich.kata.tcg.strategy.Strategy;
-import de.kimminich.kata.tcg.utils.RandomCardPicker;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,15 +25,11 @@ public class PlayerTest {
     private Player player;
 
     @Mock
-    private RandomCardPicker cardPicker;
-
-    @Mock
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        player = new Player("Player", cardPicker, strategy);
-        given(cardPicker.pick(anyDeck())).willReturn(new Card(0));
+        player = new Player("Player", strategy);
     }
 
     @Test
@@ -66,14 +61,13 @@ public class PlayerTest {
     }
 
     @Test
-    public void drawingACardShouldPutThatCardFromDeckIntoHand() {
+    public void drawingACardShouldMoveOneCardFromDeckIntoHand() {
         player = aPlayer().withCardsInDeck(1, 1, 2).withNoCardsInHand();
-        given(cardPicker.pick(anyDeck())).willReturn(new Card(1));
 
         player.drawCard();
 
-        assertThat(player.getNumberOfHandCardsWithManaCost(1), is(equalTo(1)));
-        assertThat(player.getNumberOfDeckCardsWithManaCost(2), is(equalTo(1)));
+        assertThat(player.getNumberOfDeckCards(), is(equalTo(2)));
+        assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
     }
 
     @Test
@@ -89,7 +83,6 @@ public class PlayerTest {
     @Test
     public void shouldDiscardDrawnCardWhenHandSizeIsFive() {
         player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5);
-        given(cardPicker.pick(anyDeck())).willReturn(new Card(1));
 
         player.drawCard();
 
@@ -167,7 +160,7 @@ public class PlayerTest {
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(cardPicker, strategy);
+        return new FakePlayer(strategy);
     }
 
     private Optional<Card> noCard() {

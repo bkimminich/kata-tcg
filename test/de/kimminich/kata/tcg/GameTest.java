@@ -1,7 +1,6 @@
 package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.Strategy;
-import de.kimminich.kata.tcg.utils.RandomCardPicker;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -110,7 +109,7 @@ public class GameTest {
     }
 
     private FakePlayer aPlayer() {
-        return new FakePlayer(new RandomCardPicker(), mock(Strategy.class));
+        return new FakePlayer(mock(Strategy.class));
     }
 
     private Player activePlayer() {

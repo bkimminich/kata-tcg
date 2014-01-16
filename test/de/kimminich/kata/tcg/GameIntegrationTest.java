@@ -2,7 +2,6 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
 import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
-import de.kimminich.kata.tcg.utils.RandomCardPicker;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,8 +14,8 @@ public class GameIntegrationTest {
 
     @Test
     public void gameWillHaveWinnerWhenOver() {
-        Player player1 = new Player("1", new RandomCardPicker(), new LowestCardFirstStrategy());
-        Player player2 = new Player("2", new RandomCardPicker(), new HighestCardFirstStrategy());
+        Player player1 = new Player("1", new LowestCardFirstStrategy());
+        Player player2 = new Player("2", new HighestCardFirstStrategy());
         game = new Game(player1, player2);
 
         game.run();
