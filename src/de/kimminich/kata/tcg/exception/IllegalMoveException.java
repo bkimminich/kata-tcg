@@ -1,4 +1,4 @@
-package de.kimminich.kata.tcg.exceptions;
+package de.kimminich.kata.tcg.exception;
 
 public class IllegalMoveException extends RuntimeException {
 

@@ -1,6 +1,6 @@
 package de.kimminich.kata.tcg;
 
-import de.kimminich.kata.tcg.exceptions.IllegalMoveException;
+import de.kimminich.kata.tcg.exception.IllegalMoveException;
 import de.kimminich.kata.tcg.strategy.Strategy;
 import org.hamcrest.Matchers;
 import org.junit.Before;
