@@ -19,7 +19,10 @@ public class ConsoleInputStrategy implements Strategy {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;
             while (card < 0 || card > 8 || card > mana) {
-                card = Integer.decode(br.readLine());
+                try {
+                    card = Integer.decode(br.readLine());
+                } catch (NumberFormatException e) {
+                }
             }
             return Optional.of(new Card(card));
         } catch (IOException e) {

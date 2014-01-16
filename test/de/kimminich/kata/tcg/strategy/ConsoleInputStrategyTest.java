@@ -37,7 +37,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectInvalidInputUntilValidCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        consoleInput.provideText("-1\n9\n666\n5\n");
+        consoleInput.provideText("-1\n9\n666\nabc\n5\n");
 
         assertThat(strategy.nextCard(10, Card.list(5)), is(card(5)));
     }
