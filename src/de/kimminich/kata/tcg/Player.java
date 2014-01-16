@@ -16,6 +16,7 @@ public class Player {
     Random random = new Random();
 
     private static final int STARTING_HAND_SIZE = 3;
+    private static final int MAXIMUM_HAND_SIZE = 5;
 
     protected int health = 30;
 
@@ -65,7 +66,7 @@ public class Player {
             Card card = deck.get(random.nextInt(deck.size()));
             deck.remove(card);
             logger.info(this + " draws card: " + card);
-            if (getNumberOfHandCards() < 5) {
+            if (getNumberOfHandCards() < MAXIMUM_HAND_SIZE) {
                 hand.add(card);
             } else {
                 logger.info(this + " drops card " + card + " from overload!");
