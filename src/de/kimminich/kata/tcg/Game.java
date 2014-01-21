@@ -10,8 +10,8 @@ public class Game {
 
     private static final Logger logger = Logger.getLogger(Game.class.getName());
 
-    protected Player activePlayer;
-    protected Player opponentPlayer;
+    private Player activePlayer;
+    private Player opponentPlayer;
 
     private Random random = new Random();
 
@@ -44,7 +44,7 @@ public class Game {
         logger.info(activePlayer + " plays turn...");
     }
 
-    private void switchPlayer() {
+    void switchPlayer() {
         Player previouslyActivePlayer = activePlayer;
         activePlayer = opponentPlayer;
         opponentPlayer = previouslyActivePlayer;

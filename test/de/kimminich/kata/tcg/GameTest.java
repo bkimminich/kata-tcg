@@ -138,9 +138,8 @@ public class GameTest {
         }
 
         public FakeGame withActivePlayer(Player activePlayer) {
-            if (this.activePlayer != activePlayer) {
-                this.opponentPlayer = this.activePlayer;
-                this.activePlayer = activePlayer;
+            if (getActivePlayer() != activePlayer) {
+                switchPlayer();
             }
             return this;
         }
