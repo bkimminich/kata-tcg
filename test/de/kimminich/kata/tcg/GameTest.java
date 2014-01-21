@@ -1,6 +1,5 @@
 package de.kimminich.kata.tcg;
 
-import de.kimminich.kata.tcg.strategy.Strategy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
