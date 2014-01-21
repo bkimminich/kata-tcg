@@ -62,7 +62,7 @@ public class PlayerTest {
 
     @Test
     public void drawingACardShouldMoveOneCardFromDeckIntoHand() {
-        player = aPlayer().withCardsInDeck(1, 1, 2).withNoCardsInHand();
+        player = aPlayer().withCardsInDeck(1, 1, 2).withNoCardsInHand().build();
 
         player.drawCard();
 
@@ -72,7 +72,7 @@ public class PlayerTest {
 
     @Test
     public void playerShouldTakeOneDamageWhenDrawingFromEmptyDeck() {
-        player = aPlayer().withNoCardsInDeck();
+        player = aPlayer().withNoCardsInDeck().build();
         int preDrawHealth = player.getHealth();
 
         player.drawCard();
@@ -82,7 +82,7 @@ public class PlayerTest {
 
     @Test
     public void shouldDiscardDrawnCardWhenHandSizeIsFive() {
-        player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5);
+        player = aPlayer().withCardsInDeck(1).withCardsInHand(1, 2, 3, 4, 5).build();
 
         player.drawCard();
 
@@ -92,20 +92,22 @@ public class PlayerTest {
 
     @Test
     public void playingCardsReducesPlayersMana() {
-        player = aPlayer().withMana(10).withCardsInHand(8, 1);
+        player = aPlayer().withMana(10).withCardsInHand(8, 1).build();
+        Player opponent = aPlayer().build();
 
-        player.playCard(new Card(8), aPlayer());
-        player.playCard(new Card(1), aPlayer());
+        player.playCard(new Card(8), opponent);
+        player.playCard(new Card(1), opponent);
 
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
 
     @Test
     public void playingCardsRemovesThemFromHand() {
-        player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3);
+        player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3).build();
+        Player opponent = aPlayer().build();
 
-        player.playCard(new Card(3), aPlayer());
-        player.playCard(new Card(2), aPlayer());
+        player.playCard(new Card(3), opponent);
+        player.playCard(new Card(2), opponent);
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -113,14 +115,14 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardWithInsufficientManaShouldFail() {
-        player = aPlayer().withMana(3).withCardsInHand(4, 4, 4);
-        player.playCard(new Card(4), aPlayer());
+        player = aPlayer().withMana(3).withCardsInHand(4, 4, 4).build();
+        player.playCard(new Card(4), aPlayer().build());
     }
 
     @Test
     public void playingCardCausesDamageToOpponent() {
-        player = aPlayer().withMana(10).withCardsInHand(3, 2);
-        Player opponent = aPlayer().withHealth(30);
+        player = aPlayer().withMana(10).withCardsInHand(3, 2).build();
+        Player opponent = aPlayer().withHealth(30).build();
 
         player.playCard(new Card(3), opponent);
         player.playCard(new Card(2), opponent);
@@ -130,21 +132,21 @@ public class PlayerTest {
 
     @Test
     public void playerWithSufficientManaCanPlayCards() {
-        player = aPlayer().withMana(2).withCardsInHand(3, 2);
+        player = aPlayer().withMana(2).withCardsInHand(3, 2).build();
 
         assertThat(player.canPlayCards(), is(true));
     }
 
     @Test
     public void playerWithInsufficientManaCannotPlayCards() {
-        player = aPlayer().withMana(1).withCardsInHand(3, 2);
+        player = aPlayer().withMana(1).withCardsInHand(3, 2).build();
 
         assertThat(player.canPlayCards(), is(false));
     }
 
     @Test
     public void playerWithEmptyHandCannotPlayCards() {
-        player = aPlayer().withNoCardsInHand();
+        player = aPlayer().withNoCardsInHand().build();
 
         assertThat(player.canPlayCards(), is(false));
     }
@@ -152,15 +154,15 @@ public class PlayerTest {
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
         given(strategy.nextCard(anyInt(), anyListOf(Card.class))).willReturn(noCard());
-        player.playCard(aPlayer());
+        player.playCard(aPlayer().build());
     }
 
     private List<Card> anyDeck() {
         return anyListOf(Card.class);
     }
 
-    private FakePlayer aPlayer() {
-        return new FakePlayer(strategy);
+    private PlayerBuilder aPlayer() {
+        return new PlayerBuilder();
     }
 
     private Optional<Card> noCard() {

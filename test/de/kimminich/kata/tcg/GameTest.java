@@ -16,7 +16,7 @@ public class GameTest {
 
     @Test
     public void gameShouldHaveTwoPlayers() {
-        game = new Game(aPlayer(), aPlayer());
+        game = new Game(aPlayer().build(), aPlayer().build());
 
         assertThat(activePlayer(), is(notNullValue()));
         assertThat(opponentPlayer(), is(notNullValue()));
@@ -24,7 +24,7 @@ public class GameTest {
 
     @Test
     public void eachPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
-        game = new Game(aPlayer(), aPlayer());
+        game = new Game(aPlayer().build(), aPlayer().build());
 
         assertThat(activePlayer().getNumberOfHandCards(), is(equalTo(3)));
         assertThat(activePlayer().getNumberOfDeckCards(), is(equalTo(17)));
@@ -34,8 +34,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldSwitchOnEndOfTurn() {
-        Player player1 = aPlayer();
-        Player player2 = aPlayer();
+        Player player1 = aPlayer().build();
+        Player player2 = aPlayer().build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         game.endTurn();
@@ -46,8 +46,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldReceiveOneManaSlotOnBeginningOfTurn() {
-        Player player1 = aPlayer().withManaSlots(0);
-        game = aGameWithPlayers(player1, aPlayer()).withActivePlayer(player1);
+        Player player1 = aPlayer().withManaSlots(0).build();
+        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -56,8 +56,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldRefillManaOnBeginningOfTurn() {
-        Player player1 = aPlayer().withManaSlots(3).withMana(0);
-        game = aGameWithPlayers(player1, aPlayer()).withActivePlayer(player1);
+        Player player1 = aPlayer().withManaSlots(3).withMana(0).build();
+        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -66,8 +66,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldDrawCardOnBeginningOfTurn() {
-        Player player1 = spy(aPlayer());
-        game = aGameWithPlayers(player1, aPlayer()).withActivePlayer(player1);
+        Player player1 = spy(aPlayer().build());
+        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -76,8 +76,8 @@ public class GameTest {
 
     @Test
     public void playerWithOneHealthAndEmptyDeckShouldDieFromBleedingOutOnBeginningOfTurn() {
-        Player player1 = aPlayer().withHealth(1).withNoCardsInDeck();
-        Player player2 = aPlayer();
+        Player player1 = aPlayer().withHealth(1).withNoCardsInDeck().build();
+        Player player2 = aPlayer().build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         game.beginTurn();
@@ -87,8 +87,8 @@ public class GameTest {
 
     @Test
     public void opponentLoosesWhenHealthIsZero() {
-        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6);
-        Player player2 = aPlayer().withHealth(10);
+        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6).build();
+        Player player2 = aPlayer().withHealth(10).build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         player1.playCard(new Card(6), player2);
@@ -99,8 +99,8 @@ public class GameTest {
 
     @Test
     public void ongoingGameHasNoWinner() {
-        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6);
-        Player player2 = aPlayer().withHealth(30);
+        Player player1 = aPlayer().withMana(10).withCardsInHand(4, 6).build();
+        Player player2 = aPlayer().withHealth(30).build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         player1.playCard(new Card(4), player2);
@@ -108,8 +108,8 @@ public class GameTest {
         assertThat(winner(), is(nullValue()));
     }
 
-    private FakePlayer aPlayer() {
-        return new FakePlayer(mock(Strategy.class));
+    private PlayerBuilder aPlayer() {
+        return new PlayerBuilder();
     }
 
     private Player activePlayer() {

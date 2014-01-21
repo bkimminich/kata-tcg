@@ -18,13 +18,13 @@ public class Player {
     private static final int STARTING_HAND_SIZE = 3;
     private static final int MAXIMUM_HAND_SIZE = 5;
 
-    protected int health = 30;
+    private int health = 30;
 
-    protected int manaSlots = 0;
-    protected int mana = 0;
+    private int manaSlots = 0;
+    private int mana = 0;
 
-    protected List<Card> deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
-    protected List<Card> hand = new ArrayList<>();
+    private List<Card> deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
+    private List<Card> hand = new ArrayList<>();
 
     private final Strategy strategy;
     private final String name;
@@ -32,6 +32,16 @@ public class Player {
     public Player(String name, Strategy strategy) {
         this.name = name;
         this.strategy = strategy;
+    }
+
+    Player(String name, Strategy strategy, int health, int manaSlots, int mana, List<Card> deck, List<Card> hand) {
+        this.name = name;
+        this.strategy = strategy;
+        this.health = health;
+        this.manaSlots = manaSlots;
+        this.mana = mana;
+        this.deck = deck;
+        this.hand = hand;
     }
 
     public int getHealth() {

@@ -21,7 +21,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void manualInputStrategyShouldPlayCardsSelectedOnSystemConsole() {
         strategy = new ConsoleInputStrategy();
-        consoleInput.provideText(player().enter("2").done());
+        player().enter("2").done();
 
         assertThat(strategy.nextCard(10, Card.list(0, 2, 3)), is(card(2)));
     }
@@ -29,7 +29,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectTooExpensiveCardsUntilAffordableCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        consoleInput.provideText(player().enter("8").enter("7").enter("6").done());
+        player().enter("8").enter("7").enter("6").done();
 
         assertThat(strategy.nextCard(6, Card.list(6, 7, 8)), is(card(6)));
     }
@@ -37,7 +37,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectCardsNotPresentInHandUntilHandCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        consoleInput.provideText(player().enter("1").enter("2").enter("3").done());
+        player().enter("1").enter("2").enter("3").done();
 
         assertThat(strategy.nextCard(5, Card.list(3, 4, 5)), is(card(3)));
     }
@@ -45,7 +45,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectInvalidInputUntilValidCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        consoleInput.provideText(player().enter("-1").enter("9").enter("666").enter("abc").enter("5").done());
+        player().enter("-1").enter("9").enter("666").enter("abc").enter("5").done();
 
         assertThat(strategy.nextCard(10, Card.list(5)), is(card(5)));
     }
@@ -62,8 +62,8 @@ public class ConsoleInputStrategyTest {
             return this;
         }
 
-        public String done() {
-            return buf.toString();
+        public void done() {
+            consoleInput.provideText(buf.toString());
         }
     }
 
