@@ -16,7 +16,7 @@ public class GameTest {
 
     @Test
     public void gameShouldHaveTwoPlayers() {
-        game = new Game(aPlayer().build(), aPlayer().build());
+        game = new Game(anyPlayer(), anyPlayer());
 
         assertThat(activePlayer(), is(notNullValue()));
         assertThat(opponentPlayer(), is(notNullValue()));
@@ -24,7 +24,7 @@ public class GameTest {
 
     @Test
     public void eachPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
-        game = new Game(aPlayer().build(), aPlayer().build());
+        game = new Game(anyPlayer(), anyPlayer());
 
         assertThat(activePlayer().getNumberOfHandCards(), is(equalTo(3)));
         assertThat(activePlayer().getNumberOfDeckCards(), is(equalTo(17)));
@@ -34,8 +34,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldSwitchOnEndOfTurn() {
-        Player player1 = aPlayer().build();
-        Player player2 = aPlayer().build();
+        Player player1 = anyPlayer();
+        Player player2 = anyPlayer();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         game.endTurn();
@@ -47,7 +47,7 @@ public class GameTest {
     @Test
     public void activePlayerShouldReceiveOneManaSlotOnBeginningOfTurn() {
         Player player1 = aPlayer().withManaSlots(0).build();
-        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
+        game = aGameWithPlayers(player1, anyPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -57,7 +57,7 @@ public class GameTest {
     @Test
     public void activePlayerShouldRefillManaOnBeginningOfTurn() {
         Player player1 = aPlayer().withManaSlots(3).withMana(0).build();
-        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
+        game = aGameWithPlayers(player1, anyPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -66,8 +66,8 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldDrawCardOnBeginningOfTurn() {
-        Player player1 = spy(aPlayer().build());
-        game = aGameWithPlayers(player1, aPlayer().build()).withActivePlayer(player1);
+        Player player1 = spy(anyPlayer());
+        game = aGameWithPlayers(player1, anyPlayer()).withActivePlayer(player1);
 
         game.beginTurn();
 
@@ -77,7 +77,7 @@ public class GameTest {
     @Test
     public void playerWithOneHealthAndEmptyDeckShouldDieFromBleedingOutOnBeginningOfTurn() {
         Player player1 = aPlayer().withHealth(1).withNoCardsInDeck().build();
-        Player player2 = aPlayer().build();
+        Player player2 = anyPlayer();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         game.beginTurn();
@@ -110,6 +110,10 @@ public class GameTest {
 
     private PlayerBuilder aPlayer() {
         return new PlayerBuilder();
+    }
+
+    private Player anyPlayer() {
+        return anyPlayer();
     }
 
     private Player activePlayer() {
