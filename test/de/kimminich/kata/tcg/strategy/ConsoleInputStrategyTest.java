@@ -21,7 +21,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void manualInputStrategyShouldPlayCardsSelectedOnSystemConsole() {
         strategy = new ConsoleInputStrategy();
-        player().enter("2").done();
+        player().enters("2").finished();
 
         assertThat(strategy.nextCard(10, Card.list(0, 2, 3)), is(card(2)));
     }
@@ -29,7 +29,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectTooExpensiveCardsUntilAffordableCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        player().enter("8").enter("7").enter("6").done();
+        player().enters("8").enters("7").enters("6").finished();
 
         assertThat(strategy.nextCard(6, Card.list(6, 7, 8)), is(card(6)));
     }
@@ -37,7 +37,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectCardsNotPresentInHandUntilHandCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        player().enter("1").enter("2").enter("3").done();
+        player().enters("1").enters("2").enters("3").finished();
 
         assertThat(strategy.nextCard(5, Card.list(3, 4, 5)), is(card(3)));
     }
@@ -45,7 +45,7 @@ public class ConsoleInputStrategyTest {
     @Test
     public void willRejectInvalidInputUntilValidCardIsChosen() {
         strategy = new ConsoleInputStrategy();
-        player().enter("-1").enter("9").enter("666").enter("abc").enter("5").done();
+        player().enters("-1").enters("9").enters("666").enters("abc").enters("5").finished();
 
         assertThat(strategy.nextCard(10, Card.list(5)), is(card(5)));
     }
@@ -57,12 +57,12 @@ public class ConsoleInputStrategyTest {
     private final class ConsoleInputBuilder {
         StringBuilder buf = new StringBuilder();
 
-        public ConsoleInputBuilder enter(String in) {
+        public ConsoleInputBuilder enters(String in) {
             buf.append(in).append("\n");
             return this;
         }
 
-        public void done() {
+        public void finished() {
             consoleInput.provideText(buf.toString());
         }
     }
