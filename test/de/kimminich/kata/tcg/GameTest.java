@@ -112,7 +112,7 @@ public class GameTest {
     }
 
     private Player anyPlayer() {
-        return anyPlayer();
+        return aPlayer().build();
     }
 
     private Player activePlayer() {
