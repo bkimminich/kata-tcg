@@ -13,7 +13,7 @@ public class LowestCardFirstStrategyTest {
     Strategy strategy;
 
     @Test
-    public void stupidStrategyShouldPlayCardsFromLowToHigh() {
+    public void shouldPlayCardsInOrderFromLowToHigh() {
         strategy = new LowestCardFirstStrategy();
 
         assertThat(strategy.nextCard(10, Card.list(0, 1, 2, 3, 8)), is(card(0)));
