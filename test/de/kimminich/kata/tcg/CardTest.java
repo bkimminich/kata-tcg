@@ -2,6 +2,7 @@ package de.kimminich.kata.tcg;
 
 import org.junit.Test;
 
+import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,8 +22,5 @@ public class CardTest {
         assertThat(aCardWithManaCost(8).getDamage(), is(equalTo(8)));
     }
 
-    private Card aCardWithManaCost(int manaCost) {
-        return new Card(manaCost);
-    }
 
 }
