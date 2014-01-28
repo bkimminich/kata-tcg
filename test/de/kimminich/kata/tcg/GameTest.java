@@ -4,9 +4,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
+import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameTest {
@@ -105,14 +108,6 @@ public class GameTest {
         player1.playCard(new Card(4), player2);
 
         assertThat(winner(), is(nullValue()));
-    }
-
-    private PlayerBuilder aPlayer() {
-        return new PlayerBuilder();
-    }
-
-    private Player anyPlayer() {
-        return aPlayer().build();
     }
 
     private Player activePlayer() {

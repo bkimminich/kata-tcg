@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
+import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -153,10 +154,6 @@ public class PlayerTest {
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
         given(strategy.nextCard(anyInt(), anyListOf(Card.class))).willReturn(noCard());
         player.playCard(aPlayer().build());
-    }
-
-    private PlayerBuilder aPlayer() {
-        return new PlayerBuilder();
     }
 
 }

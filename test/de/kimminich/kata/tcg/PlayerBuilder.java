@@ -9,7 +9,7 @@ import java.util.List;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toCollection;
 
-class PlayerBuilder {
+public class PlayerBuilder {
 
     private int health = 30;
     private int manaSlots = 0;
