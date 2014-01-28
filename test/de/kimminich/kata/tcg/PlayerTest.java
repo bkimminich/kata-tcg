@@ -2,7 +2,6 @@ package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.exception.IllegalMoveException;
 import de.kimminich.kata.tcg.strategy.Strategy;
-import de.kimminich.kata.tcg.syntactic.CardSugar;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,10 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.List;
-import java.util.Optional;
-
-import static de.kimminich.kata.tcg.syntactic.CardSugar.*;
+import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;

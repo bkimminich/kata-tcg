@@ -1,12 +1,10 @@
 package de.kimminich.kata.tcg.strategy;
 
 import de.kimminich.kata.tcg.Card;
-import de.kimminich.kata.tcg.syntactic.CardSugar;
 import org.junit.Test;
 
-import java.util.Optional;
-
-import static de.kimminich.kata.tcg.syntactic.CardSugar.*;
+import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
+import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
