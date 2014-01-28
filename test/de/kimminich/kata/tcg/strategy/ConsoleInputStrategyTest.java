@@ -1,12 +1,14 @@
 package de.kimminich.kata.tcg.strategy;
 
 import de.kimminich.kata.tcg.Card;
+import de.kimminich.kata.tcg.syntactic.CardSugar;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import java.util.Optional;
 
+import static de.kimminich.kata.tcg.syntactic.CardSugar.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
@@ -65,10 +67,6 @@ public class ConsoleInputStrategyTest {
         public void finished() {
             consoleInput.provideText(buf.toString());
         }
-    }
-
-    private Optional<Card> card(int card) {
-        return Optional.of(new Card(card));
     }
 
 }
