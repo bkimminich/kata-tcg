@@ -25,7 +25,7 @@ public class HighestCardFirstStrategyTest {
     }
 
     @Test
-    public void strategyShouldReturnNoCardIfInsufficientManaForAnyHandCard() {
+    public void shouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         assertThat(strategy.nextCard(1, Card.list(2, 3, 8)), is(noCard()));
     }
 

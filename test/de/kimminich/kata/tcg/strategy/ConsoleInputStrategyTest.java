@@ -24,7 +24,7 @@ public class ConsoleInputStrategyTest {
     public TextFromStandardInputStream consoleInput = emptyStandardInputStream();
 
     @Test
-    public void manualInputStrategyShouldPlayCardsSelectedOnSystemConsole() {
+    public void shouldPlayCardsSelectedOnSystemConsole() {
         player().enters("2").finished();
 
         assertThat(strategy.nextCard(10, Card.list(0, 2, 3)), is(card(2)));
