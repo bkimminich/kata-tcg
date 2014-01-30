@@ -13,6 +13,14 @@ public class AiStrategyTest {
     Strategy strategy;
 
     @Test
+    public void strategyShouldTryToMaximizeDamageOutput() {
+        strategy = new AiStrategy();
+
+        assertThat(strategy.nextCard(8, Card.list(7,6,5,2)), is(card(2)));
+        assertThat(strategy.nextCard(6, Card.list(7,6,5)), is(card(6)));
+    }
+
+    @Test
     public void strategyShouldTryToReduceHandSizeToTwo() {
         strategy = new AiStrategy();
 
