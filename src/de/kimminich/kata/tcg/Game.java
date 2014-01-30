@@ -1,7 +1,7 @@
 package de.kimminich.kata.tcg;
 
+import de.kimminich.kata.tcg.strategy.AiStrategy;
 import de.kimminich.kata.tcg.strategy.ConsoleInputStrategy;
-import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
 
 import java.util.Random;
 import java.util.logging.Logger;
@@ -77,6 +77,6 @@ public class Game {
     }
 
     public static void main(String... args) {
-        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new HighestCardFirstStrategy())).run();
+        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new AiStrategy())).run();
     }
 }
