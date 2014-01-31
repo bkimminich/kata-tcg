@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
+import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -72,12 +73,11 @@ public class PlayerTest {
 
     @Test
     public void playerShouldTakeOneDamageWhenDrawingFromEmptyDeck() {
-        player = aPlayer().withNoCardsInDeck().build();
-        int preDrawHealth = player.getHealth();
+        player = aPlayer().withHealth(30).withNoCardsInDeck().build();
 
         player.drawCard();
 
-        assertThat(player.getHealth(), is(equalTo(preDrawHealth - 1)));
+        assertThat(player.getHealth(), is(equalTo(29)));
     }
 
     @Test
@@ -93,10 +93,9 @@ public class PlayerTest {
     @Test
     public void playingCardsReducesPlayersMana() {
         player = aPlayer().withMana(10).withCardsInHand(8, 1).build();
-        Player opponent = aPlayer().build();
 
-        player.playCard(aCardWithManaCost(8), opponent);
-        player.playCard(aCardWithManaCost(1), opponent);
+        player.playCard(aCardWithManaCost(8), anyPlayer());
+        player.playCard(aCardWithManaCost(1), anyPlayer());
 
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
@@ -104,10 +103,9 @@ public class PlayerTest {
     @Test
     public void playingCardsRemovesThemFromHand() {
         player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3).build();
-        Player opponent = aPlayer().build();
 
-        player.playCard(aCardWithManaCost(3), opponent);
-        player.playCard(aCardWithManaCost(2), opponent);
+        player.playCard(aCardWithManaCost(3), anyPlayer());
+        player.playCard(aCardWithManaCost(2), anyPlayer());
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -116,7 +114,8 @@ public class PlayerTest {
     @Test(expected = IllegalMoveException.class)
     public void playingCardWithInsufficientManaShouldFail() {
         player = aPlayer().withMana(3).withCardsInHand(4, 4, 4).build();
-        player.playCard(aCardWithManaCost(4), aPlayer().build());
+
+        player.playCard(aCardWithManaCost(4), anyPlayer());
     }
 
     @Test
@@ -154,7 +153,7 @@ public class PlayerTest {
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
         given(strategy.nextCard(anyInt(), anyListOf(Card.class))).willReturn(noCard());
-        player.playCard(aPlayer().build());
+        player.playCard(anyPlayer());
     }
 
 }
