@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -94,8 +95,8 @@ public class PlayerTest {
         player = aPlayer().withMana(10).withCardsInHand(8, 1).build();
         Player opponent = aPlayer().build();
 
-        player.playCard(new Card(8), opponent);
-        player.playCard(new Card(1), opponent);
+        player.playCard(aCardWithManaCost(8), opponent);
+        player.playCard(aCardWithManaCost(1), opponent);
 
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
@@ -105,8 +106,8 @@ public class PlayerTest {
         player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3).build();
         Player opponent = aPlayer().build();
 
-        player.playCard(new Card(3), opponent);
-        player.playCard(new Card(2), opponent);
+        player.playCard(aCardWithManaCost(3), opponent);
+        player.playCard(aCardWithManaCost(2), opponent);
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -115,7 +116,7 @@ public class PlayerTest {
     @Test(expected = IllegalMoveException.class)
     public void playingCardWithInsufficientManaShouldFail() {
         player = aPlayer().withMana(3).withCardsInHand(4, 4, 4).build();
-        player.playCard(new Card(4), aPlayer().build());
+        player.playCard(aCardWithManaCost(4), aPlayer().build());
     }
 
     @Test
@@ -123,8 +124,8 @@ public class PlayerTest {
         player = aPlayer().withMana(10).withCardsInHand(3, 2).build();
         Player opponent = aPlayer().withHealth(30).build();
 
-        player.playCard(new Card(3), opponent);
-        player.playCard(new Card(2), opponent);
+        player.playCard(aCardWithManaCost(3), opponent);
+        player.playCard(aCardWithManaCost(2), opponent);
 
         assertThat(opponent.getHealth(), is(equalTo(25)));
     }
