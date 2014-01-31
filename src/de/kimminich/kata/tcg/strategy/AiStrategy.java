@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public class AiStrategy implements Strategy {
 
-    Strategy lowestCardStrategy = new LowestCardFirstStrategy();
-    Strategy highestCardStrategy = new HighestCardFirstStrategy();
+    private Strategy lowestCardStrategy = new LowestCardFirstStrategy();
+    private Strategy highestCardStrategy = new HighestCardFirstStrategy();
 
     @Override
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {

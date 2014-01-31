@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface Strategy {
 
-    public abstract Optional<Card> nextCard(int mana, List<Card> availableCards);
+    Optional<Card> nextCard(int mana, List<Card> availableCards);
 
 }
 
