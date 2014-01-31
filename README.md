@@ -1,6 +1,6 @@
 # Code Kata: Trading Card Game (TCG)
 
-In this [Code Kata](http://en.wikipedia.org/wiki/Kata_(programming) you will be implementing a rudimentary two-player trading card game. The rules are loosely based on [Blizzard Hearthstone](http://us.battle.net/hearthstone/en/). This Kata is intentionally slightly more complex and challenging than many of the well-known traditional Katas (like Roman Numbers, Bowling Game or Word Wrap). It leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different starting points. The Kata should also be pretty easy to modify and extend with things like additional card types (e.g. healing) or rules.
+In this [Code Kata](http://en.wikipedia.org/wiki/Kata_(programming) you will be implementing a rudimentary two-player trading card game. The rules are loosely based on [Blizzard Hearthstone®](http://us.battle.net/hearthstone/en/). This Kata is intentionally slightly more complex and challenging than many of the well-known traditional Katas (like Roman Numbers, Bowling Game or Word Wrap). It leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different starting points. The Kata should also be pretty easy to modify and extend with things like additional card types (e.g. healing) or rules.
 
 ## TCG Rules
 
