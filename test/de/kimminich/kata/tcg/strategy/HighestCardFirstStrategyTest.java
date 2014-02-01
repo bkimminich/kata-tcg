@@ -1,6 +1,5 @@
 package de.kimminich.kata.tcg.strategy;
 
-import de.kimminich.kata.tcg.Card;
 import org.junit.Before;
 import org.junit.Test;
 

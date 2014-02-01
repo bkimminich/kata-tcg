@@ -1,10 +1,7 @@
 package de.kimminich.kata.tcg.strategy;
 
-import de.kimminich.kata.tcg.Card;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
