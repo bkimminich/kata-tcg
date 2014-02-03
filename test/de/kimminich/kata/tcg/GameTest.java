@@ -1,8 +1,6 @@
 package de.kimminich.kata.tcg;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
@@ -10,8 +8,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
-
-@RunWith(MockitoJUnitRunner.class)
 public class GameTest {
 
     private Game game;
