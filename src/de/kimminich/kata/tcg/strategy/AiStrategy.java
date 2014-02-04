@@ -20,7 +20,7 @@ public class AiStrategy implements Strategy {
                 return highestCardStrategy.nextCard(mana, availableCards);
             }
         }
-        if (availableCards.size() == 2) {
+        if (availableCards.size() <= 2) {
             return highestCardStrategy.nextCard(mana, availableCards);
         }
         return Optional.empty();

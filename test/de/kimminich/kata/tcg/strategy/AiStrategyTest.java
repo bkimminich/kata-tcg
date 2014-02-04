@@ -39,6 +39,11 @@ public class AiStrategyTest {
     }
 
     @Test
+    public void shouldPlayLastCardIfAffordable() {
+        assertThat(strategy.nextCard(withMana(6), fromCards(5)), is(card(5)));
+    }
+
+    @Test
     public void shouldReturnNoCardIfInsufficientManaForAnyHandCard() {
         assertThat(strategy.nextCard(withMana(1), fromCards(2, 3, 8)), is(noCard()));
     }
