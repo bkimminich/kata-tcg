@@ -1,8 +1,6 @@
 package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.AiStrategy;
-import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
-import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

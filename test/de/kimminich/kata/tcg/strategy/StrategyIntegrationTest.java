@@ -8,7 +8,6 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 
 public class StrategyIntegrationTest {
 
@@ -18,7 +17,7 @@ public class StrategyIntegrationTest {
     public void HighestCardFirstStrategyShouldWinMoreOftenThanLowestCardFirstStrategy() {
         int highWins = 0;
 
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Player highestFirstPlayer = new Player("High", new HighestCardFirstStrategy());
             Player lowestFirstPlayer = new Player("Low", new LowestCardFirstStrategy());
             game = new Game(highestFirstPlayer, lowestFirstPlayer);
@@ -35,7 +34,7 @@ public class StrategyIntegrationTest {
     public void AiStrategyShouldWinMoreOftenThanLowestCardFirstStrategy() {
         int aiWins = 0;
 
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Player aiPlayer = new Player("AI", new AiStrategy());
             Player lowestFirstPlayer = new Player("Low", new LowestCardFirstStrategy());
             game = new Game(aiPlayer, lowestFirstPlayer);
@@ -53,7 +52,7 @@ public class StrategyIntegrationTest {
     public void AiStrategyShouldWinMoreOftenThanHighestCardFirstStrategy() {
         int aiWins = 0;
 
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             Player aiPlayer = new Player("AI", new AiStrategy());
             Player highestFirstPlayer = new Player("High", new HighestCardFirstStrategy());
             game = new Game(aiPlayer, highestFirstPlayer);
