@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg;
 
+import de.kimminich.kata.tcg.strategy.AiStrategy;
 import de.kimminich.kata.tcg.strategy.HighestCardFirstStrategy;
 import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
 import org.junit.Test;
@@ -14,8 +15,8 @@ public class GameIntegrationTest {
 
     @Test
     public void gameWillHaveWinnerWhenOver() {
-        Player player1 = new Player("1", new LowestCardFirstStrategy());
-        Player player2 = new Player("2", new HighestCardFirstStrategy());
+        Player player1 = new Player("1", new AiStrategy());
+        Player player2 = new Player("2", new AiStrategy());
         game = new Game(player1, player2);
 
         game.run();
