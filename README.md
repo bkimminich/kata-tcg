@@ -1,6 +1,6 @@
 # Code Kata: Trading Card Game (TCG)
 
-In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will be implementing a rudimentary two-player trading card game. The rules are loosely based on [Blizzard Hearthstone®](http://us.battle.net/hearthstone/en/). This Kata is intentionally slightly more complex and challenging than many of the well-known traditional Katas (like Roman Numbers, Bowling Game or Word Wrap). It leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different starting points. The Kata should also be pretty easy to modify and extend with things like additional card types (e.g. healing) or rules.
+In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will be implementing a rudimentary two-player trading card game. The rules are loosely based on [Blizzard Hearthstone®](http://us.battle.net/hearthstone/en/). This Kata is intentionally slightly more complex and challenging than many of the well-known traditional Katas (like Roman Numbers, Bowling Game or FizzBuzz). It leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different starting points. The Kata is also well suited for rule extension and modification keeping it challenging for developers of all experience levels.
 
 ## TCG Rules
 
@@ -25,7 +25,7 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will 
 
 ## Advanced Variations
 
-When the normal game rules have become too boring you might consider adding some additional rules like those described below:
+When the normal game rules have become too easy/boring you might consider adding some additional rules like those described below:
 
 1. Let Mana cost and damage dealt be different from each other thus making cheap powerful, expensive mediocre or entirely useless cards possible. This can add a whole new layer of play strategy as some cards might not be desired to be ever played, but eventually have to in order to free your hand for better cards.
 2. Introduce a _Healing_ card type that restores a given amount of Health on the active player. Can be done with Mana cost equal to healing amount or independent for each other (see above).
