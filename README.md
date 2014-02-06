@@ -10,7 +10,7 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will 
 2. Each player starts with a deck of 20 _Damage_ cards with the following Mana costs: 0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8
 3. From the deck each player receives 3 random cards has his initial hand
 
-### Gameplay
+### Basic Gameplay
 1. The active player receives 1 Mana slot up to a maximum of 10 total slots
 2. The active player's empty Mana slots are refilled
 3. The active player draws a random card from his deck
@@ -30,7 +30,11 @@ When the normal game rules have become too boring you might consider adding some
 1. Let Mana cost and damage dealt be different from each other thus making cheap powerful, expensive mediocre or entirely useless cards possible. This can add a whole new layer of play strategy as some cards might not be desired to be ever played, but eventually have to in order to free your hand for better cards.
 2. Introduce a _Healing_ card type that restores a given amount of Health on the active player. Can be done with Mana cost equal to healing amount or independent for each other (see above).
 3. Introduce _Card Drawer_ cards that cost Mana but don't do any damage. Instead they let you draw a given number of cards from your deck. Those cards can be used in the current turn or later on (just as if normally drawn at the beginning of the active player's turn).
-4. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk[1] before starting a game.
-5. Let the game be played via network[1] against other players.
-
-[1] If you want to do these variations with TDD, this might be the (latest) point where you should get familiar with a good [Mocking](http://en.wikipedia.org/wiki/Mock_object) framework (like [Mockito](https://code.google.com/p/mockito/))
+4. Let players choose to play cards either as immediate damage _Spells_ (like all cards work in the Basic Gameplay rules) or as _Minions_ that are put on the board instead.
+    * Minions might use the mana cost of their card as Health and Damage value. Health has to be tracked when they receive damage.
+    * A Minion would sleep in the turn it was but on the board.
+    * Starting from the next turn a Minion can be used to deal damage to the opponent player or an opponent Minion.
+    * A Minion fighting another Minion will result in them dealing their damage value to each other simultaneously. Sleeping Minions will defend themselves in the same way when attacked by another Minion.
+    * Players can choose to play a _Spell_ against a Minion. The attacked Minion will not defend itself in this case, thus the attacking player receives no damage from it.
+    * When a Minions health drops to or below zero it is removed from the board.
+5. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk before starting a game.
