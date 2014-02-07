@@ -7,7 +7,6 @@ import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 public class GameTest {
 
@@ -71,7 +70,7 @@ public class GameTest {
 
         game.beginTurn();
 
-        assertThat(player1.getNumberOfHandCards(), is(equalTo(numberOfInitialHandCards+1)));
+        assertThat(player1.getNumberOfHandCards(), is(equalTo(numberOfInitialHandCards + 1)));
     }
 
     @Test
