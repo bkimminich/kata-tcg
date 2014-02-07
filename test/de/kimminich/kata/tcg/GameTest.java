@@ -2,6 +2,7 @@ package de.kimminich.kata.tcg;
 
 import org.junit.Test;
 
+import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
 import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,18 +17,18 @@ public class GameTest {
     public void gameShouldHaveTwoPlayers() {
         game = new Game(anyPlayer(), anyPlayer());
 
-        assertThat(activePlayer(), is(notNullValue()));
-        assertThat(opponentPlayer(), is(notNullValue()));
+        assertThat(game.getActivePlayer(), is(notNullValue()));
+        assertThat(game.getOpponentPlayer(), is(notNullValue()));
     }
 
     @Test
     public void eachPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
         game = new Game(anyPlayer(), anyPlayer());
 
-        assertThat(activePlayer().getNumberOfHandCards(), is(equalTo(3)));
-        assertThat(activePlayer().getNumberOfDeckCards(), is(equalTo(17)));
-        assertThat(opponentPlayer().getNumberOfHandCards(), is(equalTo(3)));
-        assertThat(opponentPlayer().getNumberOfDeckCards(), is(equalTo(17)));
+        assertThat(game.getActivePlayer().getNumberOfHandCards(), is(equalTo(3)));
+        assertThat(game.getActivePlayer().getNumberOfDeckCards(), is(equalTo(17)));
+        assertThat(game.getOpponentPlayer().getNumberOfHandCards(), is(equalTo(3)));
+        assertThat(game.getOpponentPlayer().getNumberOfDeckCards(), is(equalTo(17)));
     }
 
     @Test
@@ -37,9 +38,9 @@ public class GameTest {
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
         game.endTurn();
-        assertThat(activePlayer(), is(player2));
+        assertThat(game.getActivePlayer(), is(player2));
         game.endTurn();
-        assertThat(activePlayer(), is(player1));
+        assertThat(game.getActivePlayer(), is(player1));
     }
 
     @Test
@@ -64,12 +65,13 @@ public class GameTest {
 
     @Test
     public void activePlayerShouldDrawCardOnBeginningOfTurn() {
-        Player player1 = spy(anyPlayer());
+        Player player1 = anyPlayer();
         game = aGameWithPlayers(player1, anyPlayer()).withActivePlayer(player1);
+        int numberOfInitialHandCards = player1.getNumberOfHandCards();
 
         game.beginTurn();
 
-        verify(player1, times(3 + 1)).drawCard();
+        assertThat(player1.getNumberOfHandCards(), is(equalTo(numberOfInitialHandCards+1)));
     }
 
     @Test
@@ -80,7 +82,7 @@ public class GameTest {
 
         game.beginTurn();
 
-        assertThat(winner(), is(player2));
+        assertThat(game.getWinner(), is(player2));
     }
 
     @Test
@@ -89,10 +91,10 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(10).build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
-        player1.playCard(new Card(6), player2);
-        player1.playCard(new Card(4), player2);
+        player1.playCard(aCardWithManaCost(6), player2);
+        player1.playCard(aCardWithManaCost(4), player2);
 
-        assertThat(winner(), is(player1));
+        assertThat(game.getWinner(), is(player1));
     }
 
     @Test
@@ -101,21 +103,9 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(30).build();
         game = aGameWithPlayers(player1, player2).withActivePlayer(player1);
 
-        player1.playCard(new Card(4), player2);
+        player1.playCard(aCardWithManaCost(4), player2);
 
-        assertThat(winner(), is(nullValue()));
-    }
-
-    private Player activePlayer() {
-        return game.getActivePlayer();
-    }
-
-    private Player opponentPlayer() {
-        return game.getOpponentPlayer();
-    }
-
-    private Player winner() {
-        return game.getWinner();
+        assertThat(game.getWinner(), is(nullValue()));
     }
 
     private FakeGame aGameWithPlayers(Player player1, Player player2) {
