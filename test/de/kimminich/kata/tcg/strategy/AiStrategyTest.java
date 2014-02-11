@@ -1,7 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
