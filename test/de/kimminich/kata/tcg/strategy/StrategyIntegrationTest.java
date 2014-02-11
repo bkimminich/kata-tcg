@@ -27,7 +27,7 @@ public class StrategyIntegrationTest {
             }
         }
 
-        assertThat(highWins, is(greaterThan(60)));
+        assertThat(highWins, is(greaterThan(70)));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class StrategyIntegrationTest {
             }
         }
 
-        assertThat(aiWins, is(greaterThan(60)));
+        assertThat(aiWins, is(greaterThan(70)));
     }
 
     @Test
