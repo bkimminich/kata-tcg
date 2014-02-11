@@ -1,17 +1,13 @@
 package de.kimminich.kata.tcg.strategy;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.Optional;
 
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.fromCards;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.withMana;
-import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
