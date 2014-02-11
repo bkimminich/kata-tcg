@@ -13,17 +13,11 @@ public class AiStrategy implements Strategy {
 
     @Override
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
-        if (availableCards.size() > 2) {
-            if (canAffordMoreThanOneCard(mana, availableCards)) {
-                return lowestCardStrategy.nextCard(mana, availableCards);
-            } else {
-                return highestCardStrategy.nextCard(mana, availableCards);
-            }
-        }
-        if (availableCards.size() <= 2) {
+        if (canAffordMoreThanOneCard(mana, availableCards)) {
+            return lowestCardStrategy.nextCard(mana, availableCards);
+        } else {
             return highestCardStrategy.nextCard(mana, availableCards);
         }
-        return Optional.empty();
     }
 
     private boolean canAffordMoreThanOneCard(int mana, List<Card> availableCards) {
