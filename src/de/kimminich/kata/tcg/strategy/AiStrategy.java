@@ -13,6 +13,15 @@ public class AiStrategy implements Strategy {
 
     @Override
     public Optional<Card> nextCard(int mana, List<Card> availableCards) {
+        for (Card card : availableCards) {
+            List<Card> remainingCards = new ArrayList<>(availableCards);
+            remainingCards.remove(card);
+            for (Card comboCard : remainingCards) {
+                if (card.getManaCost() + comboCard.getManaCost() == mana) {
+                    return Optional.of(card);
+                }
+            }
+        }
         if (canAffordMoreThanOneCard(mana, availableCards)) {
             return lowestCardStrategy.nextCard(mana, availableCards);
         } else {
@@ -29,5 +38,6 @@ public class AiStrategy implements Strategy {
         }
         return false;
     }
+
 
 }

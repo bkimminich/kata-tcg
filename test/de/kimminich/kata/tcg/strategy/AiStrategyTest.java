@@ -22,9 +22,8 @@ public class AiStrategyTest {
     }
 
     @Test
-    @Ignore // TODO Optimized damage combo building not implemented yet
     public void shouldTryToMaximizeDamageOutputInCurrentTurn() {
-        assertThat(strategy.nextCard(withMana(8), fromCards(7, 6, 4, 2, 1)), either(is(card(2))).or(is(card(6))));
+        assertThat(strategy.nextCard(withMana(8), fromCards(7, 6, 4, 3, 2)), either(is(card(2))).or(is(card(6))));
     }
 
     @Test
