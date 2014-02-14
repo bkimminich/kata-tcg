@@ -9,7 +9,7 @@ import java.util.Optional;
 public class HighestCardFirstStrategy implements Strategy {
 
     @Override
-    public Optional<Card> nextCard(int mana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= mana).max(Comparator.<Card>naturalOrder());
+    public Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
+        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).max(Comparator.<Card>naturalOrder());
     }
 }

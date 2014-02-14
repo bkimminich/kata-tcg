@@ -14,11 +14,11 @@ public class ConsoleInputStrategy implements Strategy {
     private static final Logger logger = Logger.getLogger(ConsoleInputStrategy.class.getName());
 
     @Override
-    public Optional<Card> nextCard(int mana, List<Card> availableCards) {
+    public Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;
-            while (card < 0 || card > 8 || card > mana || !availableCards.contains(new Card(card))) {
+            while (card < 0 || card > 8 || card > availableMana || !availableCards.contains(new Card(card))) {
                 try {
                     card = Integer.decode(br.readLine());
                 } catch (NumberFormatException e) {

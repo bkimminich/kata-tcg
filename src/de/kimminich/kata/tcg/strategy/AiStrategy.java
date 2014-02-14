@@ -10,13 +10,13 @@ import java.util.Optional;
 public class AiStrategy implements Strategy {
 
     @Override
-    public Optional<Card> nextCard(int mana, List<Card> availableCards) {
+    public Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
         List<List<Card>> cardCombos = new ArrayList<>();
         List<Card> remainingCards = new ArrayList<>(availableCards);
         remainingCards.sort(Comparator.<Card>reverseOrder()); // highest mana costs first
         while (!remainingCards.isEmpty()) {
             List<Card> selectedCards = new ArrayList<>();
-            collectMaxDamageCardCombo(selectedCards, mana, remainingCards);
+            collectMaxDamageCardCombo(selectedCards, availableMana, remainingCards);
             cardCombos.add(selectedCards);
             remainingCards.remove(0);
         }
@@ -34,13 +34,13 @@ public class AiStrategy implements Strategy {
         return bestCombo.stream().max(Comparator.<Card>naturalOrder());
     }
 
-    private void collectMaxDamageCardCombo(List<Card> selectedCards, int mana, List<Card> availableCards) {
+    private void collectMaxDamageCardCombo(List<Card> selectedCards, int availableMana, List<Card> availableCards) {
         for (Card card : availableCards) {
             List<Card> remainingCards = new ArrayList<>(availableCards);
-            if (selectedCards.stream().mapToInt(Card::getManaCost).sum() + card.getManaCost() <= mana) {
+            if (selectedCards.stream().mapToInt(Card::getManaCost).sum() + card.getManaCost() <= availableMana) {
                 selectedCards.add(card);
                 remainingCards.remove(card);
-                collectMaxDamageCardCombo(selectedCards, mana - card.getManaCost(), remainingCards);
+                collectMaxDamageCardCombo(selectedCards, availableMana - card.getManaCost(), remainingCards);
             }
         }
     }
