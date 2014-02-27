@@ -21,6 +21,14 @@ public class PlayerBuilder {
 
     private static int playerNo = 0;
 
+    public static PlayerBuilder aPlayer() {
+        return new PlayerBuilder();
+    }
+
+    public static Player anyPlayer() {
+        return aPlayer().build();
+    }
+
     public Player build() {
         return new Player(name, strategy, health, manaSlots, mana, deck, hand);
     }

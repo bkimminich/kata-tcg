@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static de.kimminich.kata.tcg.PlayerBuilder.aPlayer;
+import static de.kimminich.kata.tcg.PlayerBuilder.anyPlayer;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
-import static de.kimminich.kata.tcg.syntactic.PlayerSugar.aPlayer;
-import static de.kimminich.kata.tcg.syntactic.PlayerSugar.anyPlayer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
