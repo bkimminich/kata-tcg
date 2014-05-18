@@ -21,4 +21,17 @@ class PlayerSpec extends Specification {
         player.hand == []
     }
 
+    def "drawing a card should move one card from the deck into the hand"() {
+        given:
+        player = new Player()
+        player.deck = [1,2]
+        player.hand = []
+
+        when:
+        player.drawCard()
+
+        then:
+        (player.deck == [1] && player.hand == [2]) || (player.deck == [2] && player.hand == [1])
+    }
+
 }

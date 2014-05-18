@@ -9,7 +9,7 @@ class Player {
 
     def drawCard() {
         Collections.shuffle(deck)
-        hand.add(deck.take(1))
+        hand.addAll(deck.take(1))
         deck = deck.drop(1)
     }
 }
