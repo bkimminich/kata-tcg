@@ -16,7 +16,7 @@ class PlayerSpec extends Specification {
         player.mana == 0
         player.maxMana == 0
         and: "player should have default card deck"
-        player.deck == [0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8]
+        player.deck == [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
         and: "player should hold no cards in his hand"
         player.hand == []
     }
@@ -24,7 +24,7 @@ class PlayerSpec extends Specification {
     def "drawing a card should move one card from the deck into the hand"() {
         given:
         player = new Player()
-        player.deck = [1,2]
+        player.deck = [1, 2]
         player.hand = []
 
         when:
@@ -45,6 +45,20 @@ class PlayerSpec extends Specification {
 
         then:
         player.health == 29
+    }
+
+    def "drawing a card when hand already contains five cards causes taken card to be dropped from overload"() {
+        given:
+        player = new Player()
+        player.deck = [8]
+        player.hand = [1, 2, 3, 4, 5]
+
+        when:
+        player.drawCard()
+
+        then:
+        player.deck == []
+        player.hand == [1, 2, 3, 4, 5]
     }
 
 }
