@@ -34,4 +34,17 @@ class PlayerSpec extends Specification {
         (player.deck == [1] && player.hand == [2]) || (player.deck == [2] && player.hand == [1])
     }
 
+    def "drawing a card from a depleted deck should cause one damage to player"() {
+        given:
+        player = new Player()
+        player.health = 30
+        player.deck = []
+
+        when:
+        player.drawCard()
+
+        then:
+        player.health == 29
+    }
+
 }

@@ -8,8 +8,12 @@ class Player {
     ArrayList<Integer> hand = []
 
     def drawCard() {
-        Collections.shuffle(deck)
-        hand.addAll(deck.take(1))
-        deck = deck.drop(1)
+        if (deck.isEmpty()) {
+            health--
+        } else {
+            Collections.shuffle(deck)
+            hand.addAll(deck.take(1))
+            deck = deck.drop(1)
+        }
     }
 }
