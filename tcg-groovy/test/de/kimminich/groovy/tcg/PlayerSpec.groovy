@@ -1,6 +1,7 @@
 package de.kimminich.groovy.tcg
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class PlayerSpec extends Specification {
 
@@ -59,6 +60,33 @@ class PlayerSpec extends Specification {
         then:
         player.deck == []
         player.hand == [1, 2, 3, 4, 5]
+    }
+
+    @Unroll("playing a card with value #card diminishes opponent health from 30 to #expectedHealth")
+    def "playing a card causes damage equal to mana cost to opponent player"() {
+        given:
+        player = new Player()
+        and:
+        Player opponent = new Player()
+        opponent.health = 30
+
+        when:
+        player.playCard(card, opponent)
+
+        then:
+        opponent.health == expectedHealth
+
+        where:
+        card | expectedHealth
+        0    | 30
+        1    | 29
+        2    | 28
+        3    | 27
+        4    | 26
+        5    | 25
+        6    | 24
+        7    | 23
+        8    | 22
     }
 
 }

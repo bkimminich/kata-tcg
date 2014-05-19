@@ -19,4 +19,7 @@ class Player {
         }
     }
 
+    def playCard(int card, Player opponent) {
+        opponent.health-=card
+    }
 }
