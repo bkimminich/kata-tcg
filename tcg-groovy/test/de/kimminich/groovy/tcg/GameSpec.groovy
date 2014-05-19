@@ -23,11 +23,11 @@ class GameSpec extends Specification {
         game.start()
 
         then:
-        game.activePlayer.hand.size == 3
-        game.activePlayer.deck.size == 17
+        game.activePlayer.hand.size() == 3
+        game.activePlayer.deck.size() == 17
         and:
-        game.opponentPlayer.hand.size == 3
-        game.opponentPlayer.deck.size == 17
+        game.opponentPlayer.hand.size() == 3
+        game.opponentPlayer.deck.size() == 17
     }
 
 }
