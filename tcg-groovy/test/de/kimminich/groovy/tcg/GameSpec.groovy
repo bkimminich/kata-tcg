@@ -81,4 +81,17 @@ class GameSpec extends Specification {
         then:
         game.activePlayer.maxMana == 10
     }
+
+    def "every turn the active player draws a card from his deck"() {
+        given:
+        game = new Game()
+        game.opponentPlayer = new Player(deck: [3], hand: [1,2])
+
+        when:
+        game.beginTurn()
+
+        then:
+        game.activePlayer.deck == []
+        game.activePlayer.hand == [1,2,3]
+    }
 }

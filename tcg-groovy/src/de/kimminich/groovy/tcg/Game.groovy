@@ -17,6 +17,6 @@ class Game {
             activePlayer.maxMana++
         }
         activePlayer.mana = activePlayer.maxMana
-
+        activePlayer.drawCard()
     }
 }
