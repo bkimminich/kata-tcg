@@ -47,7 +47,7 @@ class GameSpec extends Specification {
     def "every turn the active player receives 1 max. mana and his mana is fully replenished"() {
         given:
         game = new Game()
-        game.opponentPlayer = new Player(mana: currentMana, maxMana: currentMaxMana)
+        game.opponentPlayer = new Player(mana: 0, maxMana: currentMaxMana)
 
         when:
         game.beginTurn()
@@ -57,17 +57,17 @@ class GameSpec extends Specification {
         game.activePlayer.mana == expectedMaxMana
 
         where:
-        currentMana | currentMaxMana | expectedMaxMana
-        0           | 0              | 1
-        0           | 1              | 2
-        0           | 2              | 3
-        0           | 3              | 4
-        0           | 4              | 5
-        0           | 5              | 6
-        0           | 6              | 7
-        0           | 7              | 8
-        0           | 8              | 9
-        0           | 9              | 10
+        currentMaxMana | expectedMaxMana
+        0              | 1
+        1              | 2
+        2              | 3
+        3              | 4
+        4              | 5
+        5              | 6
+        6              | 7
+        7              | 8
+        8              | 9
+        9              | 10
     }
 
     def "max. mana is capped at a value of 10"() {
