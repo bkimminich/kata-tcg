@@ -10,4 +10,8 @@ class Game {
             opponentPlayer.drawCard()
         }
     }
+
+    def turn() {
+        (activePlayer, opponentPlayer) = [opponentPlayer, activePlayer]
+    }
 }

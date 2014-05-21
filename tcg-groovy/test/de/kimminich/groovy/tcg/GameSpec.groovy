@@ -30,4 +30,16 @@ class GameSpec extends Specification {
         game.opponentPlayer.deck.size() == 17
     }
 
+    def "every turn the active player changes"() {
+        given:
+        game = new Game()
+        Player previouslyInactivePlayer = game.opponentPlayer
+
+        when:
+        game.turn()
+
+        then:
+        game.activePlayer == previouslyInactivePlayer
+    }
+
 }
