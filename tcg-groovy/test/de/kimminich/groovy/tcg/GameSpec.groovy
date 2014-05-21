@@ -1,6 +1,7 @@
 package de.kimminich.groovy.tcg
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class GameSpec extends Specification {
 
@@ -42,4 +43,42 @@ class GameSpec extends Specification {
         game.activePlayer == previouslyInactivePlayer
     }
 
+    @Unroll("receiving +1 max. mana to #currentMaxMana current max. mana gives the player #expectedMaxMana max. mana and replenishes mana also to #expectedMaxMana")
+    def "every turn the active player receives 1 max. mana and his mana is fully replenished"() {
+        given:
+        game = new Game()
+        game.opponentPlayer = new Player(mana: currentMana, maxMana: currentMaxMana)
+
+        when:
+        game.turn()
+
+        then:
+        game.activePlayer.maxMana == expectedMaxMana
+        game.activePlayer.mana == expectedMaxMana
+
+        where:
+        currentMana | currentMaxMana | expectedMaxMana
+        0           | 0              | 1
+        0           | 1              | 2
+        0           | 2              | 3
+        0           | 3              | 4
+        0           | 4              | 5
+        0           | 5              | 6
+        0           | 6              | 7
+        0           | 7              | 8
+        0           | 8              | 9
+        0           | 9              | 10
+    }
+
+    def "max. mana is capped at a value of 10"() {
+        given:
+        game = new Game()
+        game.opponentPlayer = new Player(maxMana: 10)
+
+        when:
+        game.turn()
+
+        then:
+        game.activePlayer.maxMana == 10
+    }
 }

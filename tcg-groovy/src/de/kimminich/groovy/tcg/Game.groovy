@@ -13,5 +13,10 @@ class Game {
 
     def turn() {
         (activePlayer, opponentPlayer) = [opponentPlayer, activePlayer]
+        if (activePlayer.maxMana < 10) {
+            activePlayer.maxMana++
+        }
+        activePlayer.mana = activePlayer.maxMana
+
     }
 }
