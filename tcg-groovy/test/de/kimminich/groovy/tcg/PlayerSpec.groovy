@@ -89,4 +89,15 @@ class PlayerSpec extends Specification {
         8    | 22
     }
 
+    def "playing a card removes that card from the hand"() {
+        given:
+        player = new Player(hand: [1,2,3,4,5])
+
+        when:
+        player.playCard(2, new Player())
+
+        then:
+        player.hand == [1,3,4,5]
+    }
+
 }
