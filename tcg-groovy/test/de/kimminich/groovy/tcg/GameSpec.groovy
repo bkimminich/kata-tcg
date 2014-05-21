@@ -37,7 +37,7 @@ class GameSpec extends Specification {
         Player previouslyInactivePlayer = game.opponentPlayer
 
         when:
-        game.turn()
+        game.beginTurn()
 
         then:
         game.activePlayer == previouslyInactivePlayer
@@ -50,7 +50,7 @@ class GameSpec extends Specification {
         game.opponentPlayer = new Player(mana: currentMana, maxMana: currentMaxMana)
 
         when:
-        game.turn()
+        game.beginTurn()
 
         then:
         game.activePlayer.maxMana == expectedMaxMana
@@ -76,7 +76,7 @@ class GameSpec extends Specification {
         game.opponentPlayer = new Player(maxMana: 10)
 
         when:
-        game.turn()
+        game.beginTurn()
 
         then:
         game.activePlayer.maxMana == 10

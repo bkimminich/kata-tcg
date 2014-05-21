@@ -11,7 +11,7 @@ class Game {
         }
     }
 
-    def turn() {
+    def beginTurn() {
         (activePlayer, opponentPlayer) = [opponentPlayer, activePlayer]
         if (activePlayer.maxMana < 10) {
             activePlayer.maxMana++
