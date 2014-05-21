@@ -24,9 +24,7 @@ class PlayerSpec extends Specification {
 
     def "drawing a card should move one card from the deck into the hand"() {
         given:
-        player = new Player()
-        player.deck = [1, 2]
-        player.hand = []
+        player = new Player(deck: [1, 2], hand: [])
 
         when:
         player.drawCard()
@@ -37,9 +35,7 @@ class PlayerSpec extends Specification {
 
     def "drawing a card from a depleted deck should cause one damage to player"() {
         given:
-        player = new Player()
-        player.health = 30
-        player.deck = []
+        player = new Player(health: 30, deck: [])
 
         when:
         player.drawCard()
@@ -50,9 +46,7 @@ class PlayerSpec extends Specification {
 
     def "drawing a card when hand already contains five cards causes taken card to be dropped from overload"() {
         given:
-        player = new Player()
-        player.deck = [8]
-        player.hand = [1, 2, 3, 4, 5]
+        player = new Player(deck: [8], hand: [1, 2, 3, 4, 5])
 
         when:
         player.drawCard()
@@ -67,8 +61,7 @@ class PlayerSpec extends Specification {
         given:
         player = new Player()
         and:
-        Player opponent = new Player()
-        opponent.health = 30
+        Player opponent = new Player(health: 30)
 
         when:
         player.playCard(card, opponent)
@@ -91,13 +84,13 @@ class PlayerSpec extends Specification {
 
     def "playing a card removes that card from the hand"() {
         given:
-        player = new Player(hand: [1,2,3,4,5])
+        player = new Player(hand: [1, 2, 3, 4, 5])
 
         when:
         player.playCard(2, new Player())
 
         then:
-        player.hand == [1,3,4,5]
+        player.hand == [1, 3, 4, 5]
     }
 
 }
