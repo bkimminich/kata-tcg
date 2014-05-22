@@ -26,6 +26,7 @@ class Player {
 
     def playCard(int card, Player opponent) {
         opponent.health -= card
+        mana -= card
         hand.remove(card as Object)
     }
 
@@ -35,7 +36,11 @@ class Player {
             if (input.isInteger()) {
                 Integer cardToPlay = input.toInteger()
                 if (hand.contains(cardToPlay)) {
-                    playCard(cardToPlay, opponent)
+                    if (mana >= cardToPlay) {
+                        playCard(cardToPlay, opponent)
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You do not have enough mana to play this card!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "You do not have this card!");
                 }
