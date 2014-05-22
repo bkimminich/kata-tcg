@@ -12,6 +12,8 @@ class Player {
     ArrayList<Integer> deck = [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
     ArrayList<Integer> hand = []
 
+    OptionPane optionPane = new DefaultOptionPane()
+
     def drawCard() {
         if (deck.isEmpty()) {
             health--
@@ -32,20 +34,20 @@ class Player {
 
     def playTurn(Player opponent) {
         String input;
-        while ((input = JOptionPane.showInputDialog(playerInfo() + " - Choose card to play: " + hand)) != null) {
+        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose card to play: " + hand)) != null) {
             if (input.isInteger()) {
                 Integer cardToPlay = input.toInteger()
                 if (hand.contains(cardToPlay)) {
                     if (mana >= cardToPlay) {
                         playCard(cardToPlay, opponent)
                     } else {
-                        JOptionPane.showMessageDialog(null, "You do not have enough mana to play this card!")
+                        optionPane.showMessageDialog("You do not have enough mana to play this card!")
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "You do not have this card!")
+                    optionPane.showMessageDialog("You do not have this card!")
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid input!")
+                optionPane.showMessageDialog("Invalid input!")
             }
         }
     }

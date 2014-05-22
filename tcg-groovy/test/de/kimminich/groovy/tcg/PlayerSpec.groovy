@@ -93,4 +93,41 @@ class PlayerSpec extends Specification {
         player.hand == [1, 3, 4, 5]
     }
 
+    def "player should be able to display all his current stats"() {
+        setup:
+        player = new Player(health: 29, mana: 6, maxMana: 7)
+
+        expect:
+        player.playerInfo() ==~ /Player \d* \| Health: 29 \| Mana: 6\/7/
+
+    }
+
+    def "invalid choices for card to play should not be accepted"() {
+        given:
+        OptionPane optionPane = Mock()
+        optionPane.showInputDialog(_ as String) >>> ["a", "4", "3", null]
+        and:
+        player = new Player(hand: [1,2,3], mana: 2, optionPane: optionPane)
+
+        when:
+        player.playTurn(new Player())
+
+        then:
+        player.hand == [1,2,3]
+    }
+
+    def "player can play multiple cards as long as he has sufficient mana"() {
+        given:
+        OptionPane optionPane = Mock()
+        optionPane.showInputDialog(_ as String) >>> ["1", "2", null]
+        and:
+        player = new Player(hand: [1,2,5], mana: 3, optionPane: optionPane)
+
+        when:
+        player.playTurn(new Player())
+
+        then:
+        player.hand == [5]
+    }
+
 }
