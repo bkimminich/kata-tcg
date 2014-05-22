@@ -39,13 +39,13 @@ class Player {
                     if (mana >= cardToPlay) {
                         playCard(cardToPlay, opponent)
                     } else {
-                        JOptionPane.showMessageDialog(null, "You do not have enough mana to play this card!");
+                        JOptionPane.showMessageDialog(null, "You do not have enough mana to play this card!")
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "You do not have this card!");
+                    JOptionPane.showMessageDialog(null, "You do not have this card!")
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid input!");
+                JOptionPane.showMessageDialog(null, "Invalid input!")
             }
         }
     }
