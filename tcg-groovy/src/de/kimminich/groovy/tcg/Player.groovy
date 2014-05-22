@@ -1,7 +1,5 @@
 package de.kimminich.groovy.tcg
 
-import javax.swing.*
-
 class Player {
     static int id = 0
 
@@ -52,7 +50,7 @@ class Player {
         }
     }
 
-    private String playerInfo() {
-        name + " | Health: " + health +  " | Mana: " + mana + "/" + maxMana
+    String playerInfo() {
+        name + " | Health: " + health + " | Mana: " + mana + "/" + maxMana
     }
 }

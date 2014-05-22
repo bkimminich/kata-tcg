@@ -1,6 +1,6 @@
 package de.kimminich.groovy.tcg
 
-import javax.swing.JOptionPane
+import javax.swing.*
 
 class Game {
     Player activePlayer = new Player()
