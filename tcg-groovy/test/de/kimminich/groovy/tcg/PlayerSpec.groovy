@@ -104,7 +104,7 @@ class PlayerSpec extends Specification {
 
     def "invalid choices for card to play should not be accepted"() {
         given:
-        OptionPane optionPane = Mock() as OptionPane
+        OptionPane optionPane = Mock(OptionPane)
         optionPane.showInputDialog(_ as String) >>> ["a", "4", "3", null]
         and:
         player = new Player(hand: [1, 2, 3], mana: 2, optionPane: optionPane)
@@ -118,7 +118,7 @@ class PlayerSpec extends Specification {
 
     def "player can play multiple cards as long as he has sufficient mana"() {
         given:
-        OptionPane optionPane = Mock() as OptionPane
+        OptionPane optionPane = Mock(OptionPane)
         optionPane.showInputDialog(_ as String) >>> ["1", "2", null]
         and:
         player = new Player(hand: [1, 2, 5], mana: 3, optionPane: optionPane)
