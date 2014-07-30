@@ -2,6 +2,6 @@
   (:require [clojure.test :refer :all]
             [tcg-clojure.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest player-initially-has-30-health
+  (testing "Player initially has 30 health."
+    (is (contains? tcg-clojure.core.player :health))))
