@@ -38,3 +38,5 @@ When the normal game rules have become too easy/boring you might consider adding
     * Players can choose to play a Spell against a Minion. The attacked Minion will not defend itself in this case, thus the attacking player receives no damage from it.
     * When a Minions health drops to or below zero it is removed from the board.
 5. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk before starting a game.
+
+[![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)

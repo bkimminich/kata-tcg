@@ -1,0 +1,22 @@
+{
+    "name": "kata-tcg",
+    "version": "0.0.1",
+    "description": "sample implementation of the Trading Card Game Kata",
+    "author": "Bjoern Kimminich",
+
+    "keywords": [
+        "tcg",
+        "kata",
+        "dojo"
+    ],
+
+    "devDependencies": {
+        "karma-jasmine": "~0.1",
+        "karma-phantomjs-launcher": "~0.1.4"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bkimminich/kata-tcg.git"
+    }
+}
