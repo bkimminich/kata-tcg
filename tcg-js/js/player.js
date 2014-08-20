@@ -12,8 +12,12 @@ NS.player = function () {
     }
 
     instance.drawCard = function() {
-        var cardIndex = Math.floor(Math.random( ) * this.deck.length );
-        this.hand.push(this.deck.splice(cardIndex, 1));
+        if (this.deck.length === 0) {
+            this.health--;
+        } else {
+            var cardIndex = Math.floor(Math.random( ) * this.deck.length );
+            this.hand.push(this.deck.splice(cardIndex, 1));
+        }
     };
 
     return instance;

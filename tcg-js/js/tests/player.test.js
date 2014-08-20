@@ -35,4 +35,13 @@ describe("A Player", function () {
         expect(player.hand.length).toBe(1);
     });
 
+    it("should receive one damage when drawing from an empty deck", function() {
+        player.health = 30;
+        player.deck = [];
+
+        player.drawCard();
+
+        expect(player.health).toBe(29);
+    });
+
 });
