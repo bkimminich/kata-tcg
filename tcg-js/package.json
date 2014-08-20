@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "sample implementation of the Trading Card Game Kata",
     "author": "Bjoern Kimminich",
+    "private": true,
 
     "keywords": [
         "tcg",
