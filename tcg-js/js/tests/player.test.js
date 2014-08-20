@@ -1,5 +1,9 @@
 describe("A Player", function () {
-    var player = NS.player();
+    var player;
+
+    beforeEach(function(){
+        player = NS.player();
+    });
 
     it("should have an initial health of 30", function () {
         expect(player.health).toBe(30);
@@ -19,6 +23,16 @@ describe("A Player", function () {
 
     it("should have no cards in hand", function () {
         expect(player.hand.length).toBe(0);
+    });
+
+    it("should move a card from the deck into the hand when drawing a card", function() {
+        player.deck = [1, 2, 3];
+        player.hand = [];
+
+        player.drawCard();
+
+        expect(player.deck.length).toBe(2);
+        expect(player.hand.length).toBe(1);
     });
 
 });
