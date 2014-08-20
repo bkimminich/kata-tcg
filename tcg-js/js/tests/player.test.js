@@ -1,3 +1,5 @@
+"use strict"
+
 describe("A Player", function () {
     var player;
 

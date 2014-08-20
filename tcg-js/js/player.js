@@ -1,3 +1,5 @@
+"use strict"
+
 if (typeof NS == 'undefined') {
     NS = {};
 }
