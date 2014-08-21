@@ -156,4 +156,14 @@ public class PlayerTest {
         player.playCard(anyPlayer());
     }
 
+    @Test
+    public void playingCardOnHimselfHealsPlayer() {
+        player = aPlayer().withHealth(10).withMana(10).withCardsInHand(3, 4).build();
+
+        player.playCard(aCardWithManaCost(3), player);
+        player.playCard(aCardWithManaCost(4), player);
+
+        assertThat(player.getHealth(), is(17));
+    }
+
 }

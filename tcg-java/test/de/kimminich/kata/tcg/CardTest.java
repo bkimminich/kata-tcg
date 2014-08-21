@@ -22,5 +22,17 @@ public class CardTest {
         assertThat(aCardWithManaCost(8).getDamage(), is(equalTo(8)));
     }
 
+    @Test
+    public void cardsShouldHealPlayerEqualToManaCost() {
+        assertThat(aCardWithManaCost(0).getHealAmount(), is(equalTo(0)));
+        assertThat(aCardWithManaCost(1).getHealAmount(), is(equalTo(1)));
+        assertThat(aCardWithManaCost(2).getHealAmount(), is(equalTo(2)));
+        assertThat(aCardWithManaCost(3).getHealAmount(), is(equalTo(3)));
+        assertThat(aCardWithManaCost(4).getHealAmount(), is(equalTo(4)));
+        assertThat(aCardWithManaCost(5).getHealAmount(), is(equalTo(5)));
+        assertThat(aCardWithManaCost(6).getHealAmount(), is(equalTo(6)));
+        assertThat(aCardWithManaCost(7).getHealAmount(), is(equalTo(7)));
+        assertThat(aCardWithManaCost(8).getHealAmount(), is(equalTo(8)));
+    }
 
 }

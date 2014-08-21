@@ -109,7 +109,15 @@ public class Player {
         logger.info(this + " plays card: " + card);
         mana -= card.getManaCost();
         hand.remove(card);
-        opponent.receiveDamage(card.getDamage());
+        if (this.equals(opponent)) {
+            heal(card.getHealAmount());
+        } else {
+            opponent.receiveDamage(card.getDamage());
+        }
+    }
+
+    private void heal(int amount) {
+        health += amount;
     }
 
     private void receiveDamage(int damage) {
