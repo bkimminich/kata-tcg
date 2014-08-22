@@ -103,7 +103,7 @@ public class Player {
     }
 
     private void heal(int amount) {
-        health += amount;
+        health = Math.min(health+amount, 30);
     }
 
     private void receiveDamage(int damage) {
@@ -114,17 +114,17 @@ public class Player {
         return hand.stream().filter(card -> card.getManaCost() <= mana).count() > 0;
     }
 
-    public void playCard(Player target) {
+    public void playCard(Player opponent) {
         Move move = strategy.nextMove(mana, health, hand);
         Optional<Card> card = move.getCard();
         if (card.isPresent()) {
-            playCard(card.get(), target, move.getAction());
+            playCard(card.get(), opponent, move.getAction());
         } else {
             throw new IllegalMoveException("No card can be played from hand " + hand + " with (" + mana + ") mana.");
         }
     }
 
-    void playCard(Card card, Player target, Action action) {
+    void playCard(Card card, Player opponent, Action action) {
         if (mana < card.getManaCost()) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card " + card + ".");
         }
@@ -133,10 +133,10 @@ public class Player {
         hand.remove(card);
         switch (action) {
             case DAMAGE:
-                target.receiveDamage(card.getDamage());
+                opponent.receiveDamage(card.getDamage());
                 break;
             case HEALING:
-                target.heal(card.getHealAmount());
+                this.heal(card.getHealAmount());
                 break;
             default:
                 throw new IllegalMoveException("Unrecognized game action: " + action);

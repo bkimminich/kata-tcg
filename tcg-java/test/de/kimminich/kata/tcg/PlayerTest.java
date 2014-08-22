@@ -161,10 +161,19 @@ public class PlayerTest {
     public void playingCardAsHealingRestoresHealth() {
         player = aPlayer().withHealth(10).withMana(10).withCardsInHand(3, 4).build();
 
-        player.playCard(aCardWithManaCost(3), player, Action.HEALING);
-        player.playCard(aCardWithManaCost(4), player, Action.HEALING);
+        player.playCard(aCardWithManaCost(3), anyPlayer(), Action.HEALING);
+        player.playCard(aCardWithManaCost(4), anyPlayer(), Action.HEALING);
 
         assertThat(player.getHealth(), is(17));
+    }
+
+    @Test
+    public void playerCannotHealAbove30Health() {
+        player = aPlayer().withHealth(27).withMana(10).withCardsInHand(4).build();
+
+        player.playCard(aCardWithManaCost(4), anyPlayer(), Action.HEALING);
+
+        assertThat(player.getHealth(), is(30));
     }
 
 }

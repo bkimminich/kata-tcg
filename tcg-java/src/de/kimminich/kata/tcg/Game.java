@@ -1,6 +1,7 @@
 package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.AiStrategy;
+import de.kimminich.kata.tcg.strategy.CautiousStrategy;
 import de.kimminich.kata.tcg.strategy.ConsoleInputStrategy;
 
 import java.util.Random;
@@ -77,6 +78,6 @@ public class Game {
     }
 
     public static void main(String... args) {
-        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new AiStrategy())).run();
+        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new CautiousStrategy())).run();
     }
 }
