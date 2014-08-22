@@ -1,7 +1,6 @@
 package de.kimminich.kata.tcg;
 
 import de.kimminich.kata.tcg.strategy.AiStrategy;
-import de.kimminich.kata.tcg.strategy.CautiousStrategy;
 import de.kimminich.kata.tcg.strategy.ConsoleInputStrategy;
 
 import java.util.Random;

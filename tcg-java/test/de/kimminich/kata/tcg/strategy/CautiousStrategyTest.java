@@ -1,11 +1,12 @@
 package de.kimminich.kata.tcg.strategy;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.kimminich.kata.tcg.Action.DAMAGE;
 import static de.kimminich.kata.tcg.Action.HEALING;
+import static de.kimminich.kata.tcg.matchers.MoveMatchers.isAttackingWithCard;
+import static de.kimminich.kata.tcg.matchers.MoveMatchers.isHealingWithCard;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.move;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.noMove;
@@ -24,9 +25,9 @@ public class CautiousStrategyTest {
 
     @Test
     public void shouldUseHealingUntilHealthIsAbove20() {
-        assertThat(strategy.nextMove(withMana(10), andHealth(17), fromCards(3, 3, 4)), is(move(card(3), HEALING)));
-        assertThat(strategy.nextMove(withMana(7), andHealth(20), fromCards(3, 4)), is(move(card(3), HEALING)));
-        assertThat(strategy.nextMove(withMana(4), andHealth(23), fromCards(4)), is(move(card(4), DAMAGE)));
+        assertThat(strategy.nextMove(withMana(10), andHealth(17), fromCards(3, 3, 4)), isHealingWithCard(3));
+        assertThat(strategy.nextMove(withMana(7), andHealth(20), fromCards(3, 4)), isHealingWithCard(3));
+        assertThat(strategy.nextMove(withMana(4), andHealth(23), fromCards(4)), isAttackingWithCard(4));
     }
 
     @Test

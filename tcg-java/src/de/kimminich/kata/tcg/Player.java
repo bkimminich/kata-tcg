@@ -103,7 +103,7 @@ public class Player {
     }
 
     private void heal(int amount) {
-        health = Math.min(health+amount, 30);
+        health = Math.min(health + amount, 30);
     }
 
     private void receiveDamage(int damage) {
