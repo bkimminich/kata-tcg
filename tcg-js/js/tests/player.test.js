@@ -4,7 +4,7 @@ describe("A Player", function () {
     var player;
 
     beforeEach(function(){
-        player = new Player();
+        player = new Player("somePlayer");
     });
 
     it("should have an initial health of 30", function () {
