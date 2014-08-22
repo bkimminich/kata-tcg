@@ -1,6 +1,7 @@
 package de.kimminich.kata.tcg.strategy;
 
 import de.kimminich.kata.tcg.Card;
+import de.kimminich.kata.tcg.Move;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,5 +33,11 @@ public class ConsoleInputStrategy implements Strategy {
         }
         return Optional.empty();
     }
+
+    @Override
+    public Move nextMove(int i, List<Card> cards) {
+        throw new UnsupportedOperationException();
+    }
+
 
 }

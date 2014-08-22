@@ -1,5 +1,7 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Action;
+import de.kimminich.kata.tcg.Move;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,10 +48,10 @@ public class ConsoleInputStrategyTest {
     }
 
     @Test
-    public void willRejectInvalidInputUntilValidCardIsChosen() {
-        player().enters("-1").enters("9").enters("666").enters("abc").enters("5").finished();
+    public void willUseChosenCardForHealingWhenInputIsSuffixedWithLetterH() {
+        player().enters("5h").finished();
 
-        assertThat(strategy.nextCard(withMana(10), fromCards(5)), is(card(5)));
+        assertThat(strategy.nextMove(withMana(10), fromCards(5)), is(new Move(card(5), Action.HEALING)));
     }
 
     private ConsoleInputBuilder player() {

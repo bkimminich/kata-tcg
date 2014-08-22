@@ -1,6 +1,8 @@
 package de.kimminich.kata.tcg.strategy;
 
 import de.kimminich.kata.tcg.Card;
+import de.kimminich.kata.tcg.Move;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,6 +34,11 @@ public class AiStrategy implements Strategy {
         }
 
         return bestCombo.stream().max(Comparator.<Card>naturalOrder());
+    }
+
+    @Override
+    public Move nextMove(int i, List<Card> cards) {
+        throw new UnsupportedOperationException();
     }
 
     private void collectMaxDamageCardCombo(List<Card> selectedCards, int availableMana, List<Card> availableCards) {
