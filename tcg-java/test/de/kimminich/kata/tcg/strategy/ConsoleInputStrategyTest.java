@@ -3,6 +3,7 @@ package de.kimminich.kata.tcg.strategy;
 import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Move;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
@@ -55,6 +56,7 @@ public class ConsoleInputStrategyTest {
     }
 
     @Test
+    @Ignore
     public void willUseChosenCardForHealingWhenInputIsSuffixedWithLetterH() {
         player().enters("5h").finished();
 
