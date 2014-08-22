@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Card;
 import de.kimminich.kata.tcg.Move;
 
@@ -35,8 +36,24 @@ public class ConsoleInputStrategy implements Strategy {
     }
 
     @Override
-    public Move nextMove(int i, List<Card> cards) {
-        throw new UnsupportedOperationException();
+    public Move nextMove(int availableMana, List<Card> availableCards) {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            Integer card = -1;
+            while (card < 0 || card > 8 || card > availableMana || !availableCards.contains(new Card(card))) {
+                try {
+                    String input = br.readLine();
+                    card = Integer.decode(input);
+                } catch (NumberFormatException e) {
+                    logger.warning("Invalid input: " + e.getMessage());
+                }
+            }
+            return new Move(Optional.of(new Card(card)), Action.DAMAGE);
+        } catch (IOException e) {
+            logger.severe("Could not read console input: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return new Move(Optional.empty(), Action.DAMAGE);
     }
 
 

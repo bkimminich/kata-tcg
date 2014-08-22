@@ -10,6 +10,6 @@ public interface Strategy {
 
     Optional<Card> nextCard(int availableMana, List<Card> availableCards);
 
-    Move nextMove(int i, List<Card> cards);
+    Move nextMove(int availableMana, List<Card> availableCards);
 }
 

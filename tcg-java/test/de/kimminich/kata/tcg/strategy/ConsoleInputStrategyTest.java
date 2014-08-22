@@ -48,6 +48,13 @@ public class ConsoleInputStrategyTest {
     }
 
     @Test
+    public void willUseChosenCardForDamageWhenInputIsNotSuffixedWithActionLetter() {
+        player().enters("5").finished();
+
+        assertThat(strategy.nextMove(withMana(10), fromCards(5)), is(new Move(card(5), Action.DAMAGE)));
+    }
+
+    @Test
     public void willUseChosenCardForHealingWhenInputIsSuffixedWithLetterH() {
         player().enters("5h").finished();
 
