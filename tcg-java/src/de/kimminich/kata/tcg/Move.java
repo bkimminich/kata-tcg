@@ -33,4 +33,8 @@ public class Move  {
         result = 31 * result + (action != null ? action.hashCode() : 0);
         return result;
     }
+
+    public Optional<Card> getCard() {
+        return card;
+    }
 }

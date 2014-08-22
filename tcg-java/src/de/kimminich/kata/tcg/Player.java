@@ -128,10 +128,11 @@ public class Player {
         return hand.stream().filter(card -> card.getManaCost() <= mana).count() > 0;
     }
 
-    public void playCard(Player opponent) {
-        Optional<Card> card = strategy.nextCard(mana, hand);
+    public void playCard(Player target) {
+        Move move = strategy.nextMove(mana, hand);
+        Optional<Card> card = move.getCard();
         if (card.isPresent()) {
-            playCard(card.get(), opponent);
+            playCard(card.get(), target);
         } else {
             throw new IllegalMoveException("No card can be played from hand " + hand + " with (" + mana + ") mana.");
         }

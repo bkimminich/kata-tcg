@@ -13,6 +13,7 @@ import static de.kimminich.kata.tcg.PlayerBuilder.aPlayer;
 import static de.kimminich.kata.tcg.PlayerBuilder.anyPlayer;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
+import static de.kimminich.kata.tcg.syntactic.MoveSugar.noMove;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -152,7 +153,7 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
-        given(strategy.nextCard(anyInt(), anyListOf(Card.class))).willReturn(noCard());
+        given(strategy.nextMove(anyInt(), anyListOf(Card.class))).willReturn(noMove());
         player.playCard(anyPlayer());
     }
 

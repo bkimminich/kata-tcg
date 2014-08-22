@@ -8,9 +8,6 @@ import java.util.Optional;
 
 public interface Strategy {
 
-    @Deprecated
-    Optional<Card> nextCard(int availableMana, List<Card> availableCards);
-
     Move nextMove(int availableMana, List<Card> availableCards);
 }
 

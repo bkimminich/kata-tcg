@@ -12,8 +12,7 @@ import java.util.Optional;
 
 public class AiStrategy implements Strategy {
 
-    @Override
-    public Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
+    private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
         List<List<Card>> cardCombos = new ArrayList<>();
         List<Card> remainingCards = new ArrayList<>(availableCards);
         remainingCards.sort(Comparator.<Card>reverseOrder()); // highest mana costs first

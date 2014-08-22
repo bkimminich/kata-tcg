@@ -15,8 +15,7 @@ public class ConsoleInputStrategy implements Strategy {
 
     private static final Logger logger = Logger.getLogger(ConsoleInputStrategy.class.getName());
 
-    @Override
-    public Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
+    private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;
