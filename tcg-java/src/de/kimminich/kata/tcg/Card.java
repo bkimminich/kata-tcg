@@ -23,7 +23,11 @@ public class Card implements Comparable<Card> {
     }
 
     public int getDamage() {
-        return manaCost;
+        return getManaCost();
+    }
+
+    public int getHealAmount() {
+        return getManaCost();
     }
 
     @Override
