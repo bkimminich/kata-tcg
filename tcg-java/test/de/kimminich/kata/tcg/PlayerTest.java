@@ -153,7 +153,7 @@ public class PlayerTest {
 
     @Test(expected = IllegalMoveException.class)
     public void playingCardShouldFailWhenStrategyCannotChooseCard() {
-        given(strategy.nextMove(anyInt(), anyListOf(Card.class))).willReturn(noMove());
+        given(strategy.nextMove(anyInt(),anyInt(), anyListOf(Card.class))).willReturn(noMove());
         player.playCard(anyPlayer());
     }
 

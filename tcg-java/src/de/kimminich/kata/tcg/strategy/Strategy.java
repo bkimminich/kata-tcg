@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface Strategy {
 
-    Move nextMove(int availableMana, List<Card> availableCards);
+    Move nextMove(int availableMana, int currentHealth, List<Card> availableCards);
 }
 

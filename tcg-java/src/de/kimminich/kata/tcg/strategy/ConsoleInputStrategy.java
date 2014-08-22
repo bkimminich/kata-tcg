@@ -16,7 +16,7 @@ public class ConsoleInputStrategy implements Strategy {
     private static final Logger logger = Logger.getLogger(ConsoleInputStrategy.class.getName());
 
     @Override
-    public Move nextMove(int availableMana, List<Card> availableCards) {
+    public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;

@@ -15,7 +15,7 @@ public class HighestCardFirstStrategy implements Strategy {
     }
 
     @Override
-    public Move nextMove(int availableMana, List<Card> availableCards) {
+    public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
         return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
     }
 

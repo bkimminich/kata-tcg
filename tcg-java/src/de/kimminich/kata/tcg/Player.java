@@ -129,7 +129,7 @@ public class Player {
     }
 
     public void playCard(Player target) {
-        Move move = strategy.nextMove(mana, hand);
+        Move move = strategy.nextMove(mana, health, hand);
         Optional<Card> card = move.getCard();
         if (card.isPresent()) {
             playCard(card.get(), target);

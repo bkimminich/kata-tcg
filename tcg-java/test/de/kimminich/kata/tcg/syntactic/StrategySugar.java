@@ -10,6 +10,10 @@ public class StrategySugar {
         return mana;
     }
 
+    public static int andHealth(int health) {
+        return health;
+    }
+
     public static List<Card> fromCards(Integer... cards) {
         return Card.list(cards);
     }
