@@ -2,6 +2,7 @@ package de.kimminich.kata.tcg;
 
 import org.junit.Test;
 
+import static de.kimminich.kata.tcg.Action.DAMAGE;
 import static de.kimminich.kata.tcg.GameBuilder.aGame;
 import static de.kimminich.kata.tcg.GameBuilder.anyGame;
 import static de.kimminich.kata.tcg.PlayerBuilder.aPlayer;
@@ -92,8 +93,8 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(10).build();
         game = aGame().withActivePlayer(player1).withOpponentPlayer(player2).build();
 
-        player1.playCard(aCardWithManaCost(6), player2);
-        player1.playCard(aCardWithManaCost(4), player2);
+        player1.playCard(aCardWithManaCost(6), player2, DAMAGE);
+        player1.playCard(aCardWithManaCost(4), player2, DAMAGE);
 
         assertThat(game.getWinner(), is(player1));
     }
@@ -104,7 +105,7 @@ public class GameTest {
         Player player2 = aPlayer().withHealth(30).build();
         game = aGame().withActivePlayer(player1).withOpponentPlayer(player2).build();
 
-        player1.playCard(aCardWithManaCost(4), player2);
+        player1.playCard(aCardWithManaCost(4), player2, DAMAGE);
 
         assertThat(game.getWinner(), is(nullValue()));
     }

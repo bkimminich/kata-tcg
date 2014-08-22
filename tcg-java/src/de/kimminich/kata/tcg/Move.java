@@ -43,4 +43,8 @@ public class Move {
                 ", action=" + action +
                 '}';
     }
+
+    public Action getAction() {
+        return action;
+    }
 }

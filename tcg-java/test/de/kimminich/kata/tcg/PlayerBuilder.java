@@ -1,6 +1,6 @@
 package de.kimminich.kata.tcg;
 
-import de.kimminich.kata.tcg.strategy.LowestCardFirstStrategy;
+import de.kimminich.kata.tcg.strategy.KamikazeStrategy;
 import de.kimminich.kata.tcg.strategy.Strategy;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class PlayerBuilder {
     private int mana = 0;
     private List<Card> deck = Card.list(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8);
     private List<Card> hand = new ArrayList<>();
-    private Strategy strategy = new LowestCardFirstStrategy();
+    private Strategy strategy = new KamikazeStrategy();
     private String name = "Player" + playerNo++;
 
     private static int playerNo = 0;

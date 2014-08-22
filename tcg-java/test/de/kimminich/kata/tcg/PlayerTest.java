@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static de.kimminich.kata.tcg.Action.DAMAGE;
 import static de.kimminich.kata.tcg.PlayerBuilder.aPlayer;
 import static de.kimminich.kata.tcg.PlayerBuilder.anyPlayer;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.aCardWithManaCost;
@@ -94,8 +95,8 @@ public class PlayerTest {
     public void playingCardsReducesPlayersMana() {
         player = aPlayer().withMana(10).withCardsInHand(8, 1).build();
 
-        player.playCard(aCardWithManaCost(8), anyPlayer());
-        player.playCard(aCardWithManaCost(1), anyPlayer());
+        player.playCard(aCardWithManaCost(8), anyPlayer(), DAMAGE);
+        player.playCard(aCardWithManaCost(1), anyPlayer(), DAMAGE);
 
         assertThat(player.getMana(), Matchers.is(Matchers.equalTo(1)));
     }
@@ -104,8 +105,8 @@ public class PlayerTest {
     public void playingCardsRemovesThemFromHand() {
         player = aPlayer().withMana(5).withCardsInHand(0, 2, 2, 3).build();
 
-        player.playCard(aCardWithManaCost(3), anyPlayer());
-        player.playCard(aCardWithManaCost(2), anyPlayer());
+        player.playCard(aCardWithManaCost(3), anyPlayer(), DAMAGE);
+        player.playCard(aCardWithManaCost(2), anyPlayer(), DAMAGE);
 
         assertThat(player.getNumberOfHandCardsWithManaCost(3), is(equalTo(0)));
         assertThat(player.getNumberOfHandCardsWithManaCost(2), is(equalTo(1)));
@@ -115,7 +116,7 @@ public class PlayerTest {
     public void playingCardWithInsufficientManaShouldFail() {
         player = aPlayer().withMana(3).withCardsInHand(4, 4, 4).build();
 
-        player.playCard(aCardWithManaCost(4), anyPlayer());
+        player.playCard(aCardWithManaCost(4), anyPlayer(), DAMAGE);
     }
 
     @Test
@@ -123,8 +124,8 @@ public class PlayerTest {
         player = aPlayer().withMana(10).withCardsInHand(3, 2).build();
         Player opponent = aPlayer().withHealth(30).build();
 
-        player.playCard(aCardWithManaCost(3), opponent);
-        player.playCard(aCardWithManaCost(2), opponent);
+        player.playCard(aCardWithManaCost(3), opponent, DAMAGE);
+        player.playCard(aCardWithManaCost(2), opponent, DAMAGE);
 
         assertThat(opponent.getHealth(), is(equalTo(25)));
     }
@@ -157,11 +158,11 @@ public class PlayerTest {
     }
 
     @Test
-    public void playingCardOnHimselfHealsPlayer() {
+    public void playingCardAsHealingRestoresHealth() {
         player = aPlayer().withHealth(10).withMana(10).withCardsInHand(3, 4).build();
 
-        player.playCard(aCardWithManaCost(3), player);
-        player.playCard(aCardWithManaCost(4), player);
+        player.playCard(aCardWithManaCost(3), player, Action.HEALING);
+        player.playCard(aCardWithManaCost(4), player, Action.HEALING);
 
         assertThat(player.getHealth(), is(17));
     }
