@@ -25,8 +25,8 @@ public class ConsoleInputStrategy implements Strategy {
                 try {
                     String input = br.readLine();
                     if (input.endsWith("h")) {
-                       action = Action.HEALING;
-                       input = input.replace("h", "");
+                        action = Action.HEALING;
+                        input = input.replace("h", "");
                     }
                     card = Integer.decode(input);
                 } catch (NumberFormatException e) {

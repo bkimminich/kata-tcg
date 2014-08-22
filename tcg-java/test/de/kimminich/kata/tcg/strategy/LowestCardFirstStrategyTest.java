@@ -1,17 +1,13 @@
 package de.kimminich.kata.tcg.strategy;
 
-import de.kimminich.kata.tcg.Action;
 import org.junit.Before;
 import org.junit.Test;
 
-import static de.kimminich.kata.tcg.Action.*;
+import static de.kimminich.kata.tcg.Action.DAMAGE;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
-import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.move;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.noMove;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.andHealth;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.fromCards;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.withMana;
+import static de.kimminich.kata.tcg.syntactic.StrategySugar.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

@@ -3,7 +3,6 @@ package de.kimminich.kata.tcg.strategy;
 import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Card;
 import de.kimminich.kata.tcg.Move;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Comparator;

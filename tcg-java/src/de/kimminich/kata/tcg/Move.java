@@ -1,10 +1,8 @@
 package de.kimminich.kata.tcg;
 
-import org.hamcrest.Matcher;
-
 import java.util.Optional;
 
-public class Move  {
+public class Move {
 
     private final Optional<Card> card;
     private final Action action;

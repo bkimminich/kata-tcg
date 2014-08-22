@@ -1,18 +1,15 @@
 package de.kimminich.kata.tcg.strategy;
 
-import de.kimminich.kata.tcg.syntactic.MoveSugar;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import static de.kimminich.kata.tcg.Action.*;
+import static de.kimminich.kata.tcg.Action.DAMAGE;
+import static de.kimminich.kata.tcg.Action.HEALING;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
-import static de.kimminich.kata.tcg.syntactic.MoveSugar.*;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.andHealth;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.fromCards;
-import static de.kimminich.kata.tcg.syntactic.StrategySugar.withMana;
+import static de.kimminich.kata.tcg.syntactic.MoveSugar.move;
+import static de.kimminich.kata.tcg.syntactic.StrategySugar.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
