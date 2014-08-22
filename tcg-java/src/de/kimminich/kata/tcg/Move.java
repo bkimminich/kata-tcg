@@ -35,4 +35,12 @@ public class Move {
     public Optional<Card> getCard() {
         return card;
     }
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "card=" + card +
+                ", action=" + action +
+                '}';
+    }
 }
