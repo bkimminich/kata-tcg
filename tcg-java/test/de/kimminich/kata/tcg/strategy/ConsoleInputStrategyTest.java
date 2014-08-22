@@ -50,7 +50,6 @@ public class ConsoleInputStrategyTest {
     }
 
     @Test
-    @Ignore
     public void willUseChosenCardForHealingWhenInputIsSuffixedWithLetterH() {
         player().enters("5h").finished();
 

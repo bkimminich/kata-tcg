@@ -15,28 +15,30 @@ public class ConsoleInputStrategy implements Strategy {
 
     private static final Logger logger = Logger.getLogger(ConsoleInputStrategy.class.getName());
 
-    private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
+    @Override
+    public Move nextMove(int availableMana, List<Card> availableCards) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             Integer card = -1;
+            Action action = Action.DAMAGE;
             while (card < 0 || card > 8 || card > availableMana || !availableCards.contains(new Card(card))) {
                 try {
-                    card = Integer.decode(br.readLine());
+                    String input = br.readLine();
+                    if (input.endsWith("h")) {
+                       action = Action.HEALING;
+                       input = input.replace("h", "");
+                    }
+                    card = Integer.decode(input);
                 } catch (NumberFormatException e) {
                     logger.warning("Invalid input: " + e.getMessage());
                 }
             }
-            return Optional.of(new Card(card));
+            return new Move(Optional.of(new Card(card)), action);
         } catch (IOException e) {
             logger.severe("Could not read console input: " + e.getMessage());
             e.printStackTrace();
         }
-        return Optional.empty();
-    }
-
-    @Override
-    public Move nextMove(int availableMana, List<Card> availableCards) {
-        return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
+        return new Move(Optional.empty(), null);
     }
 
 
