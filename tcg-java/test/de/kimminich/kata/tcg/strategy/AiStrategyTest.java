@@ -1,10 +1,14 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Action;
 import org.junit.Before;
 import org.junit.Test;
 
+import static de.kimminich.kata.tcg.Action.*;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.noCard;
+import static de.kimminich.kata.tcg.syntactic.MoveSugar.move;
+import static de.kimminich.kata.tcg.syntactic.MoveSugar.noMove;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.fromCards;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.withMana;
 import static org.hamcrest.CoreMatchers.either;
@@ -22,22 +26,22 @@ public class AiStrategyTest {
 
     @Test
     public void shouldMaximizeDamageOutputInCurrentTurn() {
-        assertThat(strategy.nextCard(withMana(8), fromCards(7, 6, 4, 3, 2)), either(is(card(2))).or(is(card(6))));
+        assertThat(strategy.nextMove(withMana(8), fromCards(7, 6, 4, 3, 2)), either(is(move(card(2), DAMAGE))).or(is(move(card(6), DAMAGE))));
     }
 
     @Test
     public void shouldPlayAsManyCardsAsPossibleForMaximumDamage() {
-        assertThat(strategy.nextCard(withMana(3), fromCards(1, 2, 3)), either(is(card(1))).or(is(card(2))));
+        assertThat(strategy.nextMove(withMana(3), fromCards(1, 2, 3)), either(is(move(card(1), DAMAGE))).or(is(move(card(2), DAMAGE))));
     }
 
     @Test
     public void shouldPickHighestAffordableCardWhenNoComboIsPossible() {
-        assertThat(strategy.nextCard(withMana(2), fromCards(1, 2, 3)), is(card(2)));
+        assertThat(strategy.nextMove(withMana(2), fromCards(1, 2, 3)), is(move(card(2), DAMAGE)));
     }
 
     @Test
     public void shouldReturnNoCardIfInsufficientManaForAnyHandCard() {
-        assertThat(strategy.nextCard(withMana(1), fromCards(2, 3, 8)), is(noCard()));
+        assertThat(strategy.nextMove(withMana(1), fromCards(2, 3, 8)), is(noMove()));
     }
 
 }

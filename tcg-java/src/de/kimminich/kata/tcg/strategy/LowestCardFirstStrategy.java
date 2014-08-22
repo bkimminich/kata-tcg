@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Card;
 import de.kimminich.kata.tcg.Move;
 
@@ -15,8 +16,8 @@ public class LowestCardFirstStrategy implements Strategy {
     }
 
     @Override
-    public Move nextMove(int i, List<Card> cards) {
-        throw new UnsupportedOperationException();
+    public Move nextMove(int availableMana, List<Card> availableCards) {
+        return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
     }
 
 }

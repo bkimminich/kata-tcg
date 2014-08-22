@@ -1,5 +1,6 @@
 package de.kimminich.kata.tcg.strategy;
 
+import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Card;
 import de.kimminich.kata.tcg.Move;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -37,8 +38,8 @@ public class AiStrategy implements Strategy {
     }
 
     @Override
-    public Move nextMove(int i, List<Card> cards) {
-        throw new UnsupportedOperationException();
+    public Move nextMove(int availableMana, List<Card> availableCards) {
+        return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
     }
 
     private void collectMaxDamageCardCombo(List<Card> selectedCards, int availableMana, List<Card> availableCards) {

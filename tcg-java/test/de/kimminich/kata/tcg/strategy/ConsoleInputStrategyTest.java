@@ -1,18 +1,15 @@
 package de.kimminich.kata.tcg.strategy;
 
-import de.kimminich.kata.tcg.Action;
-import de.kimminich.kata.tcg.Card;
-import de.kimminich.kata.tcg.Move;
+import de.kimminich.kata.tcg.syntactic.MoveSugar;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import java.util.Optional;
-
 import static de.kimminich.kata.tcg.Action.*;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
+import static de.kimminich.kata.tcg.syntactic.MoveSugar.*;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.fromCards;
 import static de.kimminich.kata.tcg.syntactic.StrategySugar.withMana;
 import static org.hamcrest.CoreMatchers.is;
@@ -75,10 +72,6 @@ public class ConsoleInputStrategyTest {
         public void finished() {
             consoleInput.provideText(buf.toString());
         }
-    }
-
-    private static Move move(Optional<Card> card, Action action) {
-        return new Move(card, action);
     }
 
 }
