@@ -78,6 +78,6 @@ public class Game {
     }
 
     public static void main(String... args) {
-        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new CautiousStrategy())).run();
+        new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new AiStrategy())).run();
     }
 }

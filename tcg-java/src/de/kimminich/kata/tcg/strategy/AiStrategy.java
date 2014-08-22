@@ -11,6 +11,15 @@ import java.util.Optional;
 
 public class AiStrategy implements Strategy {
 
+    @Override
+    public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
+        if (currentHealth < 10) {
+            return new Move(nextCard(availableMana, availableCards), Action.HEALING);
+        } else {
+            return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
+        }
+    }
+
     private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
         List<List<Card>> cardCombos = new ArrayList<>();
         List<Card> remainingCards = new ArrayList<>(availableCards);
@@ -33,11 +42,6 @@ public class AiStrategy implements Strategy {
         }
 
         return bestCombo.stream().max(Comparator.<Card>naturalOrder());
-    }
-
-    @Override
-    public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
-        return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
     }
 
     private void collectMaxDamageCardCombo(List<Card> selectedCards, int availableMana, List<Card> availableCards) {

@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static de.kimminich.kata.tcg.Action.DAMAGE;
+import static de.kimminich.kata.tcg.Action.HEALING;
 import static de.kimminich.kata.tcg.syntactic.CardSugar.card;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.move;
 import static de.kimminich.kata.tcg.syntactic.MoveSugar.noMove;
@@ -34,6 +35,13 @@ public class AiStrategyTest {
     @Test
     public void shouldPickHighestAffordableCardWhenNoComboIsPossible() {
         assertThat(strategy.nextMove(withMana(2), andHealth(30), fromCards(1, 2, 3)), is(move(card(2), DAMAGE)));
+    }
+
+    @Test
+    public void shouldUseHealingUntilHealthIsAtLeast10() {
+        assertThat(strategy.nextMove(withMana(3), andHealth(8), fromCards(1, 1, 1)), is(move(card(1), HEALING)));
+        assertThat(strategy.nextMove(withMana(2), andHealth(9), fromCards(1, 1)), is(move(card(1), HEALING)));
+        assertThat(strategy.nextMove(withMana(1), andHealth(10), fromCards(1)), is(move(card(1), DAMAGE)));
     }
 
     @Test
