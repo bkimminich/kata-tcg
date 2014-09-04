@@ -1,1 +1,2 @@
 include 'tcg-java'
+include 'tcg-groovy'
