@@ -1,4 +1,4 @@
-(defproject tcg-clojure "0.1.0-SNAPSHOT"
+(defproject tcg-clojure "1.4"
   :description "Clojure implementation of the Trading Card Game Kata"
   :url "https://github.com/bkimminich/kata-tcg"
   :main tcg-clojure.core
