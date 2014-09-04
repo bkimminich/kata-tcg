@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.+'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.+'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '0.7-groovy-2.0'
 }
 
