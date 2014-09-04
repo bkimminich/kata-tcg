@@ -19,5 +19,9 @@
     "repository": {
         "type": "git",
         "url": "git://github.com/bkimminich/kata-tcg.git"
+    },
+
+    "scripts": {
+        "test": "karma start karma.conf.js"
     }
 }
