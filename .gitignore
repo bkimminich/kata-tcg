@@ -29,3 +29,4 @@ RemoteSystemsTempFiles/
 
 # Gradle
 build/
+.gradle/
