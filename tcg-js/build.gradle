@@ -26,9 +26,9 @@ node {
     workDir = file("${project.buildDir}/nodejs")
 }
 
-task build << {
+task check << {
 }
-build.dependsOn npm_test
+check.dependsOn npm_test
 npm_test.dependsOn npm_install
 
 
