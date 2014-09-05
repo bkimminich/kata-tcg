@@ -22,7 +22,7 @@
     },
 
     "scripts": {
-        "pretest": "npm install karma -g",
+        "pretest": "npm install -g karma-cli",
         "test": "karma start karma.conf.js"
     }
 }
