@@ -47,9 +47,12 @@ When the normal game rules have become too easy/boring you might consider adding
     * When a Minions health drops to or below zero it is removed from the board.
 5. Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk before starting a game.
 
+---
+
 | Branch | Build Status |
 | --- | --- |
 | master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) |
 | develop | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=develop)](https://travis-ci.org/bkimminich/kata-tcg) |
+| coverity_scan | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=coverity_scan)](https://travis-ci.org/bkimminich/kata-tcg) [![Coverity Status](https://scan.coverity.com/projects/2931/badge.svg)](https://scan.coverity.com/projects/2931) |
 
 [![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)
