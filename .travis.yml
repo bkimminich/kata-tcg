@@ -17,4 +17,4 @@ addons:
     notification_email: bjoern.kimminich@gmx.de
     build_command_prepend: "gradle clean"
     build_command: "gradle assemble"
-    branch_pattern: develop
+    branch_pattern: coverity_scan
