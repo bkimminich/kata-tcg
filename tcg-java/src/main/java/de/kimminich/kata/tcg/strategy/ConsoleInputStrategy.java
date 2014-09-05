@@ -7,6 +7,7 @@ import de.kimminich.kata.tcg.Move;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ public class ConsoleInputStrategy implements Strategy {
     @Override
     public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in, Charset.defaultCharset()));
             Integer card = -1;
             Action action = Action.DAMAGE;
             while (card < 0 || card > 8 || card > availableMana || !availableCards.contains(new Card(card))) {
