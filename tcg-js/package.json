@@ -12,7 +12,6 @@
     ],
 
     "devDependencies": {
-        "karma": "~0.12.23",
         "karma-jasmine": "~0.1",
         "karma-phantomjs-launcher": "~0.1.4"
     },
@@ -23,6 +22,7 @@
     },
 
     "scripts": {
+        "pretest": "npm install karma -g",
         "test": "karma start karma.conf.js"
     }
 }
