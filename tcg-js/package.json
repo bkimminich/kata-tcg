@@ -22,7 +22,6 @@
     },
 
     "scripts": {
-        "pretest": "npm install -g karma-cli",
-        "test": "karma start karma.conf.js"
+        "test": "./node_modules/karma/bin/karma start"
     }
 }
