@@ -27,7 +27,7 @@ dependencies {
     testCompile group: 'com.github.stefanbirkner', name: 'system-rules', version: '1.4.+'
 }
 
-mainClassName = "de.kimminich.kata.tcg.Game"
+mainClassName = 'de.kimminich.kata.tcg.Game'
 
 run {
     standardInput = System.in
