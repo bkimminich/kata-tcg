@@ -9,9 +9,6 @@ env:
    #   via the "travis encrypt" command using the project repo's public key
    - secure: "YeOHV8VQtBfwuKQx1pC+nktCzc/fhz6PsKYCVyXAuOYGxf72Utg0aETRyg97vwWYrceBl+fOFAxgn2zNOlI/gEi4zau7kZMDycXHiVByw1yr+bpP4VafKXSRh5YRdWunOqmj5qXEFi4uOoNNUVn1zvlC5dk7xTAXF4xzFVsCs3w="
 
-env:
-  - TERM=dumb
-
 addons:
   coverity_scan:
     project:
