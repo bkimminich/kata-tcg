@@ -13,4 +13,4 @@ dependencies {
     testCompile group: 'org.spockframework', name: 'spock-core', version: '0.7-groovy-2.0'
 }
 
-mainClassName = "de.kimminich.groovy.tcg.Game"
+mainClassName = 'de.kimminich.groovy.tcg.Game'
