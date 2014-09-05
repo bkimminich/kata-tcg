@@ -51,7 +51,7 @@ When the normal game rules have become too easy/boring you might consider adding
 
 | Branch | Build Status |
 | --- | --- |
-| master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master)
+| master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) |
 | develop | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=develop)](https://travis-ci.org/bkimminich/kata-tcg) [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=develop)](https://coveralls.io/r/bkimminich/kata-tcg?branch=develop) |
 | coverity_scan | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=coverity_scan)](https://travis-ci.org/bkimminich/kata-tcg) [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=coverity_scan)](https://coveralls.io/r/bkimminich/kata-tcg?branch=coverity_scan) [![Coverity Status](https://scan.coverity.com/projects/2931/badge.svg)](https://scan.coverity.com/projects/2931) |
 
