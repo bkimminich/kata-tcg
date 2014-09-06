@@ -1,5 +1,3 @@
-"use strict"
-
 describe("A Player", function () {
     var player;
     var opponent;
@@ -37,6 +35,16 @@ describe("A Player", function () {
 
         expect(player.deck.length).toBe(2);
         expect(player.hand.length).toBe(1);
+    });
+
+    it("should discard drawn card when hand already contains 5 cards", function() {
+        player.deck = [1];
+        player.hand = [4,5,6,7,8];
+
+        player.drawCard();
+
+        expect(player.deck.length).toBe(0);
+        expect(player.hand).toEqual([4,5,6,7,8]);
     });
 
     it("should receive one damage when drawing from an empty deck", function() {

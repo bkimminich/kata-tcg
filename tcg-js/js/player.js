@@ -1,5 +1,3 @@
-"use strict"
-
 function Player(name) {
     this.name = name;
 }
@@ -12,10 +10,13 @@ Player.prototype = {
     hand: [],
     drawCard: function () {
         if (this.deck.length === 0) {
-            this.health--;
+            this.health--; // bleedout rule
         } else {
             var cardIndex = Math.floor(Math.random() * this.deck.length);
-            this.hand.push(this.deck.splice(cardIndex, 1));
+            var card = this.deck.splice(cardIndex, 1)[0];
+            if (this.hand.length < 5) { // check against overload rule
+                this.hand.push(card);
+            }
         }
     },
     playCard: function(card, target) {
