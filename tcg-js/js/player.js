@@ -19,7 +19,7 @@ Player.prototype = {
             }
         }
     },
-    playCard: function(card, target) {
+    playCard: function (card, target) {
         if (target === this) { // healing
             target.health += card;
             target.health = Math.min(target.health, 30); // healing caps at the initial value of 30

@@ -2,7 +2,7 @@ describe("A Player", function () {
     var player;
     var opponent;
 
-    beforeEach(function(){
+    beforeEach(function () {
         player = new Player("activePlayer");
         opponent = new Player("opponentPlayer");
     });
@@ -27,7 +27,7 @@ describe("A Player", function () {
         expect(player.hand.length).toBe(0);
     });
 
-    it("should move a card from the deck into the hand when drawing a card", function() {
+    it("should move a card from the deck into the hand when drawing a card", function () {
         player.deck = [1, 2, 3];
         player.hand = [];
 
@@ -37,17 +37,17 @@ describe("A Player", function () {
         expect(player.hand.length).toBe(1);
     });
 
-    it("should discard drawn card when hand already contains 5 cards", function() {
+    it("should discard drawn card when hand already contains 5 cards", function () {
         player.deck = [1];
-        player.hand = [4,5,6,7,8];
+        player.hand = [4, 5, 6, 7, 8];
 
         player.drawCard();
 
         expect(player.deck.length).toBe(0);
-        expect(player.hand).toEqual([4,5,6,7,8]);
+        expect(player.hand).toEqual([4, 5, 6, 7, 8]);
     });
 
-    it("should receive one damage when drawing from an empty deck", function() {
+    it("should receive one damage when drawing from an empty deck", function () {
         player.health = 30;
         player.deck = [];
 
@@ -56,7 +56,7 @@ describe("A Player", function () {
         expect(player.health).toBe(29);
     });
 
-    it("should deal damage equal to played card's value to opponent", function() {
+    it("should deal damage equal to played card's value to opponent", function () {
         opponent.health = 30;
         player.hand = [8];
 
@@ -65,7 +65,7 @@ describe("A Player", function () {
         expect(opponent.health).toBe(22);
     });
 
-    it("should heal amount equal to played card's value to oneself", function() {
+    it("should heal amount equal to played card's value to oneself", function () {
         player.health = 10;
         player.hand = [8];
 
@@ -74,7 +74,7 @@ describe("A Player", function () {
         expect(player.health).toBe(18);
     });
 
-    it("should cap healing at 30 health", function() {
+    it("should cap healing at 30 health", function () {
         player.health = 28;
         player.hand = [5];
 
