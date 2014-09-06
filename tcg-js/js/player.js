@@ -17,5 +17,13 @@ Player.prototype = {
             var cardIndex = Math.floor(Math.random() * this.deck.length);
             this.hand.push(this.deck.splice(cardIndex, 1));
         }
+    },
+    playCard: function(card, target) {
+        if (target === this) { // healing
+            target.health += card;
+            target.health = Math.min(target.health, 30); // healing caps at the initial value of 30
+        } else { // attacking
+            target.health -= card;
+        }
     }
 }

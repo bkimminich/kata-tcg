@@ -2,9 +2,11 @@
 
 describe("A Player", function () {
     var player;
+    var opponent;
 
     beforeEach(function(){
-        player = new Player("somePlayer");
+        player = new Player("activePlayer");
+        opponent = new Player("opponentPlayer");
     });
 
     it("should have an initial health of 30", function () {
@@ -44,6 +46,33 @@ describe("A Player", function () {
         player.drawCard();
 
         expect(player.health).toBe(29);
+    });
+
+    it("should deal damage equal to played card's value to opponent", function() {
+        opponent.health = 30;
+        player.hand = [8];
+
+        player.playCard(8, opponent);
+
+        expect(opponent.health).toBe(22);
+    });
+
+    it("should heal amount equal to played card's value to oneself", function() {
+        player.health = 10;
+        player.hand = [8];
+
+        player.playCard(8, player);
+
+        expect(player.health).toBe(18);
+    });
+
+    it("should cap healing at 30 health", function() {
+        player.health = 28;
+        player.hand = [5];
+
+        player.playCard(5, player);
+
+        expect(player.health).toBe(30);
     });
 
 });
