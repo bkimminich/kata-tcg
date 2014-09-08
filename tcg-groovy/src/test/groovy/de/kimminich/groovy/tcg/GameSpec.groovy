@@ -16,7 +16,7 @@ class GameSpec extends Specification {
         game.opponentPlayer != null
     }
 
-    def "players should both start the game with 3 cards from their deck in their hands"() {
+    def "starting player hold 3 cards and opponent holds 4 cards in his starting hand"() {
         given:
         game = new Game()
 
@@ -27,8 +27,8 @@ class GameSpec extends Specification {
         game.activePlayer.hand.size() == 3
         game.activePlayer.deck.size() == 17
         and:
-        game.opponentPlayer.hand.size() == 3
-        game.opponentPlayer.deck.size() == 17
+        game.opponentPlayer.hand.size() == 4
+        game.opponentPlayer.deck.size() == 16
     }
 
     def "every turn the active player changes"() {

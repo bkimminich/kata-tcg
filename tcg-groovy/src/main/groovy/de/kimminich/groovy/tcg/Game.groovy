@@ -23,6 +23,7 @@ class Game {
             activePlayer.drawCard()
             opponentPlayer.drawCard()
         }
+        opponentPlayer.drawCard()
     }
 
     def beginTurn() {
