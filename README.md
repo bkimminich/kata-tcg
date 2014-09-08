@@ -11,7 +11,7 @@ In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will 
 | Each player starts the game with 30 _Health_ and 0 _Mana_ slots. | ![Starting Health and Mana](doc/Preparation1_StartingHealthAndMana.png) |
 | Each player starts with a deck of 20 _Damage_ cards with the following Mana costs: 0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8 | ![Default Starting Deck](doc/Preparation2_DefaultStartingDeck.png) |
 | From the deck each player receives 3 random cards has his initial hand. | ![Draw Starting Hand](doc/Preparation3_DrawStartingHand.png) |
-| One player is randomly chosen to be the starting _active player_. | |
+| One player is randomly chosen to be the starting _active player_. The _other_ player draws a 4th card from his deck to compensate him for not playing the first turn. | |
 
 ### <a name="BasicGameplay"/> Basic Gameplay
 
