@@ -24,13 +24,19 @@ public class GameTest {
     }
 
     @Test
-    public void eachPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
+    public void startingPlayerShouldHaveStartingHandOfThreeCardsFromHisDeck() {
         game = anyGame();
 
         assertThat(game.getActivePlayer().getNumberOfHandCards(), is(equalTo(3)));
         assertThat(game.getActivePlayer().getNumberOfDeckCards(), is(equalTo(17)));
-        assertThat(game.getOpponentPlayer().getNumberOfHandCards(), is(equalTo(3)));
-        assertThat(game.getOpponentPlayer().getNumberOfDeckCards(), is(equalTo(17)));
+    }
+
+    @Test
+    public void nonStartingPlayerShouldHaveStartingHandOfFourCardsFromHisDeck() {
+        game = anyGame();
+
+        assertThat(game.getOpponentPlayer().getNumberOfHandCards(), is(equalTo(4)));
+        assertThat(game.getOpponentPlayer().getNumberOfDeckCards(), is(equalTo(16)));
     }
 
     @Test

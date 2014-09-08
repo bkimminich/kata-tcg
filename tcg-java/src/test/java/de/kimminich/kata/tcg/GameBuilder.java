@@ -1,11 +1,17 @@
 package de.kimminich.kata.tcg;
 
+import org.mockito.BDDMockito;
+import org.mockito.Mock;
+
 import static de.kimminich.kata.tcg.PlayerBuilder.anyPlayer;
+import static org.mockito.BDDMockito.*;
 
 public class GameBuilder {
 
     private Player activePlayer = anyPlayer();
     private Player opponentPlayer = anyPlayer();
+
+    Game.StartingPlayerChooser startingPlayerChooser = mock(Game.StartingPlayerChooser.class);
 
     GameBuilder() {
     }
@@ -19,10 +25,8 @@ public class GameBuilder {
     }
 
     public Game build() {
-        Game game = new Game(activePlayer, opponentPlayer);
-        if (game.getActivePlayer() != activePlayer) {
-            game.switchPlayer();
-        }
+        given(startingPlayerChooser.chooseBetween(activePlayer, opponentPlayer)).willReturn(activePlayer);
+        Game game = new Game(activePlayer, opponentPlayer, startingPlayerChooser);
         return game;
     }
 

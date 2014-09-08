@@ -13,10 +13,8 @@ public class Game {
     private Player activePlayer;
     private Player opponentPlayer;
 
-    private Random random = new Random();
-
     public Game(Player player1, Player player2) {
-        activePlayer = random.nextBoolean() ? player1 : player2;
+        activePlayer = new StartingPlayerChooser().chooseBetween(player1, player2);
         if (activePlayer == player1) {
             opponentPlayer = player2;
         } else {
@@ -24,15 +22,19 @@ public class Game {
         }
         activePlayer.drawStartingHand();
         opponentPlayer.drawStartingHand();
-
+        opponentPlayer.drawCard();
     }
 
-    public Player getActivePlayer() {
-        return activePlayer;
-    }
-
-    public Player getOpponentPlayer() {
-        return opponentPlayer;
+    Game(Player player1, Player player2, StartingPlayerChooser startingPlayerChooser) {
+        activePlayer = startingPlayerChooser.chooseBetween(player1, player2);
+        if (activePlayer == player1) {
+            opponentPlayer = player2;
+        } else {
+            opponentPlayer = player1;
+        }
+        activePlayer.drawStartingHand();
+        opponentPlayer.drawStartingHand();
+        opponentPlayer.drawCard();
     }
 
     public void beginTurn() {
@@ -76,7 +78,26 @@ public class Game {
         logger.info(getWinner() + " wins the game!");
     }
 
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public Player getOpponentPlayer() {
+        return opponentPlayer;
+    }
+
     public static void main(String... args) {
         new Game(new Player("Human", new ConsoleInputStrategy()), new Player("CPU", new AiStrategy())).run();
     }
+
+     static class StartingPlayerChooser {
+
+         private Random random = new Random();
+
+         public Player chooseBetween(Player player1, Player player2) {
+            return random.nextBoolean() ? player1 : player2;
+         }
+
+     }
+
 }
