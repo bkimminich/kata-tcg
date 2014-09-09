@@ -41,8 +41,9 @@ When the normal game rules have become too easy/boring you might consider adding
 3. Introduce _Card Drawer_ cards that cost Mana but don't do any damage. Instead they let you draw a given number of cards from your deck. Those cards can be used in the current turn or later on (just as if normally drawn at the beginning of the active player's turn).
 4. Let players choose to play cards either as immediate damage _Attacks_ (same as cards generally worked in the [Basic Gameplay](#BasicGameplay) rules) or as _Minions_ that are put on the board instead.
     * Minions will use the mana cost of their card as Health and Damage value. Health has to be tracked when they receive damage.
+    * Each player can have a _maximum of 3 Minions_ on the board at any given time.
     * A Minion will _sleep_ in the turn it was put on the board.
-    * In any subsequent turn a Minion can be used to deal damage to the opponent player or an opponent Minion.
+    * In any subsequent turn _each_ Minion can be used _once_ to deal damage to the opponent player or an opponent Minion.
     * A Minion fighting another Minion will result in them dealing their damage value to each other simultaneously. Sleeping Minions will defend themselves in the same way when attacked by another Minion.
     * Players can choose to play an Attack against a Minion. The attacked Minion will not defend itself in this case, thus the attacking player receives no damage from it.
     * When a Minions health drops to or below zero it is removed from the board.
