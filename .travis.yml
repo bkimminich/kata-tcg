@@ -15,9 +15,9 @@ addons:
       name: "bkimminich/kata-tcg"
       description: "Kata TCG build submitted via Travis CI"
     notification_email: bjoern.kimminich@gmx.de
-    build_command_prepend: "gradle clean"
-    build_command: "gradle assemble"
+    build_command_prepend: "gradlew clean"
+    build_command: "gradlew assemble"
     branch_pattern: coverity_scan
 
 after_success:
-  gradle jacocoTestReport coveralls
+  gradlew jacocoTestReport coveralls
