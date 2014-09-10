@@ -38,9 +38,7 @@ public class Game {
     }
 
     public void beginTurn() {
-        if (activePlayer.getManaSlots() < 10) {
-            activePlayer.giveManaSlot();
-        }
+        activePlayer.giveManaSlot();
         activePlayer.refillMana();
         activePlayer.drawCard();
         logger.info(activePlayer + " plays turn...");

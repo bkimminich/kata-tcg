@@ -17,8 +17,10 @@ public class Player {
 
     private static final int STARTING_HAND_SIZE = 3;
     private static final int MAXIMUM_HAND_SIZE = 5;
+    private static final int MAXIMUM_HEALTH = 30;
+    private static final int MAXIMUM_MANA_SLOTS = 10;
 
-    private int health = 30;
+    private int health = MAXIMUM_HEALTH;
 
     private int manaSlots = 0;
     private int mana = 0;
@@ -89,7 +91,9 @@ public class Player {
     }
 
     public void giveManaSlot() {
-        manaSlots++;
+        if (manaSlots < MAXIMUM_MANA_SLOTS) {
+            manaSlots++;
+        }
     }
 
     public void refillMana() {
@@ -103,7 +107,7 @@ public class Player {
     }
 
     private void heal(int amount) {
-        health = Math.min(health + amount, 30);
+        health = Math.min(health + amount, MAXIMUM_HEALTH);
     }
 
     private void receiveDamage(int damage) {
