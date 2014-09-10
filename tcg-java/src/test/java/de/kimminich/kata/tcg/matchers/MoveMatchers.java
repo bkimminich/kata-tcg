@@ -27,7 +27,7 @@ public class MoveMatchers {
             @Override
             public boolean matchesSafely(Move move) {
                 Optional<Card> moveCard = move.getCard();
-                return moveCard.isPresent() && moveCard.get().getManaCost() == card && move.getAction().equals(action);
+                return moveCard.isPresent() && moveCard.get().getValue() == card && move.getAction().equals(action);
             }
 
             @Override

@@ -11,11 +11,11 @@ import java.util.Optional;
 public class CautiousStrategy implements Strategy {
 
     private Optional<Card> highestCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).max(Comparator.<Card>naturalOrder());
+        return availableCards.stream().filter(card -> card.getValue() <= availableMana).max(Comparator.<Card>naturalOrder());
     }
 
     private Optional<Card> lowestCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).min(Comparator.<Card>naturalOrder());
+        return availableCards.stream().filter(card -> card.getValue() <= availableMana).min(Comparator.<Card>naturalOrder());
     }
 
     @Override

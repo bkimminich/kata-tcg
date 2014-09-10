@@ -11,7 +11,7 @@ import java.util.Optional;
 public class KamikazeStrategy implements Strategy {
 
     private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).min(Comparator.<Card>naturalOrder());
+        return availableCards.stream().filter(card -> card.getValue() <= availableMana).min(Comparator.<Card>naturalOrder());
     }
 
     @Override

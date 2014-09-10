@@ -14,8 +14,8 @@ public class CardSugar {
         return Optional.empty();
     }
 
-    public static Card aCardWithManaCost(int manaCost) {
-        return new Card(manaCost);
+    public static Card aCardWithValue(int value) {
+        return new Card(value);
     }
 
 }
