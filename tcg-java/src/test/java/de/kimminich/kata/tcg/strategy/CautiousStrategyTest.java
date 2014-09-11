@@ -25,9 +25,9 @@ public class CautiousStrategyTest {
 
     @Test
     public void shouldUseHealingUntilHealthIsAbove20() {
-        assertThat(strategy.nextMove(withMana(10), andHealth(17), fromCards(3, 3, 4)), isHealingWithCard(3));
-        assertThat(strategy.nextMove(withMana(7), andHealth(20), fromCards(3, 4)), isHealingWithCard(3));
-        assertThat(strategy.nextMove(withMana(4), andHealth(23), fromCards(4)), isAttackingWithCard(4));
+        assertThat(strategy.nextMove(withMana(10), andHealth(17), fromCards(2, 3, 4)), isHealingWithCard(2));
+        assertThat(strategy.nextMove(withMana(7), andHealth(19), fromCards(3, 4)), isHealingWithCard(3));
+        assertThat(strategy.nextMove(withMana(4), andHealth(22), fromCards(4)), isAttackingWithCard(4));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CautiousStrategyTest {
     }
 
     @Test
-    public void shouldPlayLowCostCardsFirstWhenHealing() {
+    public void shouldPlayHighCostCardsFirstWhenHealing() {
         assertThat(strategy.nextMove(withMana(10), andHealth(1), fromCards(1, 2, 3, 8, 9)), is(move(card(1), HEALING)));
         assertThat(strategy.nextMove(withMana(9), andHealth(2), fromCards(2, 3, 8, 9)), is(move(card(2), HEALING)));
         assertThat(strategy.nextMove(withMana(7), andHealth(4), fromCards(3, 8, 9)), is(move(card(3), HEALING)));
