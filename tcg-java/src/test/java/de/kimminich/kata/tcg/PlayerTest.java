@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static de.kimminich.kata.tcg.Action.*;
 import static de.kimminich.kata.tcg.Action.DAMAGE;
 import static de.kimminich.kata.tcg.PlayerBuilder.aPlayer;
 import static de.kimminich.kata.tcg.PlayerBuilder.anyPlayer;
@@ -161,8 +162,8 @@ public class PlayerTest {
     public void playingCardAsHealingRestoresHealth() {
         player = aPlayer().withHealth(10).withMana(10).withCardsInHand(3, 4).build();
 
-        player.playCard(aCardWithValue(3), anyPlayer(), Action.HEALING);
-        player.playCard(aCardWithValue(4), anyPlayer(), Action.HEALING);
+        player.playCard(aCardWithValue(3), anyPlayer(), HEALING);
+        player.playCard(aCardWithValue(4), anyPlayer(), HEALING);
 
         assertThat(player.getHealth(), is(17));
     }
@@ -171,7 +172,7 @@ public class PlayerTest {
     public void playerCannotHealAbove30Health() {
         player = aPlayer().withHealth(27).withMana(10).withCardsInHand(4).build();
 
-        player.playCard(aCardWithValue(4), anyPlayer(), Action.HEALING);
+        player.playCard(aCardWithValue(4), anyPlayer(), HEALING);
 
         assertThat(player.getHealth(), is(30));
     }
