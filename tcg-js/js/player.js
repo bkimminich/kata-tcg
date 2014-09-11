@@ -21,8 +21,7 @@ Player.prototype = {
     },
     playCard: function (card, target) {
         if (target === this) { // healing
-            target.health += card;
-            target.health = Math.min(target.health, 30); // healing caps at the initial value of 30
+            target.health = Math.min(target.health += card, 30); // healing caps at the initial value of 30
         } else { // attacking
             target.health -= card;
         }
