@@ -11,7 +11,8 @@ function Game(player1, player2) {
 
 Game.prototype = {
     beginTurn : function () {
-        this.activePlayer.maxMana = Math.min(this.activePlayer.maxMana + 1, 10);
+        this.activePlayer.manaSlots = Math.min(this.activePlayer.manaSlots + 1, 10);
+        this.activePlayer.mana = this.activePlayer.manaSlots;
     },
 
     endTurn : function () {

@@ -2,7 +2,7 @@ function Player(name) {
     this.name = name;
     this.health = 30;
     this.mana = 0;
-    this.maxMana = 0;
+    this.manaSlots = 0;
     this.deck = [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8];
     this.hand = [];
 }

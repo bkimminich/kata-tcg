@@ -22,17 +22,26 @@ describe("A Game", function () {
 
     it("should give one mana slot to the active player at the beginning of a turn", function () {
         for (var i = 0; i < 10; i++) {
-            var previousManaSlots = game.activePlayer.maxMana;
+            var previousManaSlots = game.activePlayer.manaSlots;
             game.beginTurn();
-            expect(game.activePlayer.maxMana).toBe(previousManaSlots+1);
+            expect(game.activePlayer.manaSlots).toBe(previousManaSlots+1);
 
         }
     });
 
     it("should cap mana slots at 10", function () {
-            game.activePlayer.maxMana = 10;
+            game.activePlayer.manaSlots = 10;
             game.beginTurn();
-            expect(game.activePlayer.maxMana).toBe(10);
+            expect(game.activePlayer.manaSlots).toBe(10);
+
+    });
+
+    it("should refill mana to number of mana slots at the beginning of a turn", function () {
+        for (var i = 0; i < 10; i++) {
+            game.activePlayer.mana = 0;
+            game.beginTurn();
+            expect(game.activePlayer.mana).toBe(game.activePlayer.manaSlots);
+        }
 
     });
 
