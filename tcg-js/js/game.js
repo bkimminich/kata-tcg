@@ -13,6 +13,7 @@ Game.prototype = {
     beginTurn : function () {
         this.activePlayer.manaSlots = Math.min(this.activePlayer.manaSlots + 1, 10);
         this.activePlayer.mana = this.activePlayer.manaSlots;
+        this.activePlayer.drawCard();
     },
 
     endTurn : function () {

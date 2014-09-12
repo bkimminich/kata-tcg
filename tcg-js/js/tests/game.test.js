@@ -48,6 +48,16 @@ describe("A Game", function () {
         }
     });
 
+    it("should let the active player draw a card from his deck at the beginning of a turn", function () {
+        var previousNumberOfHandCards = game.activePlayer.hand.length;
+        var previousNumberOfDeckCards = game.activePlayer.deck.length;
+
+        game.beginTurn();
+
+        expect(game.activePlayer.hand.length).toBe(previousNumberOfHandCards + 1);
+        expect(game.activePlayer.deck.length).toBe(previousNumberOfDeckCards - 1);
+    });
+
     it("should switch the active player at the end of a turn", function () {
         var previousActivePlayer = game.activePlayer;
         var previousOpponentPlayer = game.opponentPlayer;
