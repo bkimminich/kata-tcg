@@ -23,7 +23,7 @@ Game.prototype = {
             var tmp = this.activePlayer;
             this.activePlayer = this.opponentPlayer;
             this.opponentPlayer = tmp;
-        };
+        }
     }
-}
+};
 

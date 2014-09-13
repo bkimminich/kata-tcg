@@ -26,4 +26,4 @@ Player.prototype = {
             target.health -= card;
         }
     }
-}
+};
