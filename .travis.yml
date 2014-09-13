@@ -28,4 +28,4 @@ after_success:
   ./gradlew jacocoTestReport coveralls
 
 after_script:
-  find ./coverage -name lcov.info | codeclimate
+  find . -name lcov.info | codeclimate
