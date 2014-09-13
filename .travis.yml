@@ -25,7 +25,7 @@ addons:
     repo_token: 45e3b73d13d7e754ba200dc6a60ca8eaff54f8e7a800d78a7b085d63d4f1e533
 
 after_success:
-  gradlew jacocoTestReport coveralls
+  ./gradlew jacocoTestReport coveralls
 
 after_script:
-  - cat lcov.info | codeclimate
+  find ./coverage -name lcov.info | codeclimate
