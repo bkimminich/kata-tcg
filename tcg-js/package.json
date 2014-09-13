@@ -13,7 +13,9 @@
 
     "devDependencies": {
         "karma-jasmine": "~0.1",
-        "karma-phantomjs-launcher": "~0.1.4"
+        "karma-phantomjs-launcher": "~0.1.4",
+        "karma-coverage": "~0.2.6",
+        "codeclimate-test-reporter": "~0.0.3"
     },
 
     "repository": {
