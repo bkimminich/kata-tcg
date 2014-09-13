@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-public class ConsoleInputStrategy implements Strategy {
+public class ConsoleInputStrategy extends Strategy {
 
     private static final Logger logger = Logger.getLogger(ConsoleInputStrategy.class.getName());
 

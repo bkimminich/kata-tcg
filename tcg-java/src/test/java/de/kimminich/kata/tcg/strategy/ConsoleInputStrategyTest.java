@@ -51,6 +51,13 @@ public class ConsoleInputStrategyTest {
         assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(5)), isHealingWithCard(5));
     }
 
+    @Test
+    public void invalidInputWillBeRejectedUntilValidChoiceIsMade() {
+        player().enters("xxx").enters("§$%").enters("2").finished();
+
+        assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(2)), isAttackingWithCard(2));
+    }
+
     private ConsoleInputBuilder player() {
         return new ConsoleInputBuilder();
     }

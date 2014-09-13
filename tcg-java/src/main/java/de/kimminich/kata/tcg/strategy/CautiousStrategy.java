@@ -8,22 +8,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class CautiousStrategy implements Strategy {
-
-    private Optional<Card> highestCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).max(Comparator.<Card>naturalOrder());
-    }
-
-    private Optional<Card> lowestCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).min(Comparator.<Card>naturalOrder());
-    }
+/**
+ * This strategy plays the highest affordable cards for attacking. It switches into healing with the lowest possible cards when the players health falls below 20.
+ */
+public class CautiousStrategy extends Strategy {
 
     @Override
     public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
-        if (currentHealth > 20) {
-            return new Move(highestCard(availableMana, availableCards), Action.DAMAGE);
-        } else {
+        if (currentHealth < 20) {
             return new Move(lowestCard(availableMana, availableCards), Action.HEALING);
+        } else {
+            return new Move(highestCard(availableMana, availableCards), Action.DAMAGE);
         }
     }
 

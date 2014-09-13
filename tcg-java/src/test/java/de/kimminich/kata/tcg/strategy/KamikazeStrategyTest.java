@@ -19,11 +19,10 @@ public class KamikazeStrategyTest {
     }
 
     @Test
-    public void shouldPlayLowCostCardsFirst() {
-        assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(0, 1, 2, 3, 8)), isAttackingWithCard(0));
-        assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(1, 2, 3, 8)), isAttackingWithCard(1));
-        assertThat(strategy.nextMove(withMana(9), andHealth(30), fromCards(2, 3, 8)), isAttackingWithCard(2));
-        assertThat(strategy.nextMove(withMana(7), andHealth(30), fromCards(3, 8)), isAttackingWithCard(3));
+    public void shouldPlayHighCostCardsFirst() {
+        assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(0, 1, 2, 3, 8)), isAttackingWithCard(8));
+        assertThat(strategy.nextMove(withMana(2), andHealth(30), fromCards(0, 1, 2, 3)), isAttackingWithCard(2));
+        assertThat(strategy.nextMove(withMana(0), andHealth(30), fromCards(0, 1, 3)), isAttackingWithCard(0));
     }
 
     @Test

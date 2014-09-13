@@ -14,15 +14,7 @@ public class Game {
     private Player opponentPlayer;
 
     public Game(Player player1, Player player2) {
-        activePlayer = new StartingPlayerChooser().chooseBetween(player1, player2);
-        if (activePlayer == player1) {
-            opponentPlayer = player2;
-        } else {
-            opponentPlayer = player1;
-        }
-        activePlayer.drawStartingHand();
-        opponentPlayer.drawStartingHand();
-        opponentPlayer.drawCard();
+        this(player1, player2, new StartingPlayerChooser());
     }
 
     Game(Player player1, Player player2, StartingPlayerChooser startingPlayerChooser) {
@@ -34,13 +26,11 @@ public class Game {
         }
         activePlayer.drawStartingHand();
         opponentPlayer.drawStartingHand();
-        opponentPlayer.drawCard();
+        opponentPlayer.drawCard(); // extra card to reduce disadvantage from being second to play
     }
 
     public void beginTurn() {
-        if (activePlayer.getManaSlots() < 10) {
-            activePlayer.giveManaSlot();
-        }
+        activePlayer.giveManaSlot();
         activePlayer.refillMana();
         activePlayer.drawCard();
         logger.info(activePlayer + " plays turn...");

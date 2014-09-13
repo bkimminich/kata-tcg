@@ -8,15 +8,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class KamikazeStrategy implements Strategy {
-
-    private Optional<Card> nextCard(int availableMana, List<Card> availableCards) {
-        return availableCards.stream().filter(card -> card.getManaCost() <= availableMana).min(Comparator.<Card>naturalOrder());
-    }
+/**
+ * This strategy plays the highest affordable cards first and only for attacking. No healing is used regardless of the players health.
+ */
+public class KamikazeStrategy extends Strategy {
 
     @Override
     public Move nextMove(int availableMana, int currentHealth, List<Card> availableCards) {
-        return new Move(nextCard(availableMana, availableCards), Action.DAMAGE);
+        return new Move(highestCard(availableMana, availableCards), Action.DAMAGE);
     }
 
 }

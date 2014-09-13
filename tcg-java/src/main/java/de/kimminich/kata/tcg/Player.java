@@ -17,8 +17,10 @@ public class Player {
 
     private static final int STARTING_HAND_SIZE = 3;
     private static final int MAXIMUM_HAND_SIZE = 5;
+    private static final int MAXIMUM_HEALTH = 30;
+    private static final int MAXIMUM_MANA_SLOTS = 10;
 
-    private int health = 30;
+    private int health = MAXIMUM_HEALTH;
 
     private int manaSlots = 0;
     private int mana = 0;
@@ -53,7 +55,7 @@ public class Player {
     }
 
     public int getNumberOfDeckCardsWithManaCost(int manaCost) {
-        return (int) deck.stream().filter(card -> card.getManaCost() == manaCost).count();
+        return (int) deck.stream().filter(card -> card.getValue() == manaCost).count();
     }
 
     public int getNumberOfDeckCards() {
@@ -61,7 +63,7 @@ public class Player {
     }
 
     public Integer getNumberOfHandCardsWithManaCost(int manaCost) {
-        return (int) hand.stream().filter(card -> card.getManaCost() == manaCost).count();
+        return (int) hand.stream().filter(card -> card.getValue() == manaCost).count();
     }
 
     public int getNumberOfHandCards() {
@@ -89,7 +91,9 @@ public class Player {
     }
 
     public void giveManaSlot() {
-        manaSlots++;
+        if (manaSlots < MAXIMUM_MANA_SLOTS) {
+            manaSlots++;
+        }
     }
 
     public void refillMana() {
@@ -103,7 +107,7 @@ public class Player {
     }
 
     private void heal(int amount) {
-        health = Math.min(health + amount, 30);
+        health = Math.min(health + amount, MAXIMUM_HEALTH);
     }
 
     private void receiveDamage(int damage) {
@@ -111,7 +115,7 @@ public class Player {
     }
 
     public boolean canPlayCards() {
-        return hand.stream().filter(card -> card.getManaCost() <= mana).count() > 0;
+        return hand.stream().filter(card -> card.getValue() <= mana).count() > 0;
     }
 
     public void playCard(Player opponent) {
@@ -125,18 +129,18 @@ public class Player {
     }
 
     void playCard(Card card, Player opponent, Action action) {
-        if (mana < card.getManaCost()) {
+        if (mana < card.getValue()) {
             throw new IllegalMoveException("Insufficient Mana (" + mana + ") to pay for card " + card + ".");
         }
         logger.info(this + " plays card " + card + " for " + action);
-        mana -= card.getManaCost();
+        mana -= card.getValue();
         hand.remove(card);
         switch (action) {
             case DAMAGE:
-                opponent.receiveDamage(card.getDamage());
+                opponent.receiveDamage(card.getValue());
                 break;
             case HEALING:
-                this.heal(card.getHealAmount());
+                this.heal(card.getValue());
                 break;
             default:
                 throw new IllegalMoveException("Unrecognized game action: " + action);

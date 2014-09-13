@@ -3,8 +3,8 @@ describe("A Player", function () {
     var opponent;
 
     beforeEach(function () {
-        player = new Player("activePlayer");
-        opponent = new Player("opponentPlayer");
+        player = new Player("player");
+        opponent = new Player("opponent");
     });
 
     it("should have an initial health of 30", function () {
@@ -16,7 +16,7 @@ describe("A Player", function () {
     });
 
     it("should have an initial maximum mana of zero", function () {
-        expect(player.maxMana).toBe(0);
+        expect(player.manaSlots).toBe(0);
     });
 
     it("should have the 20 default cards in deck", function () {

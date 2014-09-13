@@ -8,31 +8,23 @@ import static java.util.stream.Collectors.toCollection;
 
 public class Card implements Comparable<Card> {
 
-    private final int manaCost;
+    private final int value;
 
-    public static List<Card> list(Integer... manaCosts) {
-        return stream(manaCosts).map(Card::new).collect(toCollection(ArrayList::new));
+    public static List<Card> list(Integer... values) {
+        return stream(values).map(Card::new).collect(toCollection(ArrayList::new));
     }
 
-    public Card(int manaCost) {
-        this.manaCost = manaCost;
+    public Card(int value) {
+        this.value = value;
     }
 
-    public int getManaCost() {
-        return manaCost;
-    }
-
-    public int getDamage() {
-        return getManaCost();
-    }
-
-    public int getHealAmount() {
-        return getManaCost();
+    public int getValue() {
+        return value;
     }
 
     @Override
     public String toString() {
-        return "" + manaCost;
+        return "" + value;
     }
 
     @Override
@@ -42,18 +34,18 @@ public class Card implements Comparable<Card> {
 
         Card card = (Card) o;
 
-        if (manaCost != card.manaCost) return false;
+        if (value != card.value) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return manaCost;
+        return value;
     }
 
     @Override
     public int compareTo(Card other) {
-        return manaCost - other.getManaCost();
+        return value - other.getValue();
     }
 }
