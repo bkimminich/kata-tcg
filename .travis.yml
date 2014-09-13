@@ -21,6 +21,11 @@ addons:
     build_command_prepend: "gradlew clean"
     build_command: "gradlew assemble"
     branch_pattern: coverity_scan
+  code_climate:
+    repo_token: 45e3b73d13d7e754ba200dc6a60ca8eaff54f8e7a800d78a7b085d63d4f1e533
 
 after_success:
   gradlew jacocoTestReport coveralls
+
+after_script:
+  - cat lcov.info | codeclimate
