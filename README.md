@@ -65,8 +65,7 @@ When the normal game rules have become too easy/boring you might consider adding
 
 ---
 
-| Branch | Build Status |||
-| | All | Java | JS |
+| Branch | Build Status | Java | JS |
 | --- | --- | --- | --- |
 | master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) |
 | develop | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=develop)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=develop)](https://coveralls.io/r/bkimminich/kata-tcg?branch=develop) | |
