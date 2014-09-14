@@ -45,11 +45,10 @@ When the normal game rules have become too easy/boring you might consider adding
 
 ### Minions
 
-Let players choose to play cards either as immediate damage _Attacks_ (same as cards generally worked in the [Basic Gameplay](#BasicGameplay) rules) or as _Minions_ that are put on the board instead.
-
 | Rule | |
 | --- | --- |
-| Minions will use the mana cost of their card as Health and Damage value. Health has to be tracked when they receive damage. | ![Playing Card as Minion](doc/Minions1_PlayingCardAsMinion.png) |
+| Let players choose to play cards either as immediate damage _Attacks_ (same as cards generally worked in the [Basic Gameplay](#BasicGameplay) rules) or as _Minions_ that are put on the board instead. Minions will use the mana cost of their card as Health and Damage value. | ![Playing Card as Minion](doc/Minions1_PlayingCardAsMinion.png) |
+| Health has to be tracked when they receive damage. ||
 | Each player can have a _maximum of 3 Minions_ on the board at any given time. | | 
 | A Minion will _sleep_ in the turn it was put on the board. | ![Sleeping on first turn](doc/Minions2_SleepingOnFirstTurn.png) |
 | In any subsequent turn _each_ Minion can be used _once_ to deal damage to the opponent player or an opponent Minion. | ![Attacking Opponent or enemy Minion](doc/Minions3_AttackingOpponentOrEnemyMinion.png) |
