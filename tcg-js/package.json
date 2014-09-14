@@ -25,5 +25,11 @@
 
     "scripts": {
         "test": "./node_modules/karma/bin/karma start"
+    },
+
+    "jshintConfig": {
+        "undef": true,
+        "unused": true,
+        "predef": [ "it", "expect", "toBe", "describe", "beforeEach" ]
     }
 }
