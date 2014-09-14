@@ -8,8 +8,6 @@ before_install:
 
 env:
   global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
    - secure: "YeOHV8VQtBfwuKQx1pC+nktCzc/fhz6PsKYCVyXAuOYGxf72Utg0aETRyg97vwWYrceBl+fOFAxgn2zNOlI/gEi4zau7kZMDycXHiVByw1yr+bpP4VafKXSRh5YRdWunOqmj5qXEFi4uOoNNUVn1zvlC5dk7xTAXF4xzFVsCs3w="
 
 addons:
@@ -21,6 +19,11 @@ addons:
     build_command_prepend: "gradlew clean"
     build_command: "gradlew assemble"
     branch_pattern: coverity_scan
+  code_climate:
+    repo_token: 45e3b73d13d7e754ba200dc6a60ca8eaff54f8e7a800d78a7b085d63d4f1e533
 
 after_success:
   ./gradlew jacocoTestReport coveralls
+
+after_script:
+  find /coverage -name lcov.info | cat | codeclimate
