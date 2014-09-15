@@ -30,6 +30,13 @@
     "jshintConfig": {
         "undef": true,
         "unused": true,
-        "predef": [ "it", "expect", "toBe", "describe", "beforeEach" ]
+        "globals" : {
+            "it" : false,
+            "expect": false,
+            "toBe": false,
+            "describe": false,
+            "beforeEach":false
+        }
+
     }
 }
