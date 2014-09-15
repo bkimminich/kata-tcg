@@ -68,7 +68,7 @@ describe("A Game", function () {
         expect(game.opponentPlayer).toBe(previousActivePlayer);
     });
 
-/*    it("should ask the active player which cards to play in his turn", function() {
+    it("should ask the active player which cards to play in his turn", function() {
         game.activePlayer.hand = [1,2,3,7];
         game.activePlayer.mana = 2;
         //spyOn(window, 'prompt').and.returnValue('2');
@@ -77,6 +77,6 @@ describe("A Game", function () {
 
         expect(game.activePlayer.mana).toBe(0);
         expect(game.activePlayer.hand).toEqual([1,3,7]);
-    });*/
+    });
 
 });
