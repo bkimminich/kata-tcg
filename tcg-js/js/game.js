@@ -16,6 +16,27 @@ Game.prototype = {
         this.activePlayer.drawCard();
     },
 
+    playTurn: function () {
+        while (hasEnoughManaForCardInHand.call(this)) {
+            var choice = prompt(this.activePlayer.name + ", please choose a card to play from " + this.activePlayer.hand);
+            if (choice) {
+                var chosenCard = parseInt(choice);
+                if (chosenCard <= this.activePlayer.mana) {
+                    this.activePlayer.playCard(chosenCard, this.opponentPlayer);
+                } else {
+                    confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!");
+                }
+            } else {
+                return;
+            }
+        }
+
+        function hasEnoughManaForCardInHand() {
+            return this.activePlayer.mana >= Math.min.apply(Math, this.activePlayer.hand);
+        }
+
+    },
+
     endTurn : function () {
         switchPlayers.call(this);
 
