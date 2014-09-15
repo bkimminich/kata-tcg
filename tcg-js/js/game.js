@@ -18,9 +18,14 @@ Game.prototype = {
 
     playTurn: function () {
         while (hasEnoughManaForCardInHand.call(this)) {
-            var chosenCard = 2; //prompt(this.activePlayer.name + ", please choose a card to play from " + this.activePlayer.hand);
-            if (chosenCard) {
-                this.activePlayer.playCard(chosenCard, this.opponentPlayer);
+            var choice = prompt(this.activePlayer.name + ", please choose a card to play from " + this.activePlayer.hand);
+            if (choice) {
+                var chosenCard = parseInt(choice);
+                if (chosenCard <= this.activePlayer.mana) {
+                    this.activePlayer.playCard(chosenCard, this.opponentPlayer);
+                } else {
+                    confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!");
+                }
             } else {
                 return;
             }

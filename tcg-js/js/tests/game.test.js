@@ -71,12 +71,23 @@ describe("A Game", function () {
     it("should ask the active player which cards to play in his turn", function() {
         game.activePlayer.hand = [1,2,3,7];
         game.activePlayer.mana = 2;
-        //spyOn(window, 'prompt').and.returnValue('2');
+        spyOn(window, 'prompt').and.returnValue('2');
 
         game.playTurn();
 
         expect(game.activePlayer.mana).toBe(0);
         expect(game.activePlayer.hand).toEqual([1,3,7]);
+    });
+
+    it("should prevent playing cards the active player does not have enough mana for", function() {
+        game.activePlayer.hand = [1,7];
+        game.activePlayer.mana = 6;
+        spyOn(window, 'prompt').and.returnValue('7').and.returnValue('1');
+
+        game.playTurn();
+
+        expect(game.activePlayer.mana).toBe(5);
+        expect(game.activePlayer.hand).toEqual([7]);
     });
 
 });
