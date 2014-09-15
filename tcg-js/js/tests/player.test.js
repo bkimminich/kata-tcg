@@ -74,6 +74,16 @@ describe("A Player", function () {
         expect(player.health).toBe(18);
     });
 
+    it("should pay an amount of mana equal to played card's value", function () {
+        player.mana = 10;
+        player.hand = [8, 1];
+
+        player.playCard(8, opponent);
+        player.playCard(1, player);
+
+        expect(player.mana).toBe(1);
+    });
+
     it("should cap healing at 30 health", function () {
         player.health = 28;
         player.hand = [5];

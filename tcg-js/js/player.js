@@ -20,6 +20,7 @@ Player.prototype = {
         }
     },
     playCard: function (card, target) {
+        this.mana-=card;
         if (target === this) { // healing
             target.health = Math.min(target.health += card, 30); // healing caps at the initial value of 30
         } else { // attacking
