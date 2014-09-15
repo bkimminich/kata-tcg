@@ -26,4 +26,4 @@ after_success:
   ./gradlew jacocoTestReport coveralls
 
 after_script:
-  cat `find . -name lcov.info` | codeclimate
+  cat "./tcg-js/coverage/PhantomJS 1.9.7 (Linux)/lcov.info" | codeclimate
