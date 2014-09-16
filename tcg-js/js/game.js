@@ -21,10 +21,12 @@ Game.prototype = {
             var choice = window.prompt(this.activePlayer.name + ", please choose a card to play from " + this.activePlayer.hand);
             if (choice) {
                 var chosenCard = parseInt(choice, 10);
-                if (chosenCard > this.activePlayer.mana) {
-                    window.confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!");
+                if (isNaN(chosenCard)) {
+                    if (!window.confirm(choice + " is not a valid card!")) return;
+                } else if (chosenCard > this.activePlayer.mana) {
+                    if (!window.confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!")) return;
                 } else if (this.activePlayer.hand.indexOf(chosenCard)  == -1) {
-                    window.confirm(chosenCard + " is not present in card hand!");
+                    if (!window.confirm(chosenCard + " is not present in hand!")) return;
                 } else {
                     this.activePlayer.playCard(chosenCard, this.opponentPlayer);
                 }
