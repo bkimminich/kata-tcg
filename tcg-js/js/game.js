@@ -10,7 +10,7 @@ function Game(player1, player2) {
 }
 
 Game.prototype = {
-    beginTurn : function () {
+    beginTurn: function () {
         this.activePlayer.manaSlots = Math.min(this.activePlayer.manaSlots + 1, 10);
         this.activePlayer.mana = this.activePlayer.manaSlots;
         this.activePlayer.drawCard();
@@ -22,11 +22,17 @@ Game.prototype = {
             if (choice) {
                 var chosenCard = parseInt(choice, 10);
                 if (isNaN(chosenCard)) {
-                    if (!window.confirm(choice + " is not a valid card!")) return;
+                    if (!window.confirm(choice + " is not a valid card!")) {
+                        return;
+                    }
                 } else if (chosenCard > this.activePlayer.mana) {
-                    if (!window.confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!")) return;
-                } else if (this.activePlayer.hand.indexOf(chosenCard)  == -1) {
-                    if (!window.confirm(chosenCard + " is not present in hand!")) return;
+                    if (!window.confirm("Cannot play card " + chosenCard + " with only " + this.activePlayer.mana + " mana!")) {
+                        return;
+                    }
+                } else if (this.activePlayer.hand.indexOf(chosenCard) == -1) {
+                    if (!window.confirm(chosenCard + " is not present in hand!")) {
+                        return;
+                    }
                 } else {
                     this.activePlayer.playCard(chosenCard, this.opponentPlayer);
                 }
@@ -41,7 +47,7 @@ Game.prototype = {
 
     },
 
-    endTurn : function () {
+    endTurn: function () {
         switchPlayers.call(this);
 
         function switchPlayers() { // ECMA6: [activePlayer, opponentPlayer] = [opponentPlayer, activePlayer]
@@ -50,5 +56,6 @@ Game.prototype = {
             this.opponentPlayer = tmp;
         }
     }
-};
+}
+;
 
