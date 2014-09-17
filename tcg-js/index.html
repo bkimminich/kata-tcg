@@ -8,7 +8,9 @@
 <script src="js/game.js"></script>
 <script src="js/player.js"></script>
 <script>
-    var game = new Game(new Player("player1"), new Player("player2"));
+    var player1 = window.prompt("Player 1, choose your name!");
+    var player2 = window.prompt("Player 2, choose your name!");
+    var game = new Game(new Player(player1), new Player(player2));
     game.start();
 </script>
 </body>

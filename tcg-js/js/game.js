@@ -27,7 +27,7 @@ Game.prototype = {
 
     playTurn: function () {
         while (hasEnoughManaForCardInHand.call(this)) {
-            var choice = window.prompt(this.activePlayer.name + ", please choose a card to play from " + this.activePlayer.hand);
+            var choice = window.prompt(this.activePlayer + ", please choose a card to play from " + this.activePlayer.hand);
             if (choice) {
                 var chosenCard = parseInt(choice, 10);
                 if (isNaN(chosenCard)) {

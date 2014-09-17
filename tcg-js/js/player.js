@@ -27,5 +27,8 @@ Player.prototype = {
         } else { // attacking
             target.health -= card;
         }
+    },
+    toString: function () {
+        return this.name + " (Health: " + this.health + ", Mana: " + this.mana + "/" + this.manaSlots + ")";
     }
 };
