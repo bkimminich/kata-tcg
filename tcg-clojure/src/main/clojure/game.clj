@@ -1,4 +1,4 @@
-(ns tcg-clojure.core)
+(ns game)
 
 (def player {
               :health 30
