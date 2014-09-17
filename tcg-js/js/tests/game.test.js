@@ -151,4 +151,17 @@ describe("A Game", function () {
         expect(game.activePlayer.health).toBe(8);
     });
 
+    it("should end with active player as winner if opponent gets killed by last attack", function () {
+        game.activePlayer.hand = [8];
+        game.activePlayer.mana = 10;
+        game.opponentPlayer.health = 7;
+        spyOn(window, 'prompt').and.returnValue('8');
+        spyOn(window, 'confirm').and.returnValue(true);
+
+        game.playTurn();
+        game.endTurn();
+
+        expect(window.confirm.calls.mostRecent().args).toMatch('player[12] wins!');
+    });
+
 });

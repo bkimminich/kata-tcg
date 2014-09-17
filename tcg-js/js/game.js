@@ -1,6 +1,7 @@
 function Game(player1, player2) {
     this.activePlayer = Math.random() >= 0.5 ? player1 : player2;
     this.opponentPlayer = this.activePlayer === player1 ? player2 : player1;
+    this.winner = undefined;
 
     for (var i = 0; i < 3; i++) {
         this.activePlayer.drawCard();
@@ -10,6 +11,14 @@ function Game(player1, player2) {
 }
 
 Game.prototype = {
+    start: function () {
+        while (this.winner === undefined) {
+            this.beginTurn();
+            this.playTurn();
+            this.endTurn();
+        }
+    },
+
     beginTurn: function () {
         this.activePlayer.manaSlots = Math.min(this.activePlayer.manaSlots + 1, 10);
         this.activePlayer.mana = this.activePlayer.manaSlots;
@@ -52,7 +61,12 @@ Game.prototype = {
     },
 
     endTurn: function () {
-        switchPlayers.call(this);
+        if (this.opponentPlayer.health <= 0) {
+            this.winner = this.activePlayer;
+            window.confirm(this.winner.name + " wins!");
+        } else {
+            switchPlayers.call(this);
+        }
 
         function switchPlayers() { // ECMA6: [activePlayer, opponentPlayer] = [opponentPlayer, activePlayer]
             var tmp = this.activePlayer;
