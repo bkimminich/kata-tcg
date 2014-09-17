@@ -26,16 +26,16 @@ describe("A Game", function () {
 
             game.beginTurn();
 
-            expect(game.activePlayer.manaSlots).toBe(previousManaSlots+1);
+            expect(game.activePlayer.manaSlots).toBe(previousManaSlots + 1);
         }
     });
 
     it("should cap mana slots at 10", function () {
-            game.activePlayer.manaSlots = 10;
+        game.activePlayer.manaSlots = 10;
 
-            game.beginTurn();
+        game.beginTurn();
 
-            expect(game.activePlayer.manaSlots).toBe(10);
+        expect(game.activePlayer.manaSlots).toBe(10);
     });
 
     it("should refill mana to number of mana slots at the beginning of a turn", function () {
@@ -68,57 +68,100 @@ describe("A Game", function () {
         expect(game.opponentPlayer).toBe(previousActivePlayer);
     });
 
-    it("should ask the active player which card to play in his turn", function() {
-        game.activePlayer.hand = [1,2,3,7];
-        game.activePlayer.mana = 2;
-        spyOn(window, 'prompt').and.returnValue('2');
+    it("should play card chosen by active player in his turn", function () {
+        game.activePlayer.hand = [2, 3, 7];
+        game.activePlayer.mana = 4;
+        spyOn(window, 'prompt').and.returnValue('3');
 
         game.playTurn();
 
-        expect(game.activePlayer.mana).toBe(0);
-        expect(game.activePlayer.hand).toEqual([1,3,7]);
+        expect(game.activePlayer.mana).toBe(1);
+        expect(game.activePlayer.hand).toEqual([2, 7]);
     });
 
-    it("should not play any cards when cancelling the card choice", function() {
-        game.activePlayer.hand = [1,2];
+    it("should not play any cards when cancelling the card choice", function () {
+        game.activePlayer.hand = [1, 2];
         game.activePlayer.mana = 10;
         spyOn(window, 'prompt').and.returnValue(null);
 
         game.playTurn();
 
         expect(game.activePlayer.mana).toBe(10);
-        expect(game.activePlayer.hand).toEqual([1,2]);
+        expect(game.activePlayer.hand).toEqual([1, 2]);
     });
 
-    it("should prevent playing cards the active player does not have enough mana for", function() {
-        game.activePlayer.hand = [1,7];
+    it("should prevent playing card the active player does not have enough mana for", function () {
+        game.activePlayer.hand = [1, 7];
         game.activePlayer.mana = 6;
-        spyOn(window, 'prompt').and.returnValue('7').and.returnValue('1');
+        spyOn(window, 'prompt').and.returnValue('7');
+        spyOn(window, 'confirm').and.returnValue(false);
 
         game.playTurn();
 
-        expect(game.activePlayer.mana).toBe(5);
-        expect(game.activePlayer.hand).toEqual([7]);
+        expect(window.confirm).toHaveBeenCalledWith('Cannot play card 7 with only 6 mana!');
+        expect(game.activePlayer.mana).toBe(6);
+        expect(game.activePlayer.hand).toEqual([1, 7]);
     });
 
-    it("should prevent playing cards the active player does not have in his hand", function() {
-        game.activePlayer.hand = [1,2,3];
-        game.activePlayer.mana = 1;
-        spyOn(window, 'prompt').and.returnValue('4').and.returnValue('1');
+    it("should prevent playing card the active player does not have in his hand", function () {
+        game.activePlayer.hand = [1, 2, 3];
+        game.activePlayer.mana = 10;
+        spyOn(window, 'prompt').and.returnValue('4');
+        spyOn(window, 'confirm').and.returnValue(false);
 
         game.playTurn();
 
-        expect(game.activePlayer.hand).toEqual([2,3]);
+        expect(window.confirm).toHaveBeenCalledWith('4 is not present in hand!');
+        expect(game.activePlayer.mana).toBe(10);
+        expect(game.activePlayer.hand).toEqual([1, 2, 3]);
     });
 
-    it("should reject illegal input for card choices until valid choice is made", function() {
-        game.activePlayer.hand = [1,2,3];
+    it("should reject illegal input for card choice", function () {
+        game.activePlayer.hand = [1, 2, 3];
         game.activePlayer.mana = 3;
-        spyOn(window, 'prompt').and.returnValue('abc').and.returnValue('$%&').and.returnValue('3');
+        spyOn(window, 'prompt').and.returnValue('abc');
+        spyOn(window, 'confirm').and.returnValue(false);
 
         game.playTurn();
 
-        expect(game.activePlayer.hand).toEqual([1,2]);
+        expect(window.confirm).toHaveBeenCalledWith('abc is not a valid card!');
+        expect(game.activePlayer.mana).toBe(3);
+        expect(game.activePlayer.hand).toEqual([1, 2, 3]);
+    });
+
+    it("should play cards for attacking opponent by default", function () {
+        game.activePlayer.hand = [5,7];
+        game.activePlayer.mana = 6;
+        game.opponentPlayer.health = 30;
+        spyOn(window, 'prompt').and.returnValue('5');
+
+        game.playTurn();
+
+        expect(game.opponentPlayer.health).toBe(25);
+    });
+
+    it("should play cards for healing when choice is followed by 'h'", function () {
+        game.activePlayer.hand = [5,7];
+        game.activePlayer.mana = 6;
+        game.activePlayer.health = 3;
+        spyOn(window, 'prompt').and.returnValue('5h');
+
+        game.playTurn();
+
+        expect(game.activePlayer.health).toBe(8);
+    });
+
+    it("should end with active player as winner if opponent gets killed by last attack", function () {
+        game.activePlayer.hand = [8];
+        game.activePlayer.mana = 10;
+        game.opponentPlayer.health = 7;
+        spyOn(window, 'prompt').and.returnValue('8');
+        spyOn(window, 'confirm').and.returnValue(true);
+
+        game.playTurn();
+        game.endTurn();
+
+        expect(window.confirm.calls.mostRecent().args).toMatch('player[12] wins!');
     });
 
 });

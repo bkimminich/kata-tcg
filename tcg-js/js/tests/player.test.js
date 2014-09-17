@@ -86,12 +86,12 @@ describe("A Player", function () {
 
     it("should remove played cards from hand", function () {
         player.mana = 3;
-        player.hand = [1,2,7,8];
+        player.hand = [1, 2, 7, 8];
 
         player.playCard(1, opponent);
         player.playCard(2, player);
 
-        expect(player.hand).toEqual([7,8]);
+        expect(player.hand).toEqual([7, 8]);
     });
 
     it("should cap healing at 30 health", function () {
