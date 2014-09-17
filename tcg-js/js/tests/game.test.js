@@ -68,7 +68,7 @@ describe("A Game", function () {
         expect(game.opponentPlayer).toBe(previousActivePlayer);
     });
 
-    it("should ask the active player which card to play in his turn", function () {
+    it("should play card chosen by active player in his turn", function () {
         game.activePlayer.hand = [2, 3, 7];
         game.activePlayer.mana = 4;
         spyOn(window, 'prompt').and.returnValue('3');
@@ -127,6 +127,28 @@ describe("A Game", function () {
         expect(window.confirm).toHaveBeenCalledWith('abc is not a valid card!');
         expect(game.activePlayer.mana).toBe(3);
         expect(game.activePlayer.hand).toEqual([1, 2, 3]);
+    });
+
+    it("should play cards for attacking opponent by default", function () {
+        game.activePlayer.hand = [5,7];
+        game.activePlayer.mana = 6;
+        game.opponentPlayer.health = 30;
+        spyOn(window, 'prompt').and.returnValue('5');
+
+        game.playTurn();
+
+        expect(game.opponentPlayer.health).toBe(25);
+    });
+
+    it("should play cards for healing when choice is followed by 'h'", function () {
+        game.activePlayer.hand = [5,7];
+        game.activePlayer.mana = 6;
+        game.activePlayer.health = 3;
+        spyOn(window, 'prompt').and.returnValue('5h');
+
+        game.playTurn();
+
+        expect(game.activePlayer.health).toBe(8);
     });
 
 });

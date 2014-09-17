@@ -34,7 +34,11 @@ Game.prototype = {
                         return;
                     }
                 } else {
-                    this.activePlayer.playCard(chosenCard, this.opponentPlayer);
+                    if (choice.indexOf('h') == 1) { // expected input is [0-8]h? so 'h' would only be valid on exactly 2nd position
+                        this.activePlayer.playCard(chosenCard, this.activePlayer);
+                    } else {
+                        this.activePlayer.playCard(chosenCard, this.opponentPlayer);
+                   }
                 }
             } else {
                 return;
