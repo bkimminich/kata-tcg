@@ -58,14 +58,18 @@ public class Game {
     }
 
     public void run() {
-        while (getWinner() == null) {
+        while (true) {
             beginTurn();
-            while (activePlayer.canPlayCards()) {
-                activePlayer.playCard(opponentPlayer);
+            if (getWinner() == null) {
+                while (activePlayer.canPlayCards()) {
+                    activePlayer.playCard(opponentPlayer);
+                }
+                endTurn();
+            } else {
+                logger.info(getWinner() + " wins the game!");
+                break;
             }
-            endTurn();
         }
-        logger.info(getWinner() + " wins the game!");
     }
 
     public Player getActivePlayer() {
