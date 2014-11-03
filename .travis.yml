@@ -24,6 +24,5 @@ addons:
 
 after_success:
   ./gradlew jacocoTestReport coveralls
-
-after_script:
-  cd ./tcg-js; cat "./coverage/PhantomJS 1.9.7 (Linux)/lcov.info" | ./node_modules/.bin/codeclimate
+  ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
+  cat "./tcg-js/coverage/lcov_merged.info" | ./node_modules/.bin/codeclimate
