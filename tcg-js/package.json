@@ -15,7 +15,8 @@
         "karma-jasmine": "~0.2.0",
         "karma-phantomjs-launcher": "~0.1",
         "karma-coverage": "~0.2.6",
-        "codeclimate-test-reporter": "~0.0.3"
+        "codeclimate-test-reporter": "~0.0.3",
+        "lcov-result-merger": "~1.0"
     },
 
     "repository": {

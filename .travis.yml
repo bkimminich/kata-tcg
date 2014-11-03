@@ -23,6 +23,7 @@ addons:
     repo_token: 45e3b73d13d7e754ba200dc6a60ca8eaff54f8e7a800d78a7b085d63d4f1e533
 
 after_success:
-  ./gradlew jacocoTestReport coveralls
-  ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
-  cat "./tcg-js/coverage/lcov_merged.info" | ./node_modules/.bin/codeclimate
+  - ./gradlew jacocoTestReport coveralls
+  - ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
+  - cat "./tcg-js/coverage/lcov_merged.info" | ./tcg-js/node_modules/.bin/codeclimate
+
