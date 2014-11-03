@@ -25,5 +25,5 @@ addons:
 after_success:
   - ./gradlew jacocoTestReport coveralls
   - ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
-  - cat "./tcg-js/coverage/lcov_merged.info" | ./tcg-js/node_modules/.bin/codeclimate
+  - cd ./tcg-js; cat "./coverage/lcov_merged.info" | ./node_modules/.bin/codeclimate
 
