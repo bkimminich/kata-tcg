@@ -72,3 +72,7 @@ When the normal game rules have become too easy/boring you might consider adding
 | coverity_scan | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=coverity_scan)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=coverity_scan)](https://coveralls.io/r/bkimminich/kata-tcg?branch=coverity_scan) [![Coverity Status](https://scan.coverity.com/projects/2931/badge.svg)](https://scan.coverity.com/projects/2931) | |
 
 [![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bkimminich/kata-tcg/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
