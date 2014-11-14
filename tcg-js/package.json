@@ -1,7 +1,7 @@
 {
     "name": "kata-tcg",
     "version": "1.4.0",
-    "description": "sample implementation of the Trading Card Game Kata",
+    "description": "Sample implementation of the Trading Card Game Kata",
     "author": "Bjoern Kimminich",
     "private": true,
 
