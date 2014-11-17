@@ -30,3 +30,4 @@ RemoteSystemsTempFiles/
 # Gradle
 build/
 .gradle/
+gradle.properties
