@@ -25,7 +25,7 @@ public class AiStrategyTest {
         assertThat(strategy.nextMove(withMana(8), andHealth(30), fromCards(7, 6, 4, 3, 2)), either(is(isAttackingWithCard(2))).or(is(isAttackingWithCard(6))));
     }
 
-    @Test
+/*    @Test
     public void shouldPlayAsManyCardsAsPossibleForMaximumDamage() {
         assertThat(strategy.nextMove(withMana(3), andHealth(30), fromCards(1, 2, 3)), either(is(isAttackingWithCard(1))).or(is(isAttackingWithCard(2))));
     }
@@ -40,7 +40,7 @@ public class AiStrategyTest {
         assertThat(strategy.nextMove(withMana(3), andHealth(8), fromCards(1, 1, 1)), isHealingWithCard(1));
         assertThat(strategy.nextMove(withMana(2), andHealth(9), fromCards(1, 1)), isHealingWithCard(1));
         assertThat(strategy.nextMove(withMana(1), andHealth(10), fromCards(1)), isAttackingWithCard(1));
-    }
+    }*/
 
     @Test
     public void shouldReturnNoCardIfInsufficientManaForAnyHandCard() {
