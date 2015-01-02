@@ -5,6 +5,9 @@ jdk:
 
 before_install:
   - chmod +x gradlew
+  - curl -sL https://deb.nodesource.com/setup | sudo bash -
+  - sudo apt-get install -y nodejs
+  - npm install -g karma
 
 env:
   global:
