@@ -37,7 +37,7 @@ public class ConsoleInputStrategyTest {
         assertThat(strategy.nextMove(withMana(6), andHealth(30), fromCards(6, 7, 8)), isAttackingWithCard(6));
     }
 
-/*    @Test
+    @Test
     public void willRejectCardsNotPresentInHandUntilHandCardIsChosen() {
         player().enters("1").enters("2").enters("3").finished();
 
@@ -56,7 +56,7 @@ public class ConsoleInputStrategyTest {
         player().enters("xxx").enters("§$%").enters("2").finished();
 
         assertThat(strategy.nextMove(withMana(10), andHealth(30), fromCards(2)), isAttackingWithCard(2));
-    }*/
+    }
 
     private ConsoleInputBuilder player() {
         return new ConsoleInputBuilder();

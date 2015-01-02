@@ -73,7 +73,7 @@ public class PlayerTest {
         assertThat(player.getNumberOfHandCards(), is(equalTo(1)));
     }
 
-/*    @Test
+    @Test
     public void playerShouldTakeOneDamageWhenDrawingFromEmptyDeck() {
         player = aPlayer().withHealth(30).withNoCardsInDeck().build();
 
@@ -129,7 +129,7 @@ public class PlayerTest {
         player.playCard(aCardWithValue(2), opponent, DAMAGE);
 
         assertThat(opponent.getHealth(), is(equalTo(25)));
-    }*/
+    }
 
     @Test
     public void playerWithSufficientManaCanPlayCards() {
