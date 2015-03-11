@@ -1,4 +1,4 @@
-(ns game)
+(ns de.kimminich.kata.tcg.game)
 
 (def player {
               :health 30

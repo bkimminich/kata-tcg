@@ -1,6 +1,6 @@
-(ns game_test
-  (use game)
-  (use clojure.test)
+(ns de.kimminich.kata.tcg.game_test
+  (:use de.kimminich.kata.tcg.game)
+  (:use clojure.test)
   )
 
 (deftest player-test

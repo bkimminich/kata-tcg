@@ -20,7 +20,8 @@ addons:
     build_command: "./gradlew assemble"
     branch_pattern: coverity_scan
   code_climate:
-    repo_token: 45e3b73d13d7e754ba200dc6a60ca8eaff54f8e7a800d78a7b085d63d4f1e533
+    repo_token:
+      secure: "BZmcxIDz7oEkm7PGOmZBS7ShRxH/AWL6ktf614qyDrfBA1YFIs/i1dnz39TTRl3kN7WOMu5XhQDDQxz6ZaPDOWOE/HQorQIX2ATiMXaohwZPg3qgjKHN3jtLRlO3JHLpazABOrEBHG0WsK6hIIHUcv+JbHQF0HyP/7a5RGkv4HA="
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
