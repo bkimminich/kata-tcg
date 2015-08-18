@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath group: 'clojuresque', name: 'clojuresque', version: '1.6.0'
+        classpath group: 'clojuresque', name: 'clojuresque', version: '1.7.0'
     }
 }
 
@@ -17,5 +17,5 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.clojure', name: 'clojure', version: '1.6.0'
+    compile group: 'org.clojure', name: 'clojure', version: '1.7.0'
 }
