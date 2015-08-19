@@ -108,7 +108,7 @@ class PlayerSpec extends Specification {
         8    | 30
     }
 
-    @Unroll("placing a minion with a card of value #card creates a minion with #expectedHealth health and #expectedAttack attack")
+    @Unroll("placing a minion with a card of value #card creates a minion with #expectedHealth health and #expectedDamage damage")
     def "placing a minion with a card creates a minion with health equal to mana cost (but at least 1) and attack equal to mana cost"() {
         given:
         player = new Player()
@@ -117,11 +117,12 @@ class PlayerSpec extends Specification {
         player.playCard(card, new Player(), "m")
 
         then:
+        player.minions[0].maxHealth == expectedHealth
         player.minions[0].health == expectedHealth
-        player.minions[0].attack == expectedAttack
+        player.minions[0].damage == expectedDamage
 
         where:
-        card | expectedHealth | expectedAttack
+        card | expectedHealth | expectedDamage
         0    | 1              | 0
         1    | 1              | 1
         2    | 2              | 2

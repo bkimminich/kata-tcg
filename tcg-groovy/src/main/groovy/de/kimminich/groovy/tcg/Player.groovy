@@ -34,7 +34,8 @@ class Player {
     }
 
     def placeMinion(int card) {
-        this.minions.add(new Minion(health: Math.max(card,1), attack: card))
+        int health = Math.max(card,1)
+        this.minions.add(new Minion(health: health, maxHealth: health, damage: card))
     }
 
     def playCard(int card, Player opponent) {
@@ -82,7 +83,7 @@ class Player {
     }
 
     private boolean isValid(String input) {
-        return input.matches("[ah]?[0-8]")
+        return input ==~ /[ah]?[0-8]/
     }
 
     String playerInfo() {

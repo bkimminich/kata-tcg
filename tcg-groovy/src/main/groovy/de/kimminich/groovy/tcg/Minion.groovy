@@ -3,6 +3,12 @@ package de.kimminich.groovy.tcg
 class Minion {
 
     int health
-    int attack
+    int maxHealth
+    int damage
+
+    String stats() {
+        "Minion | Health: " + health + "/" + maxHealth + " | Damage: " + damage
+    }
+
 
 }
