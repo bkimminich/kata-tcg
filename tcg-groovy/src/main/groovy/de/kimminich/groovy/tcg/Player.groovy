@@ -83,7 +83,7 @@ class Player {
     }
 
     private boolean isValid(String input) {
-        return input ==~ /[ah]?[0-8]/
+        input ==~ /[ah]?[0-8]/
     }
 
     String stats() {

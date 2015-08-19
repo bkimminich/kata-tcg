@@ -6,7 +6,7 @@ class DefaultOptionPane implements OptionPane {
 
     @Override
     String showInputDialog(String message) {
-        return JOptionPane.showInputDialog(message)
+        JOptionPane.showInputDialog(message)
     }
 
     @Override
