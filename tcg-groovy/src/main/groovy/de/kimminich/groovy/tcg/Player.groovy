@@ -63,7 +63,7 @@ class Player {
 
     def playTurn(Player opponent) {
         String input;
-        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose action (<a>ttack, <h>eal, <m>inion) and card to play: " + hand)) != null) {
+        while ((input = optionPane.showInputDialog(stats() + " - Choose action (<a>ttack, <h>eal, <m>inion) and card to play: " + hand)) != null) {
             if (isValid(input)) {
                 String action = input[0]
                 Integer cardToPlay = input[-1..-1].toInteger()
@@ -86,7 +86,7 @@ class Player {
         return input ==~ /[ah]?[0-8]/
     }
 
-    String playerInfo() {
+    String stats() {
         name + " | Health: " + health + " | Mana: " + mana + "/" + maxMana
     }
 }

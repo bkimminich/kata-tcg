@@ -150,7 +150,7 @@ class PlayerSpec extends Specification {
         player = new Player(health: 29, mana: 6, maxMana: 7)
 
         expect:
-        player.playerInfo() ==~ /Player \d* \| Health: 29 \| Mana: 6\/7/
+        player.stats() ==~ /Player \d* \| Health: 29 \| Mana: 6\/7/
 
     }
 
