@@ -85,7 +85,7 @@ class PlayerSpec extends Specification {
     }
 
     @Unroll("healing with a card of value #card increases own health from 23 to #expectedHealth")
-    def "healing with a card increases own health equal to mana cost without overhealing beyond 30"() {
+    def "healing with a card increases own health equal to mana cost without healing above 30"() {
         given:
         player = new Player(health: 23)
 
@@ -108,8 +108,8 @@ class PlayerSpec extends Specification {
         8    | 30
     }
 
-    @Unroll("playing a minion with a card of value #card creates a minion with #expectedHealth health and #expectedAttack attack")
-    def "playing a minion with a card creates a minion with health and attack each equal to mana cost"() {
+    @Unroll("placing a minion with a card of value #card creates a minion with #expectedHealth health and #expectedAttack attack")
+    def "placing a minion with a card creates a minion with health equal to mana cost (but at least 1) and attack equal to mana cost"() {
         given:
         player = new Player()
 
@@ -122,7 +122,7 @@ class PlayerSpec extends Specification {
 
         where:
         card | expectedHealth | expectedAttack
-        0    | 0              | 0
+        0    | 1              | 0
         1    | 1              | 1
         2    | 2              | 2
         3    | 3              | 3

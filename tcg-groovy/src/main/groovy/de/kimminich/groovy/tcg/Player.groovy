@@ -34,7 +34,7 @@ class Player {
     }
 
     def placeMinion(int card) {
-        this.minions.add(new Minion(health: card, attack: card))
+        this.minions.add(new Minion(health: Math.max(card,1), attack: card))
     }
 
     def playCard(int card, Player opponent) {
