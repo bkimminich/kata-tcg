@@ -33,6 +33,10 @@ class Player {
         this.health = Math.min(this.health + card, 30)
     }
 
+    def placeMinion(int card) {
+        this.minions.add(new Minion(health: card, attack: card))
+    }
+
     def playCard(int card, Player opponent) {
         playCard(card, opponent, "a")
     }
@@ -46,6 +50,9 @@ class Player {
                 break
             case "h":
                 heal(card)
+                break
+            case "m":
+                placeMinion(card)
                 break
             default:
                 attack(card, opponent)

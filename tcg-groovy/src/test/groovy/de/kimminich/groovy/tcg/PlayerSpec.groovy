@@ -108,6 +108,31 @@ class PlayerSpec extends Specification {
         8    | 30
     }
 
+    @Unroll("playing a minion with a card of value #card creates a minion with #expectedHealth health and #expectedAttack attack")
+    def "playing a minion with a card creates a minion with health and attack each equal to mana cost"() {
+        given:
+        player = new Player()
+
+        when:
+        player.playCard(card, new Player(), "m")
+
+        then:
+        player.minions[0].health == expectedHealth
+        player.minions[0].attack == expectedAttack
+
+        where:
+        card | expectedHealth | expectedAttack
+        0    | 0              | 0
+        1    | 1              | 1
+        2    | 2              | 2
+        3    | 3              | 3
+        4    | 4              | 4
+        5    | 5              | 5
+        6    | 6              | 6
+        7    | 7              | 7
+        8    | 8              | 8
+    }
+
     def "playing a card removes that card from the hand"() {
         given:
         player = new Player(hand: [1, 2, 3, 4, 5])
