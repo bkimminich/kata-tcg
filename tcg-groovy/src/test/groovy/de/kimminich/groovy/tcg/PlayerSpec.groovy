@@ -58,15 +58,15 @@ class PlayerSpec extends Specification {
         player.hand == [1, 2, 3, 4, 5]
     }
 
-    @Unroll("playing a card with value #card diminishes opponent health from 30 to #expectedHealth")
-    def "playing a card causes damage equal to mana cost to opponent player"() {
+    @Unroll("attacking with a card of value #card diminishes opponent health from 30 to #expectedHealth")
+    def "attacking with a card causes damage equal to mana cost to opponent player"() {
         given:
         player = new Player()
         and:
         Player opponent = new Player(health: 30)
 
         when:
-        player.playCard(card, opponent)
+        player.playCard(card, opponent, "a")
 
         then:
         opponent.health == expectedHealth
@@ -82,6 +82,30 @@ class PlayerSpec extends Specification {
         6    | 24
         7    | 23
         8    | 22
+    }
+
+    @Unroll("healing with a card of value #card increases own health from 23 to #expectedHealth")
+    def "healing with a card increases own health equal to mana cost without overhealing beyond 30"() {
+        given:
+        player = new Player(health: 23)
+
+        when:
+        player.playCard(card, new Player(), "h")
+
+        then:
+        player.health == expectedHealth
+
+        where:
+        card | expectedHealth
+        0    | 23
+        1    | 24
+        2    | 25
+        3    | 26
+        4    | 27
+        5    | 28
+        6    | 29
+        7    | 30
+        8    | 30
     }
 
     def "playing a card removes that card from the hand"() {
@@ -161,6 +185,21 @@ class PlayerSpec extends Specification {
 
         then:
         player.health == 11
+
+    }
+
+    def "player can choose higher card for healing but will not heal beyond initial health of 30"() {
+        given:
+        OptionPane optionPane = Mock(OptionPane)
+        optionPane.showInputDialog(_ as String) >>> ["h8", null]
+        and:
+        player = new Player(health: 28, hand: [8], mana: 8, optionPane: optionPane)
+
+        when:
+        player.playTurn(new Player())
+
+        then:
+        player.health == 30
 
     }
 

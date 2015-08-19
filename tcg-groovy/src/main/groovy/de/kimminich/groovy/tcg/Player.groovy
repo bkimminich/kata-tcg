@@ -30,25 +30,25 @@ class Player {
     }
 
     def heal(int card) {
-        this.health += card
+        this.health = Math.min(this.health + card, 30)
     }
 
     def playCard(int card, Player opponent) {
         playCard(card, opponent, "a")
     }
 
-    def playCard(int card, Player target, String action) {
+    def playCard(int card, Player opponent, String action) {
         mana -= card
         hand.remove(card as Object)
         switch (action) {
             case "a":
-                attack(card, target)
+                attack(card, opponent)
                 break
             case "h":
                 heal(card)
                 break
             default:
-                attack(card, target)
+                attack(card, opponent)
                 break
         }
     }
