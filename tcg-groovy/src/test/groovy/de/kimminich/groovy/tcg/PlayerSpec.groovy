@@ -149,4 +149,21 @@ class PlayerSpec extends Specification {
 
     }
 
+    def "attacking is the default action for playing cards when no action is specified"() {
+        given:
+        OptionPane optionPane = Mock(OptionPane)
+        optionPane.showInputDialog(_ as String) >>> ["4", null]
+        and:
+        player = new Player(hand: [4], mana: 4, optionPane: optionPane)
+        and:
+        Player opponent = new Player(health: 30)
+
+        when:
+        player.playTurn(opponent)
+
+        then:
+        opponent.health == 26
+
+    }
+
 }
