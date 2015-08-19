@@ -20,6 +20,8 @@ class PlayerSpec extends Specification {
         player.deck == [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
         and: "player should hold no cards in his hand"
         player.hand == []
+        and: "player should have no minions on the board"
+        player.minions == []
     }
 
     def "drawing a card should move one card from the deck into the hand"() {
@@ -128,6 +130,23 @@ class PlayerSpec extends Specification {
 
         then:
         player.hand == [5]
+    }
+
+    def "player can choose to use a card for attacking his opponent"() {
+        given:
+        OptionPane optionPane = Mock(OptionPane)
+        optionPane.showInputDialog(_ as String) >>> ["a3", null]
+        and:
+        player = new Player(hand: [3], mana: 3, optionPane: optionPane)
+        and:
+        Player opponent = new Player(health: 30)
+
+        when:
+        player.playTurn(opponent)
+
+        then:
+        opponent.health == 27
+
     }
 
 }

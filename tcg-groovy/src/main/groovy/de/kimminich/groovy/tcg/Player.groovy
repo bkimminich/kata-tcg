@@ -9,6 +9,7 @@ class Player {
     int maxMana = 0
     ArrayList<Integer> deck = [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
     ArrayList<Integer> hand = []
+    ArrayList<Minion> minions = []
 
     OptionPane optionPane = new DefaultOptionPane()
 
@@ -32,9 +33,9 @@ class Player {
 
     def playTurn(Player opponent) {
         String input;
-        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose card to play: " + hand)) != null) {
-            if (input.isInteger()) {
-                Integer cardToPlay = input.toInteger()
+        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose action (_a_ttack) and card to play: " + hand)) != null) {
+            if (isValid(input)) {
+                Integer cardToPlay = input[-1..-1].toInteger()
                 if (hand.contains(cardToPlay)) {
                     if (mana >= cardToPlay) {
                         playCard(cardToPlay, opponent)
@@ -48,6 +49,10 @@ class Player {
                 optionPane.showMessageDialog("Invalid input!")
             }
         }
+    }
+
+    private boolean isValid(String input) {
+        return input.matches("a?[0-8]")
     }
 
     String playerInfo() {
