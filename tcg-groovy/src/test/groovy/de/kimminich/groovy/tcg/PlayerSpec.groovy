@@ -149,6 +149,21 @@ class PlayerSpec extends Specification {
 
     }
 
+    def "player can choose to use a card for healing himself"() {
+        given:
+        OptionPane optionPane = Mock(OptionPane)
+        optionPane.showInputDialog(_ as String) >>> ["h3", null]
+        and:
+        player = new Player(health: 8, hand: [3], mana: 3, optionPane: optionPane)
+
+        when:
+        player.playTurn(new Player())
+
+        then:
+        player.health == 11
+
+    }
+
     def "attacking is the default action for playing cards when no action is specified"() {
         given:
         OptionPane optionPane = Mock(OptionPane)

@@ -25,20 +25,43 @@ class Player {
         }
     }
 
-    def playCard(int card, Player opponent) {
+    def attack(int card, Player opponent) {
         opponent.health -= card
+    }
+
+    def heal(int card) {
+        this.health += card
+    }
+
+    def playCard(int card, Player opponent) {
+        playCard(card, opponent, "a")
+    }
+
+    def playCard(int card, Player target, String action) {
         mana -= card
         hand.remove(card as Object)
+        switch (action) {
+            case "a":
+                attack(card, target)
+                break
+            case "h":
+                heal(card)
+                break
+            default:
+                attack(card, target)
+                break
+        }
     }
 
     def playTurn(Player opponent) {
         String input;
-        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose action (_a_ttack) and card to play: " + hand)) != null) {
+        while ((input = optionPane.showInputDialog(playerInfo() + " - Choose action (<a>ttack, <h>eal) and card to play: " + hand)) != null) {
             if (isValid(input)) {
+                String action = input[0]
                 Integer cardToPlay = input[-1..-1].toInteger()
                 if (hand.contains(cardToPlay)) {
                     if (mana >= cardToPlay) {
-                        playCard(cardToPlay, opponent)
+                        playCard(cardToPlay, opponent, action)
                     } else {
                         optionPane.showMessageDialog("You do not have enough mana to play this card!")
                     }
@@ -52,7 +75,7 @@ class Player {
     }
 
     private boolean isValid(String input) {
-        return input.matches("a?[0-8]")
+        return input.matches("[ah]?[0-8]")
     }
 
     String playerInfo() {
