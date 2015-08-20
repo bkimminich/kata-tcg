@@ -30,12 +30,18 @@ class Player {
     }
 
     def heal(int card) {
-        this.health = Math.min(this.health + card, 30)
+        health = Math.min(health + card, 30)
     }
 
     def placeMinion(int card) {
-        int health = Math.max(card,1)
-        this.minions.add(new Minion(health: health, maxHealth: health, damage: card))
+        if (minions.size() < 3) {
+            int health = Math.max(card,1)
+            minions.add(new Minion(health: health, maxHealth: health, damage: card))
+        } else {
+            mana += card
+            hand.add(card)
+            optionPane.showMessageDialog("You cannot have more than 3 minions at a time!")
+        }
     }
 
     def playCard(int card, Player opponent) {
