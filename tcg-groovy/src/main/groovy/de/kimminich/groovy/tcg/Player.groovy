@@ -25,7 +25,7 @@ class Player {
         }
     }
 
-    def attack(int card, Player opponent) {
+    static attack(int card, Player opponent) {
         opponent.health -= card
     }
 
@@ -82,8 +82,8 @@ class Player {
         }
     }
 
-    private boolean isValid(String input) {
-        input ==~ /[ah]?[0-8]/
+    static boolean isValid(String input) {
+        input ==~ /[ahm]?[0-8]/
     }
 
     String stats() {

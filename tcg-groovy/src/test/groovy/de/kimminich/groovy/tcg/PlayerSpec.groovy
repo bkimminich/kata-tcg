@@ -214,6 +214,23 @@ class PlayerSpec extends Specification {
 
     }
 
+    def "player can choose to use a card for placing a minion"() {
+        given:
+        OptionPane optionPane = Mock(OptionPane)
+        optionPane.showInputDialog(_ as String) >>> ["m5", null]
+        and:
+        player = new Player(hand: [5], mana: 5, optionPane: optionPane)
+
+        when:
+        player.playTurn(new Player())
+
+        then:
+        player.minions[0].maxHealth == 5
+        player.minions[0].health == 5
+        player.minions[0].damage == 5
+
+    }
+
     def "player can choose higher card for healing but will not heal beyond initial health of 30"() {
         given:
         OptionPane optionPane = Mock(OptionPane)
