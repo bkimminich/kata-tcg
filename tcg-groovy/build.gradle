@@ -1,7 +1,19 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
+    }
+}
 
 repositories {
     jcenter()
@@ -13,3 +25,10 @@ dependencies {
 }
 
 mainClassName = 'de.kimminich.groovy.tcg.Game'
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
