@@ -1,17 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
-    }
-}
 
 sourceCompatibility = 1.8
 
@@ -34,7 +23,7 @@ run {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
+        xml.enabled = true
         html.enabled = true
     }
 }

@@ -1,7 +1,62 @@
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
 subprojects {
     version = '1.5.0'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
+}
+
+evaluationDependsOnChildren()
+
+def publishedProjects = subprojects.findAll {
+    (it.path == ':tcg-java') || (it.path == ':tcg-groovy')
+}
+
+task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
+    description = 'Generates an aggregate report from all subprojects'
+    dependsOn(publishedProjects.test)
+
+    additionalSourceDirs = files(publishedProjects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories = files(publishedProjects.sourceSets.main.allSource.srcDirs)
+    classDirectories = files(publishedProjects.sourceSets.main.output)
+    executionData = files(publishedProjects.jacocoTestReport.executionData)
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
+    }
+
+    doFirst {
+        executionData = files(executionData.findAll { it.exists() })
+    }
+}
+
+coveralls {
+    sourceDirs = publishedProjects.sourceSets.main.allSource.srcDirs.flatten()
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+}
+
+tasks.coveralls {
+    group = 'Coverage reports'
+    description = 'Uploads the aggregated coverage report to Coveralls'
+
+    dependsOn jacocoRootReport
+    onlyIf { System.env.'CI' }
 }
