@@ -59,8 +59,8 @@ public class Game {
 
     public void run() {
         while (true) {
-            beginTurn();
             if (getWinner() == null) {
+                beginTurn();
                 while (activePlayer.canPlayCards()) {
                     activePlayer.playCard(opponentPlayer);
                 }

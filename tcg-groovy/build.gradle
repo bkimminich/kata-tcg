@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
@@ -8,8 +9,15 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.3.+'
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '0.7-groovy-2.0'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.+'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
 }
 
 mainClassName = 'de.kimminich.groovy.tcg.Game'
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
