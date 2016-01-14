@@ -1,4 +1,4 @@
-# Code Kata: Trading Card Game (TCG)
+# Code Kata: Trading Card Game (TCG) [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg)
 
 In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will be implementing a two-player trading card game. The rules are loosely based on [Hearthstone - Heroes of Warcraft®](http://us.battle.net/hearthstone/en/). This Kata is supposed to be slightly more complex than some of the well-known traditional Katas (e.g. [Roman Numbers](http://codingdojo.org/cgi-bin/wiki.pl?KataRomanNumerals), [Bowling Game](http://codingdojo.org/cgi-bin/wiki.pl?KataBowling) or [FizzBuzz](http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz)) especially when adding some of the [Advanced Variations](#AdvancedVariations) proposed below. Kata TCG leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different angles. The Kata should also be well suited for your own rule extensions and modifications. It should offer challenges for developers of all experience levels.
 
@@ -65,9 +65,10 @@ When the normal game rules have become too easy/boring you might consider adding
 - Introduce _Card Drawer_ cards that cost Mana but don't do any damage. Instead they let you draw a given number of cards from your deck. Those cards can be used in the current turn or later on (just as if normally drawn at the beginning of the active player's turn).
 - Allow players to create their own decks of 20 cards from a larger _Card Pool_. Let those decks be saved to and loaded from disk before starting a game.
 
----
+### Sample Implementation Status
 
-| Build Status | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) |
+| Language | Quality Metrics |
+| --- | --- |
 | Java | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1) |
 | JS | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa) |
 | Groovy | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce) |
@@ -75,4 +76,3 @@ When the normal game rules have become too easy/boring you might consider adding
 
 [![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)
 [![geeklist](http://img.shields.io/badge/geeklist-%5E5-green.svg)](https://geekli.st/bkimminich/i-created-a-versatile-trading-card-game-code-kata)
-[![Gratipay](http://img.shields.io/gratipay/bkimminich.svg)](https://gratipay.com/bkimminich)
