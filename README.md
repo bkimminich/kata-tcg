@@ -51,13 +51,13 @@ When the normal game rules have become too easy/boring you might consider adding
 | --- | --- |
 | Let players choose to play cards either as immediate damage _Attacks_ (same as cards generally worked in the [Basic Gameplay](#BasicGameplay) rules) or as _Minions_ that are put on the board instead. Minions will use the mana cost of their card as Health and Damage value. Playing a 0 card will create a minion with 1 Health and 0 Damage. | ![Playing Card as Minion](doc/Minions1_PlayingCardAsMinion.png) |
 | Health has to be tracked when they receive damage. ||
-| Each player can have a _maximum of 3 Minions_ on the board at any given time. | | 
+| Each player can have a _maximum of 3 Minions_ on the board at any given time. | |
 | A Minion will _sleep_ in the turn it was put on the board. | ![Sleeping on first turn](doc/Minions2_SleepingOnFirstTurn.png) |
 | In any subsequent turn _each_ Minion can be used _once_ to deal damage to the opponent player or an opponent Minion. | ![Attacking Opponent or enemy Minion](doc/Minions3_AttackingOpponentOrEnemyMinion.png) |
 | A Minion fighting another Minion will result in them dealing their damage value to each other simultaneously. | ![Simultaneous Damage](doc/Minions4_SimultaneousDamage.png) |
 | Sleeping Minions will defend themselves in the same way when attacked by another Minion. | ![Sleeping Minions fight back](doc/Minions5_SleepingMinionsFightBack.png) |
 | Players can choose to play an Attack against a Minion. The attacked Minion will not defend itself in this case, thus the attacking player receives no damage from it. | ![Player fighting Minion](doc/Minions6_PlayerFightingMinion.png) |
-| When a Minions health drops to or below zero it is removed from the board. | ![Kill Minion](doc/Minions7_KillMinion.png) | 
+| When a Minions health drops to or below zero it is removed from the board. | ![Kill Minion](doc/Minions7_KillMinion.png) |
 
 ### Miscellaneous
 
@@ -67,11 +67,11 @@ When the normal game rules have become too easy/boring you might consider adding
 
 ---
 
-| Branch | Build Status | Java | JS | Groovy | Clojure |
-| --- | --- | --- | --- | --- | --- |
-| master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1) | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa) | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce) | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126) |
-| develop | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=develop)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=develop)](https://coveralls.io/r/bkimminich/kata-tcg?branch=develop) | | | |
-| coverity_scan | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=coverity_scan)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=coverity_scan)](https://coveralls.io/r/bkimminich/kata-tcg?branch=coverity_scan) [![Coverity Status](https://scan.coverity.com/projects/2931/badge.svg)](https://scan.coverity.com/projects/2931) | | | |
+| Build Status | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) |
+| Java | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1) |
+| JS | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa) |
+| Groovy | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce) |
+| Clojure | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126) |
 
 [![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)
 [![geeklist](http://img.shields.io/badge/geeklist-%5E5-green.svg)](https://geekli.st/bkimminich/i-created-a-versatile-trading-card-game-code-kata)
