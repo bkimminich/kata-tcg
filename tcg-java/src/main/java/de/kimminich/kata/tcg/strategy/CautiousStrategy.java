@@ -4,9 +4,7 @@ import de.kimminich.kata.tcg.Action;
 import de.kimminich.kata.tcg.Card;
 import de.kimminich.kata.tcg.Move;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * This strategy plays the highest affordable cards for attacking. It switches into healing with the lowest possible cards when the players health falls below 20.
