@@ -1,4 +1,4 @@
-# Code Kata: Trading Card Game (TCG)
+# Code Kata: Trading Card Game (TCG) [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg)
 
 In this [Code Kata](http://en.wikipedia.org/wiki/Kata_\(programming\)) you will be implementing a two-player trading card game. The rules are loosely based on [Hearthstone - Heroes of Warcraft®](http://us.battle.net/hearthstone/en/). This Kata is supposed to be slightly more complex than some of the well-known traditional Katas (e.g. [Roman Numbers](http://codingdojo.org/cgi-bin/wiki.pl?KataRomanNumerals), [Bowling Game](http://codingdojo.org/cgi-bin/wiki.pl?KataBowling) or [FizzBuzz](http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz)) especially when adding some of the [Advanced Variations](#AdvancedVariations) proposed below. Kata TCG leaves room for different focuses (like playing cards based on user input and/or algorithmic decision logic) and can be approached iteratively with TDD from different angles. The Kata should also be well suited for your own rule extensions and modifications. It should offer challenges for developers of all experience levels.
 
@@ -67,8 +67,12 @@ When the normal game rules have become too easy/boring you might consider adding
 
 ---
 
-| Branch | Build Status | Java | JS | Groovy | Clojure |
-| --- | --- | --- | --- | --- | --- |
-| master | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=master)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1) | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa) | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce) | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126) |
-| develop | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=develop)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=develop)](https://coveralls.io/r/bkimminich/kata-tcg?branch=develop) | | | |
-| coverity_scan | [![Build Status](https://travis-ci.org/bkimminich/kata-tcg.svg?branch=coverity_scan)](https://travis-ci.org/bkimminich/kata-tcg) | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=coverity_scan)](https://coveralls.io/r/bkimminich/kata-tcg?branch=coverity_scan) [![Coverity Status](https://scan.coverity.com/projects/2931/badge.svg)](https://scan.coverity.com/projects/2931) | | | |
+## Static Code Analysis
+
+### Java | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1)
+
+### Javascript [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa)
+
+### Groovy [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce)
+
+### Clojure [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126)
