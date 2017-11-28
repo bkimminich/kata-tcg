@@ -72,7 +72,4 @@ When the normal game rules have become too easy/boring you might consider adding
 | Java | [![Coverage Status](https://coveralls.io/repos/bkimminich/kata-tcg/badge.png?branch=master)](https://coveralls.io/r/bkimminich/kata-tcg?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f980320000d1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f980320000d1) |
 | JS | [![Test Coverage](https://codeclimate.com/github/bkimminich/kata-tcg/badges/coverage.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Code Climate](https://codeclimate.com/github/bkimminich/kata-tcg/badges/gpa.svg)](https://codeclimate.com/github/bkimminich/kata-tcg) [![Dependency Status](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3040c310f96cf00000fa) |
 | Groovy | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f90e740000ce) |
-| Clojure | [![Dependency Status](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126/badge.svg?style=flat)](https://www.versioneye.com/user/projects/544a3042c310f9bcb5000126) |
 
-[![endorse](https://api.coderwall.com/bkimminich/endorsecount.png)](https://coderwall.com/bkimminich)
-[![geeklist](http://img.shields.io/badge/geeklist-%5E5-green.svg)](https://geekli.st/bkimminich/i-created-a-versatile-trading-card-game-code-kata)
