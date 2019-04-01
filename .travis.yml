@@ -24,7 +24,9 @@ addons:
       secure: "BZmcxIDz7oEkm7PGOmZBS7ShRxH/AWL6ktf614qyDrfBA1YFIs/i1dnz39TTRl3kN7WOMu5XhQDDQxz6ZaPDOWOE/HQorQIX2ATiMXaohwZPg3qgjKHN3jtLRlO3JHLpazABOrEBHG0WsK6hIIHUcv+JbHQF0HyP/7a5RGkv4HA="
 
 after_success:
+  - ./gradlew dependencyCheck --info
   - ./gradlew coveralls
+  - ./gradlew pitest
   - ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
   - cd ./tcg-js; cat "./coverage/lcov_merged.info" | ./node_modules/.bin/codeclimate
 
