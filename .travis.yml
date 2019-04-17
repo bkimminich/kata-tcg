@@ -25,7 +25,6 @@ addons:
 
 after_success:
   - ./gradlew coveralls
-  - ./gradlew pitest
   - ./tcg-js/node_modules/.bin/lcov-result-merger 'tcg-js/coverage/*/lcov.info' 'tcg-js/coverage/lcov_merged.info'
   - cd ./tcg-js; cat "./coverage/lcov_merged.info" | ./node_modules/.bin/codeclimate-test-reporter
 

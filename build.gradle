@@ -1,6 +1,5 @@
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'info.solidsoft.pitest'
 
 buildscript {
     repositories {
@@ -10,7 +9,6 @@ buildscript {
     dependencies {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.11.3'
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.10'
     }
 }
 
