@@ -10,6 +10,8 @@
         "dojo"
     ],
     "devDependencies": {
+        "jasmine-core": "^2.99",
+        "karma": "^1.7.1",
         "karma-jasmine": "^1.1.2",
         "karma-phantomjs-launcher": "^1.0.4",
         "karma-coverage": "^1.1.2",
