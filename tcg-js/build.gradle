@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.moowork.gradle:gradle-node-plugin:0.+'
+        classpath 'com.moowork.gradle:gradle-node-plugin:1.+'
     }
 }
 
@@ -11,7 +11,7 @@ apply plugin: 'com.moowork.node'
 
 node {
     // Version of node to use.
-    version = '4.2.4'
+    version = '10.15.3'
 
     // Base URL for fetching node distributions (change if you have a mirror).
     distBaseUrl = 'http://nodejs.org/dist'
