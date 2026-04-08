@@ -1,0 +1,125 @@
+name: Build & Coverage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: gradle
+      - name: Build and Test Java
+        run: ./gradlew :tcg-java:test :tcg-java:jacocoTestReport
+      - name: Upload Java Coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: java-coverage
+          path: |
+            tcg-java/build/reports/jacoco/test/jacocoTestReport.xml
+            tcg-java/build/jacoco/test.exec
+
+  build-groovy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: gradle
+      - name: Build and Test Groovy
+        run: ./gradlew :tcg-groovy:test :tcg-groovy:jacocoTestReport
+      - name: Upload Groovy Coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: groovy-coverage
+          path: |
+            tcg-groovy/build/reports/jacoco/test/jacocoTestReport.xml
+            tcg-groovy/build/jacoco/test.exec
+
+  build-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '10'
+          cache: 'npm'
+          cache-dependency-path: tcg-js/package-lock.json
+      - name: Install dependencies
+        run: cd tcg-js && npm install
+      - name: Run Tests and Coverage
+        run: cd tcg-js && npm test
+      - name: Merge Coverage
+        run: |
+          cd tcg-js
+          ./node_modules/.bin/lcov-result-merger 'coverage/*/lcov.info' 'coverage/lcov_merged.info'
+      - name: Upload JS Coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: js-coverage
+          path: tcg-js/coverage/lcov_merged.info
+
+  coverage-report:
+    needs: [build-java, build-groovy, build-js]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          cache: gradle
+      - name: Download Java Coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: java-coverage
+          path: tcg-java/build/
+      - name: Download Groovy Coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: groovy-coverage
+          path: tcg-groovy/build/
+      - name: Download JS Coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: js-coverage
+          path: tcg-js/coverage/
+      - name: Fix paths for Java & Groovy Coverage
+        run: |
+          mkdir -p tcg-java/build/reports/jacoco/test/
+          mv tcg-java/build/jacocoTestReport.xml tcg-java/build/reports/jacoco/test/ || true
+          mkdir -p tcg-java/build/jacoco/
+          mv tcg-java/build/test.exec tcg-java/build/jacoco/ || true
+          mkdir -p tcg-groovy/build/reports/jacoco/test/
+          mv tcg-groovy/build/jacocoTestReport.xml tcg-groovy/build/reports/jacoco/test/ || true
+          mkdir -p tcg-groovy/build/jacoco/
+          mv tcg-groovy/build/test.exec tcg-groovy/build/jacoco/ || true
+      - name: Java & Groovy Coverage to Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew jacocoRootReport coveralls
+      - name: JS Coverage to Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: tcg-js/coverage/lcov_merged.info
+          parallel: true
+          flag-name: tcg-js
+      - name: Finish Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
